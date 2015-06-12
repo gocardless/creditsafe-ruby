@@ -1,0 +1,493 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <FindCompaniesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+         <FindCompaniesResult ChargeReference="random_ref" xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+            <q1:Messages>
+               <q1:Message Type="Information" Code="20103">Service access contract expires on 2015-07-07 00:00 (UTC). Please contact your account manager regarding access extension.</q1:Message>
+            </q1:Messages>
+            <q1:Companies>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L03409809">
+                  <q1:Name>THE AERODROME</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>WATNALL ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG15 6EN</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/3596609">
+                  <q1:Name>KEN BIGGS DOMESTIC SERVICES</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>33 BLANFORD GARDENS, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG2 7UQ</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L01654359">
+                  <q1:Name>KEN BRADSHAW</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>33 FERNY HOLLOW CLOSE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG5 9BB</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/4482088">
+                  <q1:Name>KENCO LOCAL BUSINESS SERVICE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>28 CORONATION ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG15 7EJ</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1017661">
+                  <q1:Name>KENDON PACKAGING MIDLAND</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>37 WIGMAN ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG8 4PA</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/5102595">
+                  <q1:Name>KENDRICK CARS</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>FURLONG HOUSE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG12 5BL</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/3569972">
+                  <q1:Name>KENDRICK CARS IN NOTTINGHAM</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>FURLONG HOUSE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG12 5BL</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/3713637">
+                  <q1:Name>KEN GREGORY &amp; SONS</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>27 PORTLAND STREET, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG17 7AB</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1002296">
+                  <q1:Name>KEN HAYWOOD TILING SERVICES</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>15 COLLINS CLOSE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG6 7AH</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/3900187">
+                  <q1:Name>KEN MARTIN LEISURE CENTRE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>HUCKNALL LANE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG6 8AP</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/998865">
+                  <q1:Name>KEN MOULD CAR SALES</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>14-16 HENDON RISE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG3 3AN</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1018164">
+                  <q1:Name>KENNEDY POLISHERS</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>42A LINCOLN STREET, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG6 0FX</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/4160511">
+                  <q1:Name>KENNELGATE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>ASHGATE RETAIL PARK, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG15 7UQ</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1018281">
+                  <q1:Name>KENNELGATE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>UNIT 1 GAMSTON DISTRICT CENTRE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG2 6PS</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/4299778">
+                  <q1:Name>KENNELGATE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>UNIT 6-7 WEST POINT SHOPPING CENTRE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG9 6DX</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1018278">
+                  <q1:Name>KENNELGATE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>HUCKNALL LANE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG6 8AJ</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1018275">
+                  <q1:Name>KENNELGATE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>404 HIGH ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG9 5EG</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1018277">
+                  <q1:Name>KENNELGATE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>127 TROWELL ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG8 2EN</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L43415872">
+                  <q1:Name>KENNELGATE PET FOOD SUPERSTORE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>UNIT 6-7 WEST POINT SHOPPING CENTRE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG9 6DX</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L13348569">
+                  <q1:Name>KENNELGATE PET FOOD SUPERSTORE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>UNIT 1, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG2 6PS</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L43361046">
+                  <q1:Name>KENNELGATE PET FOOD SUPERSTORE</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>UNIT E ASHGATE RETAIL PARK, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG15 7UQ</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/4268372">
+                  <q1:Name>KENNELGATE PET STORES</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG9 7BW</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/3874681">
+                  <q1:Name>KENNETH CLARKE MP (RUSHCLIFFE)</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG2 6BE</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1018512">
+                  <q1:Name>KENNETH J COOPER</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>16 KIMBERLEY ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG16 1DF</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/4150249">
+                  <q1:Name>KENNINGTON ELECTRICAL</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG14 7WD</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1017103">
+                  <q1:Name>KEN NORMAN PAINTER &amp; DECORATOR</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>172A NUNCARGATE ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG17 9EA</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L55090055">
+                  <q1:Name>KENRICK SCHOOL OF MOTORING</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>34 KENRICK ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG3 6HJ</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1018919">
+                  <q1:Name>KENS NEWSAGENTS</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>40 ANNESLEY LANE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG16 6AF</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L19352139">
+                  <q1:Name>KENS VIDEOS</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>21 YORK AVENUE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG16 5LA</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/4349812">
+                  <q1:Name>KEN WALLER MARQUEES</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>ALEXANDRA COACH HOUSE, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG3 4JA</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/L12970021">
+                  <q1:Name>KEN WILKINS PRINT GROUP</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>PRIVATE ROAD NO 8, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG4 2JX</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+               <q1:Company OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/1/1020340">
+                  <q1:Name>KENWYNN PRODUCTS</q1:Name>
+                  <q1:Type>NonLtd</q1:Type>
+                  <q1:Status>Other</q1:Status>
+                  <q1:Address>
+                     <q1:SimpleValue>269 CARLTON ROAD, NOTTINGHAM</q1:SimpleValue>
+                     <q1:PostalCode>NG3 2NT</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+            </q1:Companies>
+         </FindCompaniesResult>
+      </FindCompaniesResponse>
+   </s:Body>
+</s:Envelope>

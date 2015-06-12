@@ -1,0 +1,29 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <FindCompaniesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+         <FindCompaniesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+            <q1:Messages>
+               <q1:Message Type="Information" Code="20103">Service access contract expires on 2015-07-07 00:00 (UTC). Please contact your account manager regarding access extension.</q1:Message>
+            </q1:Messages>
+            <q1:Companies>
+               <q1:Company DateOfLatestAccounts="2014-01-31T00:00:00Z" OnlineReports="true" Monitoring="false" Country="GB" Id="GB003/0/07495895">
+                  <q1:Name>GOCARDLESS LTD</q1:Name>
+                  <q1:Type>Ltd</q1:Type>
+                  <q1:Status>Active</q1:Status>
+                  <q1:RegistrationNumber>07495895</q1:RegistrationNumber>
+                  <q1:Address>
+                     <q1:SimpleValue>338-346, GOSWELL, LONDON</q1:SimpleValue>
+                     <q1:PostalCode>EC1V7LQ</q1:PostalCode>
+                  </q1:Address>
+                  <q1:AvailableReportTypes>
+                     <q1:AvailableReportType>Full</q1:AvailableReportType>
+                  </q1:AvailableReportTypes>
+                  <q1:AvailableLanguages>
+                     <q1:AvailableLanguage>EN</q1:AvailableLanguage>
+                  </q1:AvailableLanguages>
+               </q1:Company>
+            </q1:Companies>
+         </FindCompaniesResult>
+      </FindCompaniesResponse>
+   </s:Body>
+</s:Envelope>

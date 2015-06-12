@@ -1,0 +1,24 @@
+inherit_from: .rubocop_todo.yml
+
+# Avoid single-line methods.
+SingleLineMethods:
+  AllowIfMethodIsEmpty: true
+
+StringLiterals:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: 'only_raise'
+
+# Use trailing rather than leading dots on multi-line call chains
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ClassLength:
+  Max: 150

@@ -1,0 +1,13 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <RetrieveCompanyOnlineReportResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+         <RetrieveCompanyOnlineReportResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes/reports">
+            <Messages xmlns="http://www.creditsafe.com/globaldata/datatypes">
+               <Message Type="Information" Code="20103">Service access contract expires on 2015-07-07 00:00 (UTC). Please contact your account manager regarding access extension.</Message>
+               <Message Type="Information" Code="10101">Company number [074958955]" not found</Message>
+               <Message Type="Information" Code="10103">Specified report is unavailable.</Message>
+            </Messages>
+         </RetrieveCompanyOnlineReportResult>
+      </RetrieveCompanyOnlineReportResponse>
+   </s:Body>
+</s:Envelope>

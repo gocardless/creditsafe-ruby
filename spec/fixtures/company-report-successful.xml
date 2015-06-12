@@ -1,0 +1,582 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <RetrieveCompanyOnlineReportResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+         <RetrieveCompanyOnlineReportResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes/reports">
+            <Messages xmlns="http://www.creditsafe.com/globaldata/datatypes">
+               <Message Type="Information" Code="20103">Service access contract expires on 2015-07-07 00:00 (UTC). Please contact your account manager regarding access extension.</Message>
+            </Messages>
+            <q1:Reports>
+               <q1:Report xsi:type="q1:LtdCompanyFullReport" CompanyId="GB003/0/07495895" OrderNumber="23187624" Language="EN" ReportCurrency="GBP" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <q1:CompanySummary>
+                     <q1:BusinessName>GOCARDLESS LTD</q1:BusinessName>
+                     <q1:Country>GB</q1:Country>
+                     <q1:Number>UK07695955</q1:Number>
+                     <q1:CompanyRegistrationNumber>07495895</q1:CompanyRegistrationNumber>
+                     <q1:MainActivity>
+                        <q1:ActivityCode>7260</q1:ActivityCode>
+                        <q1:ActivityDescription>Other computer related activities</q1:ActivityDescription>
+                     </q1:MainActivity>
+                     <q1:CompanyStatus Code="Active">Active - Accounts Filed</q1:CompanyStatus>
+                     <q1:LatestTurnoverFigure>0</q1:LatestTurnoverFigure>
+                     <q1:LatestShareholdersEquityFigure>4287289</q1:LatestShareholdersEquityFigure>
+                     <q1:CreditRating>
+                        <q1:CommonValue>A</q1:CommonValue>
+                        <q1:CommonDescription>Very Low Risk</q1:CommonDescription>
+                        <q1:CreditLimit>405000</q1:CreditLimit>
+                        <q1:ProviderValue MaxValue="100" MinValue="0">96</q1:ProviderValue>
+                        <q1:ProviderDescription>Very Low Risk</q1:ProviderDescription>
+                     </q1:CreditRating>
+                  </q1:CompanySummary>
+                  <q1:CompanyIdentification>
+                     <q1:BasicInformation>
+                        <q1:BusinessName>GOCARDLESS LTD</q1:BusinessName>
+                        <q1:RegisteredCompanyName>GOCARDLESS LTD</q1:RegisteredCompanyName>
+                        <q1:CompanyRegistrationNumber>07495895</q1:CompanyRegistrationNumber>
+                        <q1:Country>GB</q1:Country>
+                        <q1:DateofCompanyRegistration>2011-01-17T00:00:00Z</q1:DateofCompanyRegistration>
+                        <q1:DateofStartingOperations>2011-01-17T00:00:00Z</q1:DateofStartingOperations>
+                        <q1:LegalForm>Private limited with Share Capital</q1:LegalForm>
+                        <q1:CompanyStatus Code="Active">Active - Accounts Filed</q1:CompanyStatus>
+                        <q1:ContactAddress>
+                           <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 GOSWELL ROAD, LONDON EC1V 7LQ</SimpleValue>
+                           <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                        </q1:ContactAddress>
+                        <q1:ContactTelephoneNumber>02071838674</q1:ContactTelephoneNumber>
+                     </q1:BasicInformation>
+                     <q1:Activities>
+                        <q1:Activity>
+                           <q1:ActivityCode>7260</q1:ActivityCode>
+                           <q1:ActivityDescription>Other computer related activities</q1:ActivityDescription>
+                        </q1:Activity>
+                     </q1:Activities>
+                     <q1:PreviousNames>
+                        <q1:PreviousName>
+                           <q1:DateChanged>2011-08-25T00:00:00Z</q1:DateChanged>
+                           <q1:Name>GROUPAY LIMITED</q1:Name>
+                        </q1:PreviousName>
+                     </q1:PreviousNames>
+                  </q1:CompanyIdentification>
+                  <q1:CreditScore>
+                     <q1:CurrentCreditRating>
+                        <q1:CommonValue>A</q1:CommonValue>
+                        <q1:CommonDescription>Very Low Risk</q1:CommonDescription>
+                        <q1:CreditLimit>405000</q1:CreditLimit>
+                        <q1:ProviderValue MaxValue="100" MinValue="0">96</q1:ProviderValue>
+                        <q1:ProviderDescription>Very Low Risk</q1:ProviderDescription>
+                     </q1:CurrentCreditRating>
+                     <q1:CurrentContractLimit>610000</q1:CurrentContractLimit>
+                     <q1:PreviousCreditRating>
+                        <q1:CommonValue>A</q1:CommonValue>
+                        <q1:CommonDescription>Very Low Risk</q1:CommonDescription>
+                        <q1:CreditLimit>195000</q1:CreditLimit>
+                        <q1:ProviderValue MaxValue="100" MinValue="0">96</q1:ProviderValue>
+                        <q1:ProviderDescription>Very Low Risk</q1:ProviderDescription>
+                     </q1:PreviousCreditRating>
+                     <q1:DateOfLatestRatingChange>2014-10-29T00:00:00Z</q1:DateOfLatestRatingChange>
+                  </q1:CreditScore>
+                  <q1:ContactInformation>
+                     <q1:MainAddress>
+                        <q1:Address>
+                           <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 GOSWELL ROAD, LONDON EC1V 7LQ</SimpleValue>
+                           <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                        </q1:Address>
+                        <q1:Telephone>02071838674</q1:Telephone>
+                     </q1:MainAddress>
+                     <q1:OtherAddresses>
+                        <q1:OtherAddress>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 Goswell Road, London EC1V 7LQ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                           </q1:Address>
+                           <q1:Telephone>71838674</q1:Telephone>
+                        </q1:OtherAddress>
+                     </q1:OtherAddresses>
+                     <q1:Websites>
+                        <q1:Website>GOCARDLESS.COM</q1:Website>
+                     </q1:Websites>
+                  </q1:ContactInformation>
+                  <q1:ShareCapitalStructure>
+                     <q1:IssuedShareCapital>6701569</q1:IssuedShareCapital>
+                     <q1:ShareHolders>
+                        <q1:ShareHolder>
+                           <q1:Name>GROUPAY INC (6701569 shares of 6701569)</q1:Name>
+                           <q1:SharePercent>100</q1:SharePercent>
+                        </q1:ShareHolder>
+                     </q1:ShareHolders>
+                  </q1:ShareCapitalStructure>
+                  <q1:Directors>
+                     <q1:CurrentDirectors>
+                        <q1:Director>
+                           <q1:Name>Mr Timothy Brian Bunting</q1:Name>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 Goswell Road, London EC1V 7LQ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                           </q1:Address>
+                           <q1:Gender>1</q1:Gender>
+                           <q1:DateOfBirth>1963-08-02T00:00:00Z</q1:DateOfBirth>
+                           <q1:Position AppointmentDate="2014-01-17T00:00:00Z">Director</q1:Position>
+                        </q1:Director>
+                        <q1:Director>
+                           <q1:Name>Mr Hiroki James Takeuchi</q1:Name>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 Goswell Road, London EC1V 7LQ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                           </q1:Address>
+                           <q1:Gender>1</q1:Gender>
+                           <q1:DateOfBirth>1986-05-17T00:00:00Z</q1:DateOfBirth>
+                           <q1:Position AppointmentDate="2011-01-17T00:00:00Z">Director</q1:Position>
+                        </q1:Director>
+                        <q1:Director>
+                           <q1:Name>Mr Matt Jack Robinson</q1:Name>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 Goswell Road, London EC1V 7LQ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                           </q1:Address>
+                           <q1:Gender>1</q1:Gender>
+                           <q1:DateOfBirth>1987-08-15T00:00:00Z</q1:DateOfBirth>
+                           <q1:Position AppointmentDate="2011-01-17T00:00:00Z">Director</q1:Position>
+                        </q1:Director>
+                        <q1:Director>
+                           <q1:Name>Mr Michael  Treskow</q1:Name>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 Goswell Road, London EC1V 7LQ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                           </q1:Address>
+                           <q1:Gender>1</q1:Gender>
+                           <q1:DateOfBirth>1979-09-03T00:00:00Z</q1:DateOfBirth>
+                           <q1:Position AppointmentDate="2014-03-19T00:00:00Z">Director</q1:Position>
+                        </q1:Director>
+                        <q1:Director>
+                           <q1:Name>Mr Mark Xavier Zaleski</q1:Name>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">338-346 Goswell Road, London EC1V 7LQ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">EC1V 7LQ</PostalCode>
+                           </q1:Address>
+                           <q1:Gender>1</q1:Gender>
+                           <q1:DateOfBirth>1962-11-30T00:00:00Z</q1:DateOfBirth>
+                           <q1:Position AppointmentDate="2014-10-01T00:00:00Z">Director</q1:Position>
+                        </q1:Director>
+                        <q1:Director>
+                           <q1:Name>Mr Hiroki James Takeuchi</q1:Name>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">C206 Jam Factory 27 Green Walk, London SE1 4TQ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">SE1 4TQ</PostalCode>
+                           </q1:Address>
+                           <q1:Gender>1</q1:Gender>
+                           <q1:Position AppointmentDate="2015-03-01T00:00:00Z">Company Secretary</q1:Position>
+                        </q1:Director>
+                        <q1:Director>
+                           <q1:Name>Mr Matthew Jack Robinson</q1:Name>
+                           <q1:Address>
+                              <SimpleValue xmlns="http://www.creditsafe.com/globaldata/datatypes">6 Terry Road, High Wycombe HP13 6QJ</SimpleValue>
+                              <PostalCode xmlns="http://www.creditsafe.com/globaldata/datatypes">HP13 6QJ</PostalCode>
+                           </q1:Address>
+                           <q1:Gender>1</q1:Gender>
+                           <q1:Position AppointmentDate="2015-03-01T00:00:00Z">Company Secretary</q1:Position>
+                        </q1:Director>
+                     </q1:CurrentDirectors>
+                  </q1:Directors>
+                  <q1:OtherInformation>
+                     <q1:EmployeesInformation>
+                        <q1:EmployeeInformation>
+                           <q1:Year>2014</q1:Year>
+                           <q1:NumberOfEmployees>0</q1:NumberOfEmployees>
+                        </q1:EmployeeInformation>
+                        <q1:EmployeeInformation>
+                           <q1:Year>2013</q1:Year>
+                           <q1:NumberOfEmployees>0</q1:NumberOfEmployees>
+                        </q1:EmployeeInformation>
+                        <q1:EmployeeInformation>
+                           <q1:Year>2012</q1:Year>
+                           <q1:NumberOfEmployees>0</q1:NumberOfEmployees>
+                        </q1:EmployeeInformation>
+                     </q1:EmployeesInformation>
+                  </q1:OtherInformation>
+                  <q1:GroupStructure>
+                     <q1:UltimateParent>
+                        <Name xmlns="http://www.creditsafe.com/globaldata/datatypes">GROUPAY INC</Name>
+                        <Status xmlns="http://www.creditsafe.com/globaldata/datatypes">Other</Status>
+                     </q1:UltimateParent>
+                     <q1:ImmediateParent>
+                        <Name xmlns="http://www.creditsafe.com/globaldata/datatypes">GROUPAY INC</Name>
+                        <Status xmlns="http://www.creditsafe.com/globaldata/datatypes">Other</Status>
+                     </q1:ImmediateParent>
+                  </q1:GroupStructure>
+                  <q1:FinancialStatements>
+                     <q1:FinancialStatement>
+                        <q1:YearEndDate>2014-01-31T00:00:00Z</q1:YearEndDate>
+                        <q1:NumberOfWeeks>52</q1:NumberOfWeeks>
+                        <q1:Currency>GBP</q1:Currency>
+                        <q1:ConsolidatedAccounts>false</q1:ConsolidatedAccounts>
+                        <q1:ProfitAndLoss>
+                           <q1:Revenue>0</q1:Revenue>
+                           <q1:WagesAndSalaries>0</q1:WagesAndSalaries>
+                           <q1:PensionCosts>0</q1:PensionCosts>
+                           <q1:Depreciation>18942</q1:Depreciation>
+                           <q1:Amortisation>0</q1:Amortisation>
+                           <q1:ProfitBeforeTax>0</q1:ProfitBeforeTax>
+                           <q1:OtherAppropriations>0</q1:OtherAppropriations>
+                        </q1:ProfitAndLoss>
+                        <q1:BalanceSheet>
+                           <q1:TotalTangibleAssets>57063</q1:TotalTangibleAssets>
+                           <q1:TotalIntangibleAssets>0</q1:TotalIntangibleAssets>
+                           <q1:TotalOtherFixedAssets>0</q1:TotalOtherFixedAssets>
+                           <q1:TotalFixedAssets>57063</q1:TotalFixedAssets>
+                           <q1:TotalInventories>0</q1:TotalInventories>
+                           <q1:TradeReceivables>3889650</q1:TradeReceivables>
+                           <q1:MiscellaneousReceivables>0</q1:MiscellaneousReceivables>
+                           <q1:TotalReceivables>3889650</q1:TotalReceivables>
+                           <q1:Cash>403239</q1:Cash>
+                           <q1:OtherCurrentAssets>0</q1:OtherCurrentAssets>
+                           <q1:TotalCurrentAssets>4292889</q1:TotalCurrentAssets>
+                           <q1:TotalAssets>4349952</q1:TotalAssets>
+                           <q1:TradePayables>62663</q1:TradePayables>
+                           <q1:BankLiabilities>0</q1:BankLiabilities>
+                           <q1:OtherLoansOrFinance>0</q1:OtherLoansOrFinance>
+                           <q1:MiscellaneousLiabilities>0</q1:MiscellaneousLiabilities>
+                           <q1:TotalCurrentLiabilities>62663</q1:TotalCurrentLiabilities>
+                           <q1:BankLiabilitiesDueAfter1Year>0</q1:BankLiabilitiesDueAfter1Year>
+                           <q1:OtherLoansOrFinanceDueAfter1Year>0</q1:OtherLoansOrFinanceDueAfter1Year>
+                           <q1:MiscellaneousLiabilitiesDueAfter1Year>0</q1:MiscellaneousLiabilitiesDueAfter1Year>
+                           <q1:TotalLongTermLiabilities>0</q1:TotalLongTermLiabilities>
+                           <q1:TotalLiabilities>62663</q1:TotalLiabilities>
+                           <q1:CalledUpShareCapital>6701569</q1:CalledUpShareCapital>
+                           <q1:RevenueReserves>-2414280</q1:RevenueReserves>
+                           <q1:OtherReserves>0</q1:OtherReserves>
+                           <q1:TotalShareholdersEquity>4287289</q1:TotalShareholdersEquity>
+                        </q1:BalanceSheet>
+                        <q1:OtherFinancials>
+                           <q1:ContingentLiabilities>No</q1:ContingentLiabilities>
+                           <q1:WorkingCapital>4230226</q1:WorkingCapital>
+                           <q1:NetWorth>4287289</q1:NetWorth>
+                        </q1:OtherFinancials>
+                        <q1:Ratios>
+                           <q1:SalesOrNetWorkingCapital>0.00</q1:SalesOrNetWorkingCapital>
+                           <q1:DebtorDays>0.00</q1:DebtorDays>
+                           <q1:CreditorDays>0.00</q1:CreditorDays>
+                           <q1:CurrentRatio>68.51</q1:CurrentRatio>
+                           <q1:LiquidityRatioOrAcidTest>68.50</q1:LiquidityRatioOrAcidTest>
+                           <q1:CurrentDebtRatio>0.01</q1:CurrentDebtRatio>
+                           <q1:Gearing>0.00</q1:Gearing>
+                           <q1:EquityInPercentage>98.56</q1:EquityInPercentage>
+                           <q1:TotalDebtRatio>0.01</q1:TotalDebtRatio>
+                        </q1:Ratios>
+                     </q1:FinancialStatement>
+                     <q1:FinancialStatement>
+                        <q1:YearEndDate>2013-01-31T00:00:00Z</q1:YearEndDate>
+                        <q1:NumberOfWeeks>52</q1:NumberOfWeeks>
+                        <q1:Currency>GBP</q1:Currency>
+                        <q1:ConsolidatedAccounts>false</q1:ConsolidatedAccounts>
+                        <q1:ProfitAndLoss>
+                           <q1:Revenue>0</q1:Revenue>
+                           <q1:WagesAndSalaries>0</q1:WagesAndSalaries>
+                           <q1:PensionCosts>0</q1:PensionCosts>
+                           <q1:Depreciation>4279</q1:Depreciation>
+                           <q1:Amortisation>0</q1:Amortisation>
+                           <q1:ProfitBeforeTax>0</q1:ProfitBeforeTax>
+                           <q1:OtherAppropriations>0</q1:OtherAppropriations>
+                        </q1:ProfitAndLoss>
+                        <q1:BalanceSheet>
+                           <q1:TotalTangibleAssets>47870</q1:TotalTangibleAssets>
+                           <q1:TotalIntangibleAssets>0</q1:TotalIntangibleAssets>
+                           <q1:TotalOtherFixedAssets>0</q1:TotalOtherFixedAssets>
+                           <q1:TotalFixedAssets>47870</q1:TotalFixedAssets>
+                           <q1:TotalInventories>0</q1:TotalInventories>
+                           <q1:TradeReceivables>163590</q1:TradeReceivables>
+                           <q1:MiscellaneousReceivables>0</q1:MiscellaneousReceivables>
+                           <q1:TotalReceivables>163590</q1:TotalReceivables>
+                           <q1:Cash>1684370</q1:Cash>
+                           <q1:OtherCurrentAssets>0</q1:OtherCurrentAssets>
+                           <q1:TotalCurrentAssets>1847960</q1:TotalCurrentAssets>
+                           <q1:TotalAssets>1895830</q1:TotalAssets>
+                           <q1:TradePayables>78086</q1:TradePayables>
+                           <q1:BankLiabilities>0</q1:BankLiabilities>
+                           <q1:OtherLoansOrFinance>0</q1:OtherLoansOrFinance>
+                           <q1:MiscellaneousLiabilities>0</q1:MiscellaneousLiabilities>
+                           <q1:TotalCurrentLiabilities>78086</q1:TotalCurrentLiabilities>
+                           <q1:BankLiabilitiesDueAfter1Year>0</q1:BankLiabilitiesDueAfter1Year>
+                           <q1:OtherLoansOrFinanceDueAfter1Year>0</q1:OtherLoansOrFinanceDueAfter1Year>
+                           <q1:MiscellaneousLiabilitiesDueAfter1Year>0</q1:MiscellaneousLiabilitiesDueAfter1Year>
+                           <q1:TotalLongTermLiabilities>0</q1:TotalLongTermLiabilities>
+                           <q1:TotalLiabilities>78086</q1:TotalLiabilities>
+                           <q1:CalledUpShareCapital>2807478</q1:CalledUpShareCapital>
+                           <q1:RevenueReserves>-989734</q1:RevenueReserves>
+                           <q1:OtherReserves>0</q1:OtherReserves>
+                           <q1:TotalShareholdersEquity>1817744</q1:TotalShareholdersEquity>
+                        </q1:BalanceSheet>
+                        <q1:OtherFinancials>
+                           <q1:ContingentLiabilities>No</q1:ContingentLiabilities>
+                           <q1:WorkingCapital>1769874</q1:WorkingCapital>
+                           <q1:NetWorth>1817744</q1:NetWorth>
+                        </q1:OtherFinancials>
+                        <q1:Ratios>
+                           <q1:SalesOrNetWorkingCapital>0.00</q1:SalesOrNetWorkingCapital>
+                           <q1:DebtorDays>0.00</q1:DebtorDays>
+                           <q1:CreditorDays>0.00</q1:CreditorDays>
+                           <q1:CurrentRatio>23.67</q1:CurrentRatio>
+                           <q1:LiquidityRatioOrAcidTest>23.66</q1:LiquidityRatioOrAcidTest>
+                           <q1:CurrentDebtRatio>0.04</q1:CurrentDebtRatio>
+                           <q1:Gearing>0.00</q1:Gearing>
+                           <q1:EquityInPercentage>95.88</q1:EquityInPercentage>
+                           <q1:TotalDebtRatio>0.04</q1:TotalDebtRatio>
+                        </q1:Ratios>
+                     </q1:FinancialStatement>
+                     <q1:FinancialStatement>
+                        <q1:YearEndDate>2012-01-31T00:00:00Z</q1:YearEndDate>
+                        <q1:NumberOfWeeks>52</q1:NumberOfWeeks>
+                        <q1:Currency>GBP</q1:Currency>
+                        <q1:ConsolidatedAccounts>false</q1:ConsolidatedAccounts>
+                        <q1:ProfitAndLoss>
+                           <q1:Revenue>0</q1:Revenue>
+                           <q1:WagesAndSalaries>0</q1:WagesAndSalaries>
+                           <q1:PensionCosts>0</q1:PensionCosts>
+                           <q1:Depreciation>8</q1:Depreciation>
+                           <q1:Amortisation>0</q1:Amortisation>
+                           <q1:ProfitBeforeTax>0</q1:ProfitBeforeTax>
+                           <q1:OtherAppropriations>0</q1:OtherAppropriations>
+                        </q1:ProfitAndLoss>
+                        <q1:BalanceSheet>
+                           <q1:TotalTangibleAssets>1229</q1:TotalTangibleAssets>
+                           <q1:TotalIntangibleAssets>0</q1:TotalIntangibleAssets>
+                           <q1:TotalOtherFixedAssets>0</q1:TotalOtherFixedAssets>
+                           <q1:TotalFixedAssets>1229</q1:TotalFixedAssets>
+                           <q1:TotalInventories>0</q1:TotalInventories>
+                           <q1:TradeReceivables>63839</q1:TradeReceivables>
+                           <q1:MiscellaneousReceivables>0</q1:MiscellaneousReceivables>
+                           <q1:TotalReceivables>63839</q1:TotalReceivables>
+                           <q1:Cash>572738</q1:Cash>
+                           <q1:OtherCurrentAssets>0</q1:OtherCurrentAssets>
+                           <q1:TotalCurrentAssets>636577</q1:TotalCurrentAssets>
+                           <q1:TotalAssets>637806</q1:TotalAssets>
+                           <q1:TradePayables>13707</q1:TradePayables>
+                           <q1:BankLiabilities>0</q1:BankLiabilities>
+                           <q1:OtherLoansOrFinance>0</q1:OtherLoansOrFinance>
+                           <q1:MiscellaneousLiabilities>0</q1:MiscellaneousLiabilities>
+                           <q1:TotalCurrentLiabilities>13707</q1:TotalCurrentLiabilities>
+                           <q1:BankLiabilitiesDueAfter1Year>0</q1:BankLiabilitiesDueAfter1Year>
+                           <q1:OtherLoansOrFinanceDueAfter1Year>0</q1:OtherLoansOrFinanceDueAfter1Year>
+                           <q1:MiscellaneousLiabilitiesDueAfter1Year>780379</q1:MiscellaneousLiabilitiesDueAfter1Year>
+                           <q1:TotalLongTermLiabilities>780379</q1:TotalLongTermLiabilities>
+                           <q1:TotalLiabilities>794086</q1:TotalLiabilities>
+                           <q1:CalledUpShareCapital>3</q1:CalledUpShareCapital>
+                           <q1:RevenueReserves>-156283</q1:RevenueReserves>
+                           <q1:OtherReserves>0</q1:OtherReserves>
+                           <q1:TotalShareholdersEquity>-156280</q1:TotalShareholdersEquity>
+                        </q1:BalanceSheet>
+                        <q1:OtherFinancials>
+                           <q1:ContingentLiabilities>No</q1:ContingentLiabilities>
+                           <q1:WorkingCapital>622870</q1:WorkingCapital>
+                           <q1:NetWorth>-156280</q1:NetWorth>
+                        </q1:OtherFinancials>
+                        <q1:Ratios>
+                           <q1:SalesOrNetWorkingCapital>0.00</q1:SalesOrNetWorkingCapital>
+                           <q1:DebtorDays>0.00</q1:DebtorDays>
+                           <q1:CreditorDays>0.00</q1:CreditorDays>
+                           <q1:CurrentRatio>46.44</q1:CurrentRatio>
+                           <q1:LiquidityRatioOrAcidTest>46.44</q1:LiquidityRatioOrAcidTest>
+                           <q1:CurrentDebtRatio>-0.08</q1:CurrentDebtRatio>
+                           <q1:Gearing>-499.35</q1:Gearing>
+                           <q1:EquityInPercentage>-24.50</q1:EquityInPercentage>
+                           <q1:TotalDebtRatio>-5.08</q1:TotalDebtRatio>
+                        </q1:Ratios>
+                     </q1:FinancialStatement>
+                  </q1:FinancialStatements>
+                  <q1:AdditionalInformation>
+                     <PaymentData xmlns="http://www.creditsafe.com/globaldata/datatypes/reports">
+                        <TotalNoofInvoicesAvailable>5</TotalNoofInvoicesAvailable>
+                        <TotalNoofInvoicesPaidBefore30DaysDue>4</TotalNoofInvoicesPaidBefore30DaysDue>
+                        <TotalNoofInvoicesPaidAfter30DaysDue>1</TotalNoofInvoicesPaidAfter30DaysDue>
+                        <TotalNoofInvoicesOwingBefore30DaysDue>0</TotalNoofInvoicesOwingBefore30DaysDue>
+                        <TotalNoofInvoicesOwingAfter30DaysDue>0</TotalNoofInvoicesOwingAfter30DaysDue>
+                     </PaymentData>
+                     <CompanyHistory xmlns="http://www.creditsafe.com/globaldata/datatypes/reports">
+                        <Event>
+                           <Date>2015-05-29T00:00:00</Date>
+                           <Description>New Company Secretary Mr M.J. Robinson appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2015-05-25T00:00:00</Date>
+                           <Description>Mr M.J. Robinson has resigned as company secretary</Description>
+                        </Event>
+                        <Event>
+                           <Date>2015-05-25T00:00:00</Date>
+                           <Description>New Company Secretary Mr H.J. Takeuchi appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2015-05-18T00:00:00</Date>
+                           <Description>New Company Secretary Mr M.J. Robinson appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2015-02-03T00:00:00</Date>
+                           <Description>Annual Returns</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-12-16T00:00:00</Date>
+                           <Description>New Board Member Mr M.X. Zaleski appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-10-29T00:00:00</Date>
+                           <Description>New Accounts Filed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-07-04T00:00:00</Date>
+                           <Description>Change in Reg.Office</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-07-04T00:00:00</Date>
+                           <Description>Change of Company Postcode</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-05-28T00:00:00</Date>
+                           <Description>New Board Member Mr M. Treskow appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-05-26T00:00:00</Date>
+                           <Description>New Board Member Mr T.B. Bunting appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-01-22T00:00:00</Date>
+                           <Description>Annual Returns</Description>
+                        </Event>
+                        <Event>
+                           <Date>2014-01-21T00:00:00</Date>
+                           <Description>Mr T. Blomfield has left the board</Description>
+                        </Event>
+                        <Event>
+                           <Date>2013-10-28T00:00:00</Date>
+                           <Description>New Accounts Filed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2013-03-07T00:00:00</Date>
+                           <Description>Annual Returns</Description>
+                        </Event>
+                        <Event>
+                           <Date>2012-10-20T00:00:00</Date>
+                           <Description>New Accounts Filed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2012-07-26T00:00:00</Date>
+                           <Description>Change in Reg.Office</Description>
+                        </Event>
+                        <Event>
+                           <Date>2012-07-26T00:00:00</Date>
+                           <Description>Change of Company Postcode</Description>
+                        </Event>
+                        <Event>
+                           <Date>2012-02-13T00:00:00</Date>
+                           <Description>Annual Returns</Description>
+                        </Event>
+                        <Event>
+                           <Date>2011-08-29T00:00:00</Date>
+                           <Description>Change of Name</Description>
+                        </Event>
+                        <Event>
+                           <Date>2011-01-27T00:00:00</Date>
+                           <Description>New Board Member Mr H.J. Takeuchi appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2011-01-19T00:00:00</Date>
+                           <Description>New Company Secretary Mr M.J. Robinson appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2011-01-19T00:00:00</Date>
+                           <Description>New Board Member Mr T. Blomfield appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2011-01-19T00:00:00</Date>
+                           <Description>New Board Member Mr M.J. Robinson appointed</Description>
+                        </Event>
+                        <Event>
+                           <Date>2011-01-19T00:00:00</Date>
+                           <Description>New Board Member Mr H.J. Takeuchi appointed</Description>
+                        </Event>
+                     </CompanyHistory>
+                     <MortgageInformation xmlns="http://www.creditsafe.com/globaldata/datatypes/reports">
+                        <MortgageSummary>
+                           <Outstanding>2</Outstanding>
+                           <Satisfied>0</Satisfied>
+                        </MortgageSummary>
+                        <MortgageDetails>
+                           <MortgageDetail>
+                              <DateChargeCreated>24/04/2015</DateChargeCreated>
+                              <DateChargeRegistered>28/04/2015</DateChargeRegistered>
+                              <Status>Outstanding</Status>
+                              <PersonsEntitled>kreos capital iv (luxembourg) s.ã€.r.l.(luxembourg registration number b163054);</PersonsEntitled>
+                              <Details>contains fixed charge.contains floatingcharge.floating charge covers all the property or undertaking of the company.contains negative pledge.</Details>
+                           </MortgageDetail>
+                           <MortgageDetail>
+                              <MortgageType>charge of deposit</MortgageType>
+                              <DateChargeCreated>19/09/2011</DateChargeCreated>
+                              <DateChargeRegistered>27/09/2011</DateChargeRegistered>
+                              <Status>Outstanding</Status>
+                              <PersonsEntitled>the royal bank of scotland plc</PersonsEntitled>
+                              <AmountSecured>all monies due or to become due from the company to the chargee on any account whatsoever</AmountSecured>
+                              <Details>all amounts now and in the future credited to account number 10138444 with the bank</Details>
+                           </MortgageDetail>
+                        </MortgageDetails>
+                     </MortgageInformation>
+                     <AdditionalFinancials xmlns="http://www.creditsafe.com/globaldata/datatypes/reports">
+                        <FinancialItems>
+                           <YearEndDate>2014-01-31T00:00:00</YearEndDate>
+                           <RevaluationReserve>0</RevaluationReserve>
+                           <ShortTermHPFinanceLeaseLiabilities>0</ShortTermHPFinanceLeaseLiabilities>
+                           <LongTermHPFinanceLeaseLiabilities>0</LongTermHPFinanceLeaseLiabilities>
+                        </FinancialItems>
+                        <FinancialItems>
+                           <YearEndDate>2013-01-31T00:00:00</YearEndDate>
+                           <RevaluationReserve>0</RevaluationReserve>
+                           <ShortTermHPFinanceLeaseLiabilities>0</ShortTermHPFinanceLeaseLiabilities>
+                           <LongTermHPFinanceLeaseLiabilities>0</LongTermHPFinanceLeaseLiabilities>
+                        </FinancialItems>
+                        <FinancialItems>
+                           <YearEndDate>2012-01-31T00:00:00</YearEndDate>
+                           <RevaluationReserve>0</RevaluationReserve>
+                           <ShortTermHPFinanceLeaseLiabilities>0</ShortTermHPFinanceLeaseLiabilities>
+                           <LongTermHPFinanceLeaseLiabilities>0</LongTermHPFinanceLeaseLiabilities>
+                        </FinancialItems>
+                     </AdditionalFinancials>
+                     <Commentaries xmlns="http://www.creditsafe.com/globaldata/datatypes/reports">
+                        <Commentary>
+                           <CommentaryText>This company has been treated as a Small company in respect of the rating/limit generated.</CommentaryText>
+                           <PositiveOrNegative>Neutral</PositiveOrNegative>
+                        </Commentary>
+                        <Commentary>
+                           <CommentaryText>The latest Balance Sheet indicates a very positive net working capital position.</CommentaryText>
+                           <PositiveOrNegative>Positive</PositiveOrNegative>
+                        </Commentary>
+                        <Commentary>
+                           <CommentaryText>The latest cash balances represent a positive level in terms of the overall outstanding creditor obligations.</CommentaryText>
+                           <PositiveOrNegative>Positive</PositiveOrNegative>
+                        </Commentary>
+                        <Commentary>
+                           <CommentaryText>There has been an increase in shareholders funds compared with the previous balance sheet.</CommentaryText>
+                           <PositiveOrNegative>Positive</PositiveOrNegative>
+                        </Commentary>
+                        <Commentary>
+                           <CommentaryText>This company trades in an industry with a lower level of corporate failures.</CommentaryText>
+                           <PositiveOrNegative>Positive</PositiveOrNegative>
+                        </Commentary>
+                     </Commentaries>
+                     <ExtendedGroupStructure xmlns="http://www.creditsafe.com/globaldata/datatypes/reports">
+                        <GroupStructure>
+                           <CompanyInGroup>
+                              <CompanyName>GROUPAY INC</CompanyName>
+                              <Level>0</Level>
+                              <Status>Other</Status>
+                           </CompanyInGroup>
+                           <CompanyInGroup Id="GB003/0/07495895" Country="GB" SafeNumber="UK07695955">
+                              <CompanyName>GOCARDLESS LTD</CompanyName>
+                              <RegisteredNumber>07495895</RegisteredNumber>
+                              <LatestAnnualAccounts>2014-01-31T00:00:00</LatestAnnualAccounts>
+                              <Level>1</Level>
+                              <Status>Active</Status>
+                           </CompanyInGroup>
+                        </GroupStructure>
+                     </ExtendedGroupStructure>
+                  </q1:AdditionalInformation>
+               </q1:Report>
+            </q1:Reports>
+         </RetrieveCompanyOnlineReportResult>
+      </RetrieveCompanyOnlineReportResponse>
+   </s:Body>
+</s:Envelope>
