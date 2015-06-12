@@ -4,17 +4,8 @@ require 'creditsafe/client'
 URL = 'https://webservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc'
 
 RSpec.describe(Creditsafe::Client) do
-  let(:creds) { { username: 'b', password: 'c' } }
-
-  describe '.new' do
-    it "given a valid environment, doesn't complain" do
-      expect { described_class.new(:live, creds) }.to_not raise_error
-    end
-
-    it 'given an invalid environment, raises an error' do
-      expect { described_class.new(:bad_env, creds) }.to raise_error
-    end
-  end
+  let(:username) { "b" }
+  let(:password) { "c" }
 
   shared_examples_for 'handles api errors' do
     context 'when an error occurs due to invalid credentials' do
@@ -70,7 +61,7 @@ RSpec.describe(Creditsafe::Client) do
   end
 
   describe '#find_company' do
-    let(:client) { described_class.new(:live, creds) }
+    let(:client) { described_class.new(username: username, password: password) }
     let(:find_company) do
       client.find_company(country_code: 'GB', registration_number: 'RN123')
     end
@@ -111,7 +102,7 @@ RSpec.describe(Creditsafe::Client) do
         status: 200
       )
     end
-    let(:client) { described_class.new(:live, creds) }
+    let(:client) { described_class.new(username: username, password: password) }
     let(:company_report) do
       client.company_report('GB003/0/07495895')
     end

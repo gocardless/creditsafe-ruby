@@ -17,14 +17,9 @@ module Creditsafe
     XMLNS_CRED_VAL =
       'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'.freeze
 
-    VALID_ENVIRONMENTS = [:test, :live]
-
-    def initialize(environment, credentials, savon_opts = {})
-      unless VALID_ENVIRONMENTS.include?(environment)
-        raise "Invalid environment '#{environment}'"
-      end
-      @environment = environment
-      @credentials = credentials
+    def initialize(username: nil, password: nil, savon_opts: {})
+      @username = username
+      @password = password
       @savon_opts = savon_opts
     end
 
@@ -41,9 +36,9 @@ module Creditsafe
         fetch(:company)
     end
 
-    def company_report(company_id, language: 'EN')
+    def company_report(creditsafe_id)
       response = wrap_soap_errors do
-        message = retrieve_company_report_message(company_id, language)
+        message = retrieve_company_report_message(creditsafe_id)
         client.call(:retrieve_company_online_report, message: message)
       end
 
@@ -67,11 +62,11 @@ module Creditsafe
       }
     end
 
-    def retrieve_company_report_message(company_id, language)
+    def retrieve_company_report_message(company_id)
       {
         "#{XMLNS_OPER}:companyId" => "#{company_id}",
         "#{XMLNS_OPER}:reportType" => 'Full',
-        "#{XMLNS_OPER}:language" => language
+        "#{XMLNS_OPER}:language" => "EN"
       }
     end
 
@@ -115,11 +110,8 @@ module Creditsafe
     end
 
     def auth_header
-      username = @credentials[:username]
-      password = @credentials[:password]
-      auth = 'Basic ' + Base64.encode64("#{username}:#{password}").chomp
-
-      { 'Authorization' => auth }
+      auth_value = 'Basic ' + Base64.encode64("#{@username}:#{@password}").chomp
+      { 'Authorization' => auth_value }
     end
 
     def build_savon_client
@@ -141,7 +133,7 @@ module Creditsafe
 
     def wsdl_path
       root_dir = File.join(File.dirname(__FILE__), '..', '..')
-      File.join(root_dir, 'data', "creditsafe-#{@environment}.xml")
+      File.join(root_dir, 'data', "creditsafe-live.xml")
     end
   end
 end
