@@ -37,11 +37,12 @@ module Creditsafe
         client.call(:find_companies, message: message)
       end
 
-      response.
-        fetch(:find_companies_response).
-        fetch(:find_companies_result).
-        fetch(:companies).
-        fetch(:company)
+      companies = response.
+                  fetch(:find_companies_response).
+                  fetch(:find_companies_result).
+                  fetch(:companies)
+
+      companies.nil? ? nil : companies.fetch(:company)
     end
 
     def company_report(creditsafe_id)

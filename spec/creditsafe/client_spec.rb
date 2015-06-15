@@ -129,6 +129,19 @@ RSpec.describe(Creditsafe::Client) do
     end
 
     include_examples 'handles api errors'
+
+    context "when no companies are found" do
+      before do
+        stub_request(:post, URL).to_return(
+          body: load_fixture('find-companies-none-found.xml'),
+          status: 200
+        )
+      end
+
+      it "returns nil" do
+        expect(find_company).to be_nil
+      end
+    end
   end
 
   describe '#company_report' do
