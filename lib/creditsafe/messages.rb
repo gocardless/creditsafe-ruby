@@ -59,8 +59,11 @@ module Creditsafe
       OTHER_ERROR,
       DATA_SERVICE_PROBLEMS,
       DATA_SERVICE_INVALID_RESPONSE
-    ]
+    ].freeze
 
+    # Creditsafe documentation shows a 6 digit error code, however their API
+    # strips the leading 0. To comply with the docs, we pad the API code here to
+    # ensure we find the right match
     def self.for_code(code)
       padded_code = code.rjust(6, '0')
       message = ALL.find { |msg| msg.code == padded_code }

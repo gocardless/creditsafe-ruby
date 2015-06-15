@@ -18,12 +18,20 @@ module Creditsafe
       'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'.freeze
 
     def initialize(username: nil, password: nil, savon_opts: {})
+      raise ArgumentError, "Username must be provided" if username.nil?
+      raise ArgumentError, "Password must be provided" if password.nil?
+
       @username = username
       @password = password
       @savon_opts = savon_opts
     end
 
     def find_company(country_code: nil, registration_number: nil)
+      raise ArgumentError, "Invalid country_code" if country_code.nil?
+      if registration_number.nil?
+        raise ArgumentError, "Invalid registration_number"
+      end
+
       response = wrap_soap_errors do
         message = find_company_message(country_code, registration_number)
         client.call(:find_companies, message: message)
@@ -70,7 +78,7 @@ module Creditsafe
       }
     end
 
-    def handle_api_messages(response)
+    def handle_message_for_response(response)
       [
         *response.xpath('//q1:Message'),
         *response.xpath('//xmlns:Message')
@@ -86,13 +94,13 @@ module Creditsafe
     # an HTTP 401 if you're unauthorized, hence the sad special case below
     def wrap_soap_errors
       response = yield
-      handle_api_messages(response)
+      handle_message_for_response(response)
       response.body
-    rescue StandardError => error
-      handle_soap_error(error)
+    rescue => error
+      handle_error(error)
     end
 
-    def handle_soap_error(error)
+    def handle_error(error)
       raise error
     rescue Savon::SOAPFault => error
       raise ApiError, error.message
