@@ -82,8 +82,11 @@ RSpec.describe(Creditsafe::Client) do
 
   describe '#find_company' do
     let(:client) { described_class.new(username: username, password: password) }
+    let(:country_code) { "GB" }
+    let(:registration_number) { "RN123" }
     let(:find_company) do
-      client.find_company(country_code: 'GB', registration_number: 'RN123')
+      client.find_company(country_code: country_code,
+                          registration_number: registration_number)
     end
     let(:method_call) { find_company }
     before do
@@ -91,6 +94,19 @@ RSpec.describe(Creditsafe::Client) do
         body: load_fixture('find-companies-successful.xml'),
         status: 200
       )
+    end
+
+    subject { -> { method_call } }
+    it { is_expected.to_not raise_error }
+
+    context "without a country_code" do
+      let(:country_code) { nil }
+      it { is_expected.to raise_error(ArgumentError) }
+    end
+
+    context "without a registration_number" do
+      let(:registration_number) { nil }
+      it { is_expected.to raise_error(ArgumentError) }
     end
 
     it 'returns the company details' do

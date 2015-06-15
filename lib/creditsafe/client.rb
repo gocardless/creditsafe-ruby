@@ -20,12 +20,18 @@ module Creditsafe
     def initialize(username: nil, password: nil, savon_opts: {})
       raise ArgumentError, "Username must be provided" if username.nil?
       raise ArgumentError, "Password must be provided" if password.nil?
+
       @username = username
       @password = password
       @savon_opts = savon_opts
     end
 
     def find_company(country_code: nil, registration_number: nil)
+      raise ArgumentError, "Invalid country_code" if country_code.nil?
+      if registration_number.nil?
+        raise ArgumentError, "Invalid registration_number"
+      end
+
       response = wrap_soap_errors do
         message = find_company_message(country_code, registration_number)
         client.call(:find_companies, message: message)
