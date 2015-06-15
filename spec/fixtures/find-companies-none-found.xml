@@ -1,0 +1,13 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <FindCompaniesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <FindCompaniesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+        <q1:Messages>
+          <q1:Message Type="Information" Code="20103">Service access contract expires on 2015-07-07 00:00 (UTC). Please contact your account manager regarding access extension.</q1:Message>
+          <q1:Message Type="Information" Code="10101">There are no results matching specified criteria.</q1:Message>
+        </q1:Messages>
+        <q1:Companies/>
+      </FindCompaniesResult>
+    </FindCompaniesResponse>
+  </s:Body>
+</s:Envelope>
