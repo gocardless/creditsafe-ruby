@@ -59,7 +59,7 @@ module Creditsafe
       OTHER_ERROR,
       DATA_SERVICE_PROBLEMS,
       DATA_SERVICE_INVALID_RESPONSE
-    ]
+    ].freeze
 
     def self.for_code(code)
       padded_code = code.rjust(6, '0')
