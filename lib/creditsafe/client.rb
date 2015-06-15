@@ -18,6 +18,8 @@ module Creditsafe
       'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'.freeze
 
     def initialize(username: nil, password: nil, savon_opts: {})
+      raise ArgumentError, "Username must be provided" if username.nil?
+      raise ArgumentError, "Password must be provided" if password.nil?
       @username = username
       @password = password
       @savon_opts = savon_opts

@@ -60,6 +60,26 @@ RSpec.describe(Creditsafe::Client) do
     end
   end
 
+  describe "#new" do
+    subject do
+      -> { described_class.new(username: username, password: password) }
+    end
+    let(:username) { "foo" }
+    let(:password) { "bar" }
+
+    it { is_expected.to_not raise_error }
+
+    context "without a username" do
+      let(:username) { nil }
+      it { is_expected.to raise_error(ArgumentError) }
+    end
+
+    context "without a password" do
+      let(:password) { nil }
+      it { is_expected.to raise_error(ArgumentError) }
+    end
+  end
+
   describe '#find_company' do
     let(:client) { described_class.new(username: username, password: password) }
     let(:find_company) do
