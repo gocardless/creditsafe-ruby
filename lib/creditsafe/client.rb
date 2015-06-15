@@ -72,7 +72,7 @@ module Creditsafe
       }
     end
 
-    def handle_api_messages(response)
+    def handle_message_for_response(response)
       [
         *response.xpath('//q1:Message'),
         *response.xpath('//xmlns:Message')
@@ -88,13 +88,13 @@ module Creditsafe
     # an HTTP 401 if you're unauthorized, hence the sad special case below
     def wrap_soap_errors
       response = yield
-      handle_api_messages(response)
+      handle_message_for_response(response)
       response.body
-    rescue StandardError => error
-      handle_soap_error(error)
+    rescue => error
+      handle_error(error)
     end
 
-    def handle_soap_error(error)
+    def handle_error(error)
       raise error
     rescue Savon::SOAPFault => error
       raise ApiError, error.message
