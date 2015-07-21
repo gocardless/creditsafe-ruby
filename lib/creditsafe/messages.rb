@@ -69,7 +69,11 @@ module Creditsafe
     def self.for_code(code)
       padded_code = code.rjust(6, '0')
       message = ALL.find { |msg| msg.code == padded_code }
-      raise ArgumentError, "Unknown code '#{code}'" unless message
+
+      if message.nil?
+        message = Message.new(code: code, message: 'Unknown error', error: true)
+      end
+
       message
     end
   end
