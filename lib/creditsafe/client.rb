@@ -45,9 +45,9 @@ module Creditsafe
       companies.nil? ? nil : companies.fetch(:company)
     end
 
-    def company_report(creditsafe_id)
+    def company_report(creditsafe_id, custom_data: nil)
       response = wrap_soap_errors do
-        message = retrieve_company_report_message(creditsafe_id)
+        message = retrieve_company_report_message(creditsafe_id, custom_data)
         client.call(:retrieve_company_online_report, message: message)
       end
 
@@ -71,12 +71,26 @@ module Creditsafe
       }
     end
 
-    def retrieve_company_report_message(company_id)
-      {
+    def retrieve_company_report_message(company_id, custom_data)
+      message = {
         "#{XMLNS_OPER}:companyId" => "#{company_id}",
         "#{XMLNS_OPER}:reportType" => 'Full',
         "#{XMLNS_OPER}:language" => "EN"
       }
+
+      unless custom_data.nil?
+        message["#{XMLNS_OPER}:customData"] = {
+          "#{XMLNS_DAT}:Entries" => {
+            "#{XMLNS_DAT}:Entry" => custom_data_entries(custom_data)
+          }
+        }
+      end
+
+      message
+    end
+
+    def custom_data_entries(custom_data)
+      custom_data.map { |key, value| { :@key => key, :content! => value } }
     end
 
     def handle_message_for_response(response)
