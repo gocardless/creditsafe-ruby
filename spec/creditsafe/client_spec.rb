@@ -152,8 +152,9 @@ RSpec.describe(Creditsafe::Client) do
       )
     end
     let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
     let(:company_report) do
-      client.company_report('GB003/0/07495895')
+      client.company_report('GB003/0/07495895', custom_data: custom_data)
     end
     let(:method_call) { company_report }
 
