@@ -1,5 +1,6 @@
 require 'webmock/rspec'
 require 'nokogiri'
+require 'rspec/its'
 
 def load_fixture(name)
   File.read(File.join(File.dirname(__FILE__), 'fixtures', name))

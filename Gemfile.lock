@@ -88,6 +88,9 @@ GEM
     rspec-expectations (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
+    rspec-its (1.2.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
     rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
@@ -131,6 +134,7 @@ DEPENDENCIES
   pry
   pry-byebug
   rspec (~> 3.1)
+  rspec-its (~> 1.2)
   rubocop (~> 0.32)
   webmock (~> 1.20)
 

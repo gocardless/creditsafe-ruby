@@ -28,6 +28,7 @@ module Creditsafe
     INVALID_REQUEST_XML           = Message.new(code: '030101', message: 'Invalid request XML', error: true)
     INVALID_OPERATION_PARAMS      = Message.new(code: '030102', message: 'Invalid operation parameters', error: true)
     OPERATION_NOT_SUPPORTED       = Message.new(code: '030103', message: 'Operation not supported', error: true)
+    INVALID_CUSTOM_DATA_SPECIFIED = Message.new(code: '030104', message: 'Invalid custom data specified', error: true)
     CHANGE_NOTIFICATION           = Message.new(code: '030201', message: 'Change notification')
     TEMPORARY_SYSTEM_PROBLEM      = Message.new(code: '030202', message: 'Temporary system problem', error: true)
     ENDPOINT_SHUTDOWN             = Message.new(code: '030203', message: 'Endpoint shutdown', error: true)
@@ -52,6 +53,7 @@ module Creditsafe
       INVALID_REQUEST_XML,
       INVALID_OPERATION_PARAMS,
       OPERATION_NOT_SUPPORTED,
+      INVALID_CUSTOM_DATA_SPECIFIED,
       CHANGE_NOTIFICATION,
       TEMPORARY_SYSTEM_PROBLEM,
       ENDPOINT_SHUTDOWN,
@@ -67,7 +69,11 @@ module Creditsafe
     def self.for_code(code)
       padded_code = code.rjust(6, '0')
       message = ALL.find { |msg| msg.code == padded_code }
-      raise ArgumentError, "Unknown code '#{code}'" unless message
+
+      if message.nil?
+        message = Message.new(code: code, message: 'Unknown error', error: true)
+      end
+
       message
     end
   end
