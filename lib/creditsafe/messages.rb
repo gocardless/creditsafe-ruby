@@ -2,7 +2,9 @@ module Creditsafe
   module Messages
     class Message
       attr_reader :code, :message
-      def initialize(code: code, message: message, error: false)
+      def initialize(code: nil, message: nil, error: false)
+        raise ArgumentError, "Parameters 'code' and 'message' are mandatory" \
+                             unless code && message
         @code = code
         @message = message
         @error = error

@@ -22,5 +22,12 @@ RSpec.describe(Creditsafe::Messages) do
       its(:code) { is_expected.to eq(code) }
       its(:message) { is_expected.to eq('Unknown error') }
     end
+
+    context "for an empty code" do
+      let(:code) { '' }
+      it "was passed the wrong parameters" do
+        expect { subject(:message) }.to raise_error
+      end
+    end
   end
 end
