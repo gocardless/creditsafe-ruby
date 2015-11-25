@@ -101,9 +101,10 @@ module Creditsafe
         api_message = Creditsafe::Messages.
                       for_code(message.attributes['Code'].value)
 
-        if api_message.error?
-          raise ApiError, "#{api_message.message} (#{message.text})"
-        end
+        api_error_message = api_message.message
+        api_error_message += " (#{message.text})" unless message.text.blank?
+
+        raise ApiError, api_error_message if api_message.error?
       end
     end
 

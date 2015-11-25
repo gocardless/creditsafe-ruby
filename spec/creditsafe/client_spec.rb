@@ -143,7 +143,7 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
 
-    context "when an error occurs" do
+    context "when an error occurs with further details" do
       before do
         stub_request(:post, URL).to_return(
           body: load_fixture('find-companies-error.xml'),
@@ -155,8 +155,25 @@ RSpec.describe(Creditsafe::Client) do
         begin
           method_call
         rescue Creditsafe::ApiError => err
-          expect(err.message).to include 'Invalid operation parameters'
-          expect(err.message).to include 'Invalid countries list specified'
+          expect(err.message).to eq 'Invalid operation parameters ' \
+                                    '(Invalid countries list specified.)'
+        end
+      end
+
+      context "with further details provided in the response" do
+        before do
+          stub_request(:post, URL).to_return(
+            body: load_fixture('find-companies-error-no-text.xml'),
+            status: 200
+          )
+        end
+
+        it 'gives a useful error, with the specific error in the response' do
+          begin
+            method_call
+          rescue Creditsafe::ApiError => err
+            expect(err.message).to eq 'Invalid operation parameters'
+          end
         end
       end
     end
