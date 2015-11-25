@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+    <s:Body>
+        <FindCompaniesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+            <FindCompaniesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+                <q1:Messages>
+                    <q1:Message Type="Error" Code="30102" />
+                </q1:Messages>
+            </FindCompaniesResult>
+        </FindCompaniesResponse>
+    </s:Body>
+</s:Envelope>
