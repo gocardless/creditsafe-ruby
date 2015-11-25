@@ -142,6 +142,24 @@ RSpec.describe(Creditsafe::Client) do
         expect(find_company).to be_nil
       end
     end
+
+    context "when an error occurs" do
+      before do
+        stub_request(:post, URL).to_return(
+          body: load_fixture('find-companies-error.xml'),
+          status: 200
+        )
+      end
+
+      it 'gives a useful error, with the specific error in the response' do
+        begin
+          method_call
+        rescue Creditsafe::ApiError => err
+          expect(err.message).to include 'Invalid operation parameters'
+          expect(err.message).to include 'Invalid countries list specified'
+        end
+      end
+    end
   end
 
   describe '#company_report' do

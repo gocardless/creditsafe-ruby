@@ -100,7 +100,10 @@ module Creditsafe
       ].each do |message|
         api_message = Creditsafe::Messages.
                       for_code(message.attributes['Code'].value)
-        raise ApiError, api_message.message if api_message.error?
+
+        if api_message.error?
+          raise ApiError, "#{api_message.message} (#{message.text})"
+        end
       end
     end
 
