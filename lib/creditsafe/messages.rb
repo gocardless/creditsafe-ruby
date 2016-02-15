@@ -1,7 +1,8 @@
 module Creditsafe
   module Messages
     class Message
-      attr_reader :code, :message
+      attr_reader :code, :message, :error
+
       def initialize(code: nil, message: nil, error: false)
         raise ArgumentError, "Parameters 'code' and 'message' are mandatory" \
                              unless code && message
@@ -10,9 +11,7 @@ module Creditsafe
         @error = error
       end
 
-      def error?
-        @error
-      end
+      alias error? error
     end
 
     # rubocop:disable Metrics/LineLength

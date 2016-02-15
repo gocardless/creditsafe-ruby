@@ -1,7 +1,8 @@
 require 'spec_helper'
 require 'creditsafe/client'
 
-URL = 'https://webservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc'
+URL = 'https://webservices.creditsafe.com/GlobalData/1.3/'\
+      'MainServiceBasic.svc'.freeze
 
 RSpec.describe(Creditsafe::Client) do
   let(:username) { "b" }
@@ -84,10 +85,15 @@ RSpec.describe(Creditsafe::Client) do
     let(:client) { described_class.new(username: username, password: password) }
     let(:country_code) { "GB" }
     let(:registration_number) { "RN123" }
-    let(:find_company) do
-      client.find_company(country_code: country_code,
-                          registration_number: registration_number)
+    let(:city) { nil }
+    let(:search_criteria) do
+      {
+        country_code: country_code,
+        registration_number: registration_number,
+        city: city
+      }.reject { |_, v| v.nil? }
     end
+    let(:find_company) { client.find_company(search_criteria) }
     let(:method_call) { find_company }
     before do
       stub_request(:post, URL).to_return(
@@ -107,6 +113,16 @@ RSpec.describe(Creditsafe::Client) do
     context "without a registration_number" do
       let(:registration_number) { nil }
       it { is_expected.to raise_error(ArgumentError) }
+    end
+
+    context "with a city" do
+      let(:city) { "Berlin" }
+      it { is_expected.to raise_error(ArgumentError) }
+
+      context "in Germany" do
+        let(:country_code) { "DE" }
+        it { is_expected.to_not raise_error }
+      end
     end
 
     it 'returns the company details' do

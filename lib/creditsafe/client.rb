@@ -10,8 +10,8 @@ module Creditsafe
     XMLNS_OPER = 'oper'.freeze
     XMLNS_OPER_VAL = 'http://www.creditsafe.com/globaldata/operations'.freeze
 
-    XMLNS_DAT  = 'dat'.freeze
-    XMLNS_DAT_VAL  = 'http://www.creditsafe.com/globaldata/datatypes'.freeze
+    XMLNS_DAT = 'dat'.freeze
+    XMLNS_DAT_VAL = 'http://www.creditsafe.com/globaldata/datatypes'.freeze
 
     XMLNS_CRED = 'cred'.freeze
     XMLNS_CRED_VAL =
@@ -26,14 +26,11 @@ module Creditsafe
       @savon_opts = savon_opts
     end
 
-    def find_company(country_code: nil, registration_number: nil)
-      raise ArgumentError, "Invalid country_code" if country_code.nil?
-      if registration_number.nil?
-        raise ArgumentError, "Invalid registration_number"
-      end
+    def find_company(search_criteria = {})
+      check_search_criteria(search_criteria)
 
       response = wrap_soap_errors do
-        message = find_company_message(country_code, registration_number)
+        message = find_company_message(search_criteria)
         client.call(:find_companies, message: message)
       end
 
@@ -60,20 +57,42 @@ module Creditsafe
 
     private
 
-    def find_company_message(country_code, registration_number)
+    def check_search_criteria(search_criteria)
+      if search_criteria[:country_code].nil?
+        raise ArgumentError, "country_code is a required search criteria"
+      end
+
+      if search_criteria[:registration_number].nil?
+        raise ArgumentError, "registration_number is a required search criteria"
+      end
+
+      if search_criteria[:city] && search_criteria[:country_code] != 'DE'
+        raise ArgumentError, "city is only supported for German searches"
+      end
+    end
+
+    def find_company_message(provided_criteria)
+      search_criteria = {
+        "#{XMLNS_DAT}:RegistrationNumber" =>
+          provided_criteria[:registration_number]
+      }
+
+      unless provided_criteria[:city].nil?
+        search_criteria["#{XMLNS_DAT}:Address"] =
+          { "#{XMLNS_DAT}:City" => provided_criteria[:city] }
+      end
+
       {
         "#{XMLNS_OPER}:countries" => {
-          "#{XMLNS_CRED}:CountryCode" => country_code
+          "#{XMLNS_CRED}:CountryCode" => provided_criteria[:country_code]
         },
-        "#{XMLNS_OPER}:searchCriteria" => {
-          "#{XMLNS_DAT}:RegistrationNumber" => registration_number
-        }
+        "#{XMLNS_OPER}:searchCriteria" => search_criteria
       }
     end
 
     def retrieve_company_report_message(company_id, custom_data)
       message = {
-        "#{XMLNS_OPER}:companyId" => "#{company_id}",
+        "#{XMLNS_OPER}:companyId" => company_id.to_s,
         "#{XMLNS_OPER}:reportType" => 'Full',
         "#{XMLNS_OPER}:language" => "EN"
       }
@@ -144,7 +163,7 @@ module Creditsafe
     def build_savon_client
       options = {
         env_namespace: 'soapenv',
-        namespace_identifier: "#{XMLNS_OPER}",
+        namespace_identifier: XMLNS_OPER,
         namespaces: {
           "xmlns:#{XMLNS_OPER}" => XMLNS_OPER_VAL,
           "xmlns:#{XMLNS_DAT}" => XMLNS_DAT_VAL,
