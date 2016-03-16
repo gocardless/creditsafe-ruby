@@ -1,3 +1,5 @@
+require 'creditsafe/errors'
+
 module Creditsafe
   module Messages
     class Message
@@ -12,6 +14,18 @@ module Creditsafe
       end
 
       alias error? error
+
+      def error_class
+        return unless error?
+
+        case code[1].to_i
+        when 1 then Creditsafe::DataError
+        when 2 then Creditsafe::AccountError
+        when 3 then Creditsafe::RequestError
+        when 4 then Creditsafe::ProcessingError
+        else Creditsafe::UnknownApiError
+        end
+      end
     end
 
     # rubocop:disable Metrics/LineLength

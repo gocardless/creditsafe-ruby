@@ -123,7 +123,7 @@ module Creditsafe
         api_error_message = api_message.message
         api_error_message += " (#{message.text})" unless message.text.blank?
 
-        raise ApiError, api_error_message if api_message.error?
+        raise api_message.error_class, api_error_message if api_message.error?
       end
     end
 
@@ -141,12 +141,12 @@ module Creditsafe
     def handle_error(error)
       raise error
     rescue Savon::SOAPFault => error
-      raise ApiError, error.message
+      raise UnknownApiError, error.message
     rescue Savon::HTTPError => error
       if error.to_hash[:code] == 401
-        raise ApiError, 'Unauthorized: invalid credentials'
+        raise AccountError, 'Unauthorized: invalid credentials'
       end
-      raise ApiError, error.message
+      raise UnknownApiError, error.message
     rescue Excon::Errors::Error => err
       raise HttpError, "Error making HTTP request: #{err.message}"
     end
