@@ -17,14 +17,14 @@ RSpec.describe(Creditsafe::Client) do
         )
       end
 
-      it 'raises an ApiError' do
-        expect { method_call }.to raise_error(Creditsafe::ApiError)
+      it 'raises an AccountError' do
+        expect { method_call }.to raise_error(Creditsafe::AccountError)
       end
 
       it 'gives a useful error message' do
         begin
           method_call
-        rescue Creditsafe::ApiError => err
+        rescue Creditsafe::AccountError => err
           expect(err.message).to include 'invalid credentials'
         end
       end
@@ -36,8 +36,8 @@ RSpec.describe(Creditsafe::Client) do
           to_return(body: load_fixture('error-fault.xml'))
       end
 
-      it 'raises an ApiError' do
-        expect { method_call }.to raise_error(Creditsafe::ApiError)
+      it 'raises an UnknownApiError' do
+        expect { method_call }.to raise_error(Creditsafe::UnknownApiError)
       end
     end
 
@@ -170,7 +170,7 @@ RSpec.describe(Creditsafe::Client) do
       it 'gives a useful error, with the specific error in the response' do
         begin
           method_call
-        rescue Creditsafe::ApiError => err
+        rescue Creditsafe::RequestError => err
           expect(err.message).to eq 'Invalid operation parameters ' \
                                     '(Invalid countries list specified.)'
         end
@@ -187,7 +187,7 @@ RSpec.describe(Creditsafe::Client) do
         it 'gives a useful error, with the specific error in the response' do
           begin
             method_call
-          rescue Creditsafe::ApiError => err
+          rescue Creditsafe::RequestError => err
             expect(err.message).to eq 'Invalid operation parameters'
           end
         end
@@ -221,14 +221,14 @@ RSpec.describe(Creditsafe::Client) do
           to_return(body: load_fixture('company-report-not-found.xml'))
       end
 
-      it 'returns nil' do
-        expect { company_report }.to raise_error(Creditsafe::ApiError)
+      it 'raises an error' do
+        expect { company_report }.to raise_error(Creditsafe::DataError)
       end
 
       it 'gives a useful error message' do
         begin
           company_report
-        rescue Creditsafe::ApiError => err
+        rescue Creditsafe::DataError => err
           expect(err.message).to include 'Report unavailable'
         end
       end
