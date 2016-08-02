@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'securerandom'
 require 'savon'
 require 'excon'
@@ -7,15 +8,15 @@ require 'creditsafe/messages'
 
 module Creditsafe
   class Client
-    XMLNS_OPER = 'oper'.freeze
-    XMLNS_OPER_VAL = 'http://www.creditsafe.com/globaldata/operations'.freeze
+    XMLNS_OPER = 'oper'
+    XMLNS_OPER_VAL = 'http://www.creditsafe.com/globaldata/operations'
 
-    XMLNS_DAT = 'dat'.freeze
-    XMLNS_DAT_VAL = 'http://www.creditsafe.com/globaldata/datatypes'.freeze
+    XMLNS_DAT = 'dat'
+    XMLNS_DAT_VAL = 'http://www.creditsafe.com/globaldata/datatypes'
 
-    XMLNS_CRED = 'cred'.freeze
+    XMLNS_CRED = 'cred'
     XMLNS_CRED_VAL =
-      'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'.freeze
+      'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'
 
     def initialize(username: nil, password: nil, savon_opts: {})
       raise ArgumentError, "Username must be provided" if username.nil?
