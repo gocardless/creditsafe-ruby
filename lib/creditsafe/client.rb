@@ -6,6 +6,8 @@ require 'excon'
 require 'creditsafe/errors'
 require 'creditsafe/messages'
 
+require 'active_support/notifications'
+
 module Creditsafe
   class Client
     XMLNS_OPER = 'oper'
@@ -128,11 +130,26 @@ module Creditsafe
     # There's a potential bug in the creditsafe API where they actually return
     # an HTTP 401 if you're unauthorized, hence the sad special case below
     def invoke_soap(message_type, message)
+      started = Time.now
+      notification_payload = { request: message }
+
       response = client.call(message_type, message: message)
       handle_message_for_response(response)
-      response.body
-    rescue => error
-      handle_error(error)
+      notification_payload[:response] = response.body
+    rescue => raw_error
+      begin
+        handle_error(raw_error)
+      rescue => processed_error
+        notification_payload[:error] = processed_error
+        raise processed_error
+      end
+    ensure
+      publish("creditsafe.#{message_type}", started, Time.now,
+              SecureRandom.hex(10), notification_payload)
+    end
+
+    def publish(*args)
+      ActiveSupport::Notifications.publish(*args)
     end
 
     def handle_error(error)
