@@ -19,15 +19,9 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'raises an AccountError' do
-        expect { method_call }.to raise_error(Creditsafe::AccountError)
-      end
-
-      it 'gives a useful error message' do
-        begin
-          method_call
-        rescue Creditsafe::AccountError => err
-          expect(err.message).to include 'invalid credentials'
-        end
+        expect { method_call }.to raise_error(
+          Creditsafe::AccountError, /invalid credentials/
+        )
       end
     end
 
@@ -49,16 +43,8 @@ RSpec.describe(Creditsafe::Client) do
 
       it 'raises an HttpError' do
         expect { method_call }.to(
-          raise_error(Creditsafe::HttpError)
+          raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/)
         )
-      end
-
-      it 'gives a useful error message' do
-        begin
-          method_call
-        rescue Creditsafe::HttpError => err
-          expect(err.message).to match(/Excon::Error(?:s)?::Timeout/)
-        end
       end
     end
   end
@@ -170,12 +156,10 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'gives a useful error, with the specific error in the response' do
-        begin
-          method_call
-        rescue Creditsafe::RequestError => err
-          expect(err.message).to eq 'Invalid operation parameters ' \
-                                    '(Invalid countries list specified.)'
-        end
+        expect { method_call }.to raise_error(
+          Creditsafe::RequestError,
+          'Invalid operation parameters (Invalid countries list specified.)'
+        )
       end
 
       context "with further details provided in the response" do
@@ -187,11 +171,10 @@ RSpec.describe(Creditsafe::Client) do
         end
 
         it 'gives a useful error, with the specific error in the response' do
-          begin
-            method_call
-          rescue Creditsafe::RequestError => err
-            expect(err.message).to eq 'Invalid operation parameters'
-          end
+          expect { method_call }.to raise_error(
+            Creditsafe::RequestError,
+            'Invalid operation parameters'
+          )
         end
       end
     end
@@ -228,11 +211,9 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'gives a useful error message' do
-        begin
-          company_report
-        rescue Creditsafe::DataError => err
-          expect(err.message).to include 'Report unavailable'
-        end
+        expect { company_report }.to raise_error(
+          Creditsafe::DataError, /Report unavailable/
+        )
       end
     end
   end
