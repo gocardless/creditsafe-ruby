@@ -30,11 +30,8 @@ module Creditsafe
     def find_company(search_criteria = {})
       check_search_criteria(search_criteria)
 
-      response = wrap_soap_errors do
-        message = find_company_message(search_criteria)
-        client.call(:find_companies, message: message)
-      end
-
+      response = invoke_soap(:find_companies,
+                             find_company_message(search_criteria))
       companies = response.
                   fetch(:find_companies_response).
                   fetch(:find_companies_result).
@@ -44,10 +41,10 @@ module Creditsafe
     end
 
     def company_report(creditsafe_id, custom_data: nil)
-      response = wrap_soap_errors do
-        message = retrieve_company_report_message(creditsafe_id, custom_data)
-        client.call(:retrieve_company_online_report, message: message)
-      end
+      response = invoke_soap(
+        :retrieve_company_online_report,
+        retrieve_company_report_message(creditsafe_id, custom_data)
+      )
 
       response.
         fetch(:retrieve_company_online_report_response).
@@ -128,11 +125,10 @@ module Creditsafe
       end
     end
 
-    # Takes a proc and rescues any SOAP faults, HTTP errors or Creditsafe errors
     # There's a potential bug in the creditsafe API where they actually return
     # an HTTP 401 if you're unauthorized, hence the sad special case below
-    def wrap_soap_errors
-      response = yield
+    def invoke_soap(message_type, message)
+      response = client.call(message_type, message: message)
       handle_message_for_response(response)
       response.body
     rescue => error
