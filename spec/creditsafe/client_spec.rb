@@ -55,7 +55,7 @@ RSpec.describe(Creditsafe::Client) do
         begin
           method_call
         rescue Creditsafe::HttpError => err
-          expect(err.message).to include 'Excon::Errors::Timeout'
+          expect(err.message).to match(/Excon::Error(?:s)?::Timeout/)
         end
       end
     end
