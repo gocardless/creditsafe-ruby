@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'creditsafe/client'
 
 URL = 'https://webservices.creditsafe.com/GlobalData/1.3/'\
-      'MainServiceBasic.svc'.freeze
+      'MainServiceBasic.svc'
 
 RSpec.describe(Creditsafe::Client) do
   let(:username) { "b" }
@@ -48,7 +49,8 @@ RSpec.describe(Creditsafe::Client) do
 
       it 'raises an HttpError' do
         expect { method_call }.to(
-          raise_error(Creditsafe::HttpError))
+          raise_error(Creditsafe::HttpError)
+        )
       end
 
       it 'gives a useful error message' do
