@@ -127,8 +127,6 @@ module Creditsafe
       end
     end
 
-    # There's a potential bug in the creditsafe API where they actually return
-    # an HTTP 401 if you're unauthorized, hence the sad special case below
     def invoke_soap(message_type, message)
       started = Time.now
       notification_payload = { request: message }
@@ -137,12 +135,9 @@ module Creditsafe
       handle_message_for_response(response)
       notification_payload[:response] = response.body
     rescue => raw_error
-      begin
-        handle_error(raw_error)
-      rescue => processed_error
-        notification_payload[:error] = processed_error
-        raise processed_error
-      end
+      processed_error = handle_error(raw_error)
+      notification_payload[:error] = processed_error
+      raise processed_error
     ensure
       publish("creditsafe.#{message_type}", started, Time.now,
               SecureRandom.hex(10), notification_payload)
@@ -152,17 +147,21 @@ module Creditsafe
       ActiveSupport::Notifications.publish(*args)
     end
 
+    # There's a potential bug in the creditsafe API where they actually return
+    # an HTTP 401 if you're unauthorized, hence the sad special case below
     def handle_error(error)
-      raise error
-    rescue Savon::SOAPFault => error
-      raise UnknownApiError, error.message
-    rescue Savon::HTTPError => error
-      if error.to_hash[:code] == 401
-        raise AccountError, 'Unauthorized: invalid credentials'
+      case error
+      when Savon::SOAPFault
+        return UnknownApiError.new(error.message)
+      when Savon::HTTPError
+        if error.to_hash[:code] == 401
+          return AccountError.new('Unauthorized: invalid credentials')
+        end
+        return UnknownApiError.new(error.message)
+      when Excon::Errors::Error
+        return HttpError.new("Error making HTTP request: #{error.message}")
       end
-      raise UnknownApiError, error.message
-    rescue Excon::Errors::Error => err
-      raise HttpError, "Error making HTTP request: #{err.message}"
+      error
     end
 
     def client
