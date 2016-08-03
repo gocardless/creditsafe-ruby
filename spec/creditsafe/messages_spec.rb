@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'creditsafe/messages'
 
@@ -29,7 +30,7 @@ RSpec.describe(Creditsafe::Messages) do
     context "for an empty code" do
       let(:code) { '' }
       it "was passed the wrong parameters" do
-        expect { subject(:message) }.to raise_error
+        expect { subject(:message) }.to raise_error(ArgumentError)
       end
     end
   end

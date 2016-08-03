@@ -1,13 +1,40 @@
+# frozen_string_literal: true
 require 'spec_helper'
 require 'creditsafe/client'
+require 'timecop'
 
 URL = 'https://webservices.creditsafe.com/GlobalData/1.3/'\
-      'MainServiceBasic.svc'.freeze
+      'MainServiceBasic.svc'
 
 RSpec.describe(Creditsafe::Client) do
+  notifications = []
   let(:username) { "b" }
   let(:password) { "c" }
+  before(:all) do
+    ActiveSupport::Notifications.subscribe do |*args|
+      notifications << ActiveSupport::Notifications::Event.new(*args)
+    end
+  end
+  before(:each) { notifications = [] }
 
+  shared_examples_for 'sends notifications' do
+    let(:time) { Time.local(1990) }
+    it 'records a SOAP event' do
+      Timecop.freeze(time) do
+        method_call
+      end
+      expect(notifications).to match([have_attributes(
+        name: "creditsafe.#{soap_verb}",
+        transaction_id: match(/\A.{20}\Z/),
+        time: time,
+        end: time,
+        payload: {
+          request: be_truthy,
+          response: be_truthy
+        }
+      )])
+    end
+  end
   shared_examples_for 'handles api errors' do
     context 'when an error occurs due to invalid credentials' do
       before do
@@ -18,14 +45,20 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'raises an AccountError' do
-        expect { method_call }.to raise_error(Creditsafe::AccountError)
-      end
-
-      it 'gives a useful error message' do
-        begin
-          method_call
-        rescue Creditsafe::AccountError => err
-          expect(err.message).to include 'invalid credentials'
+        expect { method_call }.to raise_error(
+          Creditsafe::AccountError, /invalid credentials/
+        ) do |error|
+          expect(notifications).to match(
+            [
+              have_attributes(
+                name: "creditsafe.#{soap_verb}",
+                payload: {
+                  request: be_truthy,
+                  error: error
+                }
+              )
+            ]
+          )
         end
       end
     end
@@ -37,7 +70,21 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'raises an UnknownApiError' do
-        expect { method_call }.to raise_error(Creditsafe::UnknownApiError)
+        expect { method_call }.to raise_error(
+          Creditsafe::UnknownApiError
+        ) do |error|
+          expect(notifications).to match(
+            [
+              have_attributes(
+                name: "creditsafe.#{soap_verb}",
+                payload: {
+                  request: be_truthy,
+                  error: error
+                }
+              )
+            ]
+          )
+        end
       end
     end
 
@@ -48,15 +95,8 @@ RSpec.describe(Creditsafe::Client) do
 
       it 'raises an HttpError' do
         expect { method_call }.to(
-          raise_error(Creditsafe::HttpError))
-      end
-
-      it 'gives a useful error message' do
-        begin
-          method_call
-        rescue Creditsafe::HttpError => err
-          expect(err.message).to include 'Excon::Errors::Timeout'
-        end
+          raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/)
+        )
       end
     end
   end
@@ -82,6 +122,7 @@ RSpec.describe(Creditsafe::Client) do
   end
 
   describe '#find_company' do
+    let(:soap_verb) { 'find_companies' }
     let(:client) { described_class.new(username: username, password: password) }
     let(:country_code) { "GB" }
     let(:registration_number) { "RN123" }
@@ -144,6 +185,7 @@ RSpec.describe(Creditsafe::Client) do
               :@id => 'GB003/0/07495895')
     end
 
+    include_examples 'sends notifications'
     include_examples 'handles api errors'
 
     context "when no companies are found" do
@@ -157,6 +199,27 @@ RSpec.describe(Creditsafe::Client) do
       it "returns nil" do
         expect(find_company).to be_nil
       end
+
+      it "records a nil payload" do
+        find_company
+        expect(notifications).to match([have_attributes(
+          payload: {
+            request: be_truthy,
+            response: {
+              find_companies_response: include(
+                find_companies_result: include(
+                  messages: {
+                    message: include(
+                      "There are no results matching specified criteria."
+                    )
+                  },
+                  companies: be_nil
+                )
+              )
+            }
+          }
+        )])
+      end
     end
 
     context "when an error occurs with further details" do
@@ -168,12 +231,10 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'gives a useful error, with the specific error in the response' do
-        begin
-          method_call
-        rescue Creditsafe::RequestError => err
-          expect(err.message).to eq 'Invalid operation parameters ' \
-                                    '(Invalid countries list specified.)'
-        end
+        expect { method_call }.to raise_error(
+          Creditsafe::RequestError,
+          'Invalid operation parameters (Invalid countries list specified.)'
+        )
       end
 
       context "with further details provided in the response" do
@@ -185,17 +246,17 @@ RSpec.describe(Creditsafe::Client) do
         end
 
         it 'gives a useful error, with the specific error in the response' do
-          begin
-            method_call
-          rescue Creditsafe::RequestError => err
-            expect(err.message).to eq 'Invalid operation parameters'
-          end
+          expect { method_call }.to raise_error(
+            Creditsafe::RequestError,
+            'Invalid operation parameters'
+          )
         end
       end
     end
   end
 
   describe '#company_report' do
+    let(:soap_verb) { 'retrieve_company_online_report' }
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture('company-report-successful.xml'),
@@ -213,6 +274,7 @@ RSpec.describe(Creditsafe::Client) do
       expect(company_report).to include(:company_summary)
     end
 
+    include_examples 'sends notifications'
     include_examples 'handles api errors'
 
     context 'when a report is unavailable' do
@@ -226,11 +288,9 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'gives a useful error message' do
-        begin
-          company_report
-        rescue Creditsafe::DataError => err
-          expect(err.message).to include 'Report unavailable'
-        end
+        expect { company_report }.to raise_error(
+          Creditsafe::DataError, /Report unavailable/
+        )
       end
     end
   end

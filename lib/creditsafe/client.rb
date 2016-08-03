@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'securerandom'
 require 'savon'
 require 'excon'
@@ -5,17 +6,19 @@ require 'excon'
 require 'creditsafe/errors'
 require 'creditsafe/messages'
 
+require 'active_support/notifications'
+
 module Creditsafe
   class Client
-    XMLNS_OPER = 'oper'.freeze
-    XMLNS_OPER_VAL = 'http://www.creditsafe.com/globaldata/operations'.freeze
+    XMLNS_OPER = 'oper'
+    XMLNS_OPER_VAL = 'http://www.creditsafe.com/globaldata/operations'
 
-    XMLNS_DAT = 'dat'.freeze
-    XMLNS_DAT_VAL = 'http://www.creditsafe.com/globaldata/datatypes'.freeze
+    XMLNS_DAT = 'dat'
+    XMLNS_DAT_VAL = 'http://www.creditsafe.com/globaldata/datatypes'
 
-    XMLNS_CRED = 'cred'.freeze
+    XMLNS_CRED = 'cred'
     XMLNS_CRED_VAL =
-      'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'.freeze
+      'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'
 
     def initialize(username: nil, password: nil, savon_opts: {})
       raise ArgumentError, "Username must be provided" if username.nil?
@@ -29,11 +32,8 @@ module Creditsafe
     def find_company(search_criteria = {})
       check_search_criteria(search_criteria)
 
-      response = wrap_soap_errors do
-        message = find_company_message(search_criteria)
-        client.call(:find_companies, message: message)
-      end
-
+      response = invoke_soap(:find_companies,
+                             find_company_message(search_criteria))
       companies = response.
                   fetch(:find_companies_response).
                   fetch(:find_companies_result).
@@ -43,10 +43,10 @@ module Creditsafe
     end
 
     def company_report(creditsafe_id, custom_data: nil)
-      response = wrap_soap_errors do
-        message = retrieve_company_report_message(creditsafe_id, custom_data)
-        client.call(:retrieve_company_online_report, message: message)
-      end
+      response = invoke_soap(
+        :retrieve_company_online_report,
+        retrieve_company_report_message(creditsafe_id, custom_data)
+      )
 
       response.
         fetch(:retrieve_company_online_report_response).
@@ -127,28 +127,41 @@ module Creditsafe
       end
     end
 
-    # Takes a proc and rescues any SOAP faults, HTTP errors or Creditsafe errors
-    # There's a potential bug in the creditsafe API where they actually return
-    # an HTTP 401 if you're unauthorized, hence the sad special case below
-    def wrap_soap_errors
-      response = yield
+    def invoke_soap(message_type, message)
+      started = Time.now
+      notification_payload = { request: message }
+
+      response = client.call(message_type, message: message)
       handle_message_for_response(response)
-      response.body
-    rescue => error
-      handle_error(error)
+      notification_payload[:response] = response.body
+    rescue => raw_error
+      processed_error = handle_error(raw_error)
+      notification_payload[:error] = processed_error
+      raise processed_error
+    ensure
+      publish("creditsafe.#{message_type}", started, Time.now,
+              SecureRandom.hex(10), notification_payload)
     end
 
+    def publish(*args)
+      ActiveSupport::Notifications.publish(*args)
+    end
+
+    # There's a potential bug in the creditsafe API where they actually return
+    # an HTTP 401 if you're unauthorized, hence the sad special case below
     def handle_error(error)
-      raise error
-    rescue Savon::SOAPFault => error
-      raise UnknownApiError, error.message
-    rescue Savon::HTTPError => error
-      if error.to_hash[:code] == 401
-        raise AccountError, 'Unauthorized: invalid credentials'
+      case error
+      when Savon::SOAPFault
+        return UnknownApiError.new(error.message)
+      when Savon::HTTPError
+        if error.to_hash[:code] == 401
+          return AccountError.new('Unauthorized: invalid credentials')
+        end
+        return UnknownApiError.new(error.message)
+      when Excon::Errors::Error
+        return HttpError.new("Error making HTTP request: #{error.message}")
       end
-      raise UnknownApiError, error.message
-    rescue Excon::Errors::Error => err
-      raise HttpError, "Error making HTTP request: #{err.message}"
+      error
     end
 
     def client
