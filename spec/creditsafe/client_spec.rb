@@ -166,6 +166,17 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
 
+    it 'requests the company deatils' do
+      find_company
+      expect(a_request(:post, URL).with do |req|
+               expect(CompareXML.equivalent?(
+                        Nokogiri::XML(req.body),
+                        load_xml_fixture('find-companies-request.xml'),
+                        verbose: true
+               )).to eq([])
+             end).to have_been_made
+    end
+
     it 'returns the company details' do
       expect(find_company).
         to eq(:name => 'GOCARDLESS LTD',
@@ -269,6 +280,16 @@ RSpec.describe(Creditsafe::Client) do
       client.company_report('GB003/0/07495895', custom_data: custom_data)
     end
     let(:method_call) { company_report }
+    it 'requests the company details' do
+      company_report
+      expect(a_request(:post, URL).with do |req|
+               expect(CompareXML.equivalent?(
+                        Nokogiri::XML(req.body),
+                        load_xml_fixture('company-report-request.xml'),
+                        verbose: true
+               )).to eq([])
+             end).to have_been_made
+    end
 
     it 'returns the company details' do
       expect(company_report).to include(:company_summary)

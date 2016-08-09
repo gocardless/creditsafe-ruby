@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~> 0.37'
   spec.add_development_dependency 'webmock', '~> 1.20'
   spec.add_development_dependency 'timecop', '~> 0.8'
+  spec.add_development_dependency 'compare-xml', '~> 0.5'
 end
