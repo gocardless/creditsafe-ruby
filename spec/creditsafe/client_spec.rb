@@ -134,8 +134,10 @@ RSpec.describe(Creditsafe::Client) do
         city: city
       }.reject { |_, v| v.nil? }
     end
-    let(:find_company) { client.find_company(search_criteria) }
-    let(:method_call) { find_company }
+
+    subject(:find_company) { client.find_company(search_criteria) }
+    subject(:method_call) { find_company }
+
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture('find-companies-successful.xml'),
@@ -276,10 +278,11 @@ RSpec.describe(Creditsafe::Client) do
     end
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
-    let(:company_report) do
+    subject(:company_report) do
       client.company_report('GB003/0/07495895', custom_data: custom_data)
     end
-    let(:method_call) { company_report }
+    subject(:method_call) { company_report }
+
     it 'requests the company details' do
       company_report
       expect(a_request(:post, URL).with do |req|
