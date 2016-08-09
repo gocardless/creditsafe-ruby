@@ -2,6 +2,7 @@
 require 'webmock/rspec'
 require 'nokogiri'
 require 'rspec/its'
+require 'compare-xml'
 
 def load_fixture(name)
   File.read(File.join(File.dirname(__FILE__), 'fixtures', name))
