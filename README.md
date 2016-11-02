@@ -8,6 +8,16 @@ A ruby library for interacting with the
 Currently, it only partially implements the API to support finding companies by
 registration number and retrieving company online reports.
 
+# Installation
+
+Install the gem from RubyGems.org by adding the following to your `Gemfile`:
+
+```ruby
+gem 'creditsafe', '~> 0.3.0'
+```
+
+Just run `bundle install` to install the gem and its dependencies.
+
 # Usage
 
 Initialise the client with your `username` and `password`.
