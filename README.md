@@ -53,3 +53,8 @@ client.company_report(creditsafe_id: "GB003/0/07495895")
     ...
    }
 ```
+
+
+---
+
+GoCardless ♥ open source. If you do too, come [join us](https://gocardless.com/jobs#software-engineer).
