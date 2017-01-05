@@ -55,6 +55,10 @@ module Creditsafe
         fetch(:report)
     end
 
+    def inspect
+      "#<#{self.class} @username='#{@username}'>"
+    end
+
     private
 
     def check_search_criteria(search_criteria)
