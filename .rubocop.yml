@@ -16,9 +16,3 @@ Style/DotPosition:
 
 Style/Documentation:
   Enabled: false
-
-Metrics/MethodLength:
-  Max: 15
-
-Metrics/ClassLength:
-  Max: 152
