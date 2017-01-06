@@ -5,21 +5,15 @@ require 'excon'
 
 require 'creditsafe/errors'
 require 'creditsafe/messages'
+require 'creditsafe/namespace'
+
+require 'creditsafe/request/company_report'
+require 'creditsafe/request/find_company'
 
 require 'active_support/notifications'
 
 module Creditsafe
   class Client
-    XMLNS_OPER = 'oper'
-    XMLNS_OPER_VAL = 'http://www.creditsafe.com/globaldata/operations'
-
-    XMLNS_DAT = 'dat'
-    XMLNS_DAT_VAL = 'http://www.creditsafe.com/globaldata/datatypes'
-
-    XMLNS_CRED = 'cred'
-    XMLNS_CRED_VAL =
-      'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'
-
     def initialize(username: nil, password: nil, savon_opts: {})
       raise ArgumentError, "Username must be provided" if username.nil?
       raise ArgumentError, "Password must be provided" if password.nil?
@@ -30,10 +24,9 @@ module Creditsafe
     end
 
     def find_company(search_criteria = {})
-      check_search_criteria(search_criteria)
+      request = Creditsafe::Request::FindCompany.new(search_criteria)
+      response = invoke_soap(:find_companies, request.message)
 
-      response = invoke_soap(:find_companies,
-                             find_company_message(search_criteria))
       companies = response.
                   fetch(:find_companies_response).
                   fetch(:find_companies_result).
@@ -43,10 +36,9 @@ module Creditsafe
     end
 
     def company_report(creditsafe_id, custom_data: nil)
-      response = invoke_soap(
-        :retrieve_company_online_report,
-        retrieve_company_report_message(creditsafe_id, custom_data)
-      )
+      request =
+        Creditsafe::Request::CompanyReport.new(creditsafe_id, custom_data)
+      response = invoke_soap(:retrieve_company_online_report, request.message)
 
       response.
         fetch(:retrieve_company_online_report_response).
@@ -55,62 +47,11 @@ module Creditsafe
         fetch(:report)
     end
 
+    def inspect
+      "#<#{self.class} @username='#{@username}'>"
+    end
+
     private
-
-    def check_search_criteria(search_criteria)
-      if search_criteria[:country_code].nil?
-        raise ArgumentError, "country_code is a required search criteria"
-      end
-
-      if search_criteria[:registration_number].nil?
-        raise ArgumentError, "registration_number is a required search criteria"
-      end
-
-      if search_criteria[:city] && search_criteria[:country_code] != 'DE'
-        raise ArgumentError, "city is only supported for German searches"
-      end
-    end
-
-    def find_company_message(provided_criteria)
-      search_criteria = {
-        "#{XMLNS_DAT}:RegistrationNumber" =>
-          provided_criteria[:registration_number]
-      }
-
-      unless provided_criteria[:city].nil?
-        search_criteria["#{XMLNS_DAT}:Address"] =
-          { "#{XMLNS_DAT}:City" => provided_criteria[:city] }
-      end
-
-      {
-        "#{XMLNS_OPER}:countries" => {
-          "#{XMLNS_CRED}:CountryCode" => provided_criteria[:country_code]
-        },
-        "#{XMLNS_OPER}:searchCriteria" => search_criteria
-      }
-    end
-
-    def retrieve_company_report_message(company_id, custom_data)
-      message = {
-        "#{XMLNS_OPER}:companyId" => company_id.to_s,
-        "#{XMLNS_OPER}:reportType" => 'Full',
-        "#{XMLNS_OPER}:language" => "EN"
-      }
-
-      unless custom_data.nil?
-        message["#{XMLNS_OPER}:customData"] = {
-          "#{XMLNS_DAT}:Entries" => {
-            "#{XMLNS_DAT}:Entry" => custom_data_entries(custom_data)
-          }
-        }
-      end
-
-      message
-    end
-
-    def custom_data_entries(custom_data)
-      custom_data.map { |key, value| { :@key => key, :content! => value } }
-    end
 
     def handle_message_for_response(response)
       [
@@ -176,12 +117,8 @@ module Creditsafe
     def build_savon_client
       options = {
         env_namespace: 'soapenv',
-        namespace_identifier: XMLNS_OPER,
-        namespaces: {
-          "xmlns:#{XMLNS_OPER}" => XMLNS_OPER_VAL,
-          "xmlns:#{XMLNS_DAT}" => XMLNS_DAT_VAL,
-          "xmlns:#{XMLNS_CRED}" => XMLNS_CRED_VAL
-        },
+        namespace_identifier: Creditsafe::Namespace::OPER,
+        namespaces: Creditsafe::Namespace::ALL,
         wsdl: wsdl_path,
         headers: auth_header,
         convert_request_keys_to: :none,

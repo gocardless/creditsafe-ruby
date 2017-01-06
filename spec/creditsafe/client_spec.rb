@@ -8,8 +8,8 @@ URL = 'https://webservices.creditsafe.com/GlobalData/1.3/'\
 
 RSpec.describe(Creditsafe::Client) do
   notifications = []
-  let(:username) { "b" }
-  let(:password) { "c" }
+  let(:username) { "AzureDiamond" }
+  let(:password) { "hunter2" }
   before(:all) do
     ActiveSupport::Notifications.subscribe do |*args|
       notifications << ActiveSupport::Notifications::Event.new(*args)
@@ -105,8 +105,6 @@ RSpec.describe(Creditsafe::Client) do
     subject do
       -> { described_class.new(username: username, password: password) }
     end
-    let(:username) { "foo" }
-    let(:password) { "bar" }
 
     it { is_expected.to_not raise_error }
 
@@ -114,11 +112,13 @@ RSpec.describe(Creditsafe::Client) do
       let(:username) { nil }
       it { is_expected.to raise_error(ArgumentError) }
     end
+  end
 
-    context "without a password" do
-      let(:password) { nil }
-      it { is_expected.to raise_error(ArgumentError) }
-    end
+  describe "#inspect" do
+    let(:client) { described_class.new(username: username, password: password) }
+    subject { client.inspect }
+
+    it { is_expected.to_not include(password) }
   end
 
   describe '#find_company' do
