@@ -13,7 +13,7 @@ registration number and retrieving company online reports.
 Install the gem from RubyGems.org by adding the following to your `Gemfile`:
 
 ```ruby
-gem 'creditsafe', '~> 0.3.0'
+gem 'creditsafe', '~> 0.3.1'
 ```
 
 Just run `bundle install` to install the gem and its dependencies.
