@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="MainServiceBasic" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:i1="http://www.creditsafe.com/globaldata/operations/administration" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:i0="http://www.creditsafe.com/globaldata/operations" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsp:Policy wsu:Id="BasicHttpBinding_GlobalDataService_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false" />
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256 />
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict />
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="BasicHttpBinding_DataInputService_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false" />
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256 />
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict />
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsdl:import namespace="http://www.creditsafe.com/globaldata/operations" location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/meta?wsdl=wsdl0" />
+    <wsdl:import namespace="http://www.creditsafe.com/globaldata/operations/administration" location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/meta?wsdl=wsdl1" />
+    <wsdl:types />
+    <wsdl:binding name="BasicHttpBinding_GlobalDataService" type="i0:GlobalDataService">
+        <wsp:PolicyReference URI="#BasicHttpBinding_GlobalDataService_policy" />
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="GetPortfolios">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/GetPortfolios" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ListMonitoredCompanies">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/ListMonitoredCompanies" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePortfolio">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/CreatePortfolio" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RemovePortfolios">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/RemovePortfolios" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPortfolioSettings">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/GetPortfolioSettings" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetPortfolioSettings">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/SetPortfolioSettings" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddCompaniesToPortfolios">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/AddCompaniesToPortfolios" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ImportCompaniesToPortfolio">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/ImportCompaniesToPortfolio" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RemoveCompaniesFromPortfolios">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/RemoveCompaniesFromPortfolios" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ChangeCompaniesReferenceStrings">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/ChangeCompaniesReferenceStrings" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSupportedChangeEvents">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/GetSupportedChangeEvents" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetMonitoringRules">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/GetMonitoringRules" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetMonitoringRules">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/SetMonitoringRules" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetDefaultChangesCheckPeriod">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyMonitoringService/SetDefaultChangesCheckPeriod" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RetrieveCompanyOnlineReport">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyDataAccessService/RetrieveCompanyOnlineReport" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="TryRetrieveCompanyOnlineReport">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyDataAccessService/TryRetrieveCompanyOnlineReport" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="OrderCompanyOfflineReport">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyDataAccessService/OrderCompanyOfflineReport" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReportboxContents">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyDataAccessService/GetReportboxContents" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReportboxReports">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyDataAccessService/GetReportboxReports" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RemoveReportboxReports">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/CompanyDataAccessService/RemoveReportboxReports" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCountries">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/DataBrowsingService/GetCountries" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPossibleSearchCriteria">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/DataBrowsingService/GetPossibleSearchCriteria" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="FindCompanies">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/DataBrowsingService/FindCompanies" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetReportCustomDataSchema">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/DataBrowsingService/GetReportCustomDataSchema" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="BasicHttpBinding_DataInputService" type="i1:DataInputService">
+        <wsp:PolicyReference URI="#BasicHttpBinding_DataInputService_policy" />
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="DeliverOfflineCompanyReport">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/administration/DataInputService/DeliverOfflineCompanyReport" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MarkFailedOfflineOrder">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/administration/DataInputService/MarkFailedOfflineOrder" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ListOfflineOrders">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/administration/DataInputService/ListOfflineOrders" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ListRealisedOrders">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/administration/DataInputService/ListRealisedOrders" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStoredReport">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/administration/DataInputService/GetStoredReport" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateStoredReport">
+            <soap:operation soapAction="http://www.creditsafe.com/globaldata/operations/administration/DataInputService/UpdateStoredReport" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="MainServiceBasic">
+        <wsdl:port name="BasicHttpBinding_GlobalDataService" binding="tns:BasicHttpBinding_GlobalDataService">
+            <soap:address location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc" />
+        </wsdl:port>
+        <wsdl:port name="BasicHttpBinding_DataInputService" binding="tns:BasicHttpBinding_DataInputService">
+            <soap:address location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/dataInput" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
