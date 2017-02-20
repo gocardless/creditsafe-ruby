@@ -58,7 +58,7 @@ need the company's creditsafe identifier (obtainable using
 [find_company](#find_company) above.
 
 ```ruby
-client.company_report(creditsafe_id: "GB003/0/07495895")
+client.company_report("GB003/0/07495895")
 => {
     ...
    }
