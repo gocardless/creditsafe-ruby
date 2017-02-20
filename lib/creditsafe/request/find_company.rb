@@ -41,7 +41,7 @@ module Creditsafe
 
       def check_search_criteria(search_criteria)
         raise ArgumentError, "country_code is a required search criteria" if search_criteria[:country_code].nil?
-        raise ArgumentError, "registration_number or company_name are required search criteria" if search_criteria[:registration_number].nil? && search_criteria[:company_name].nil?
+        raise ArgumentError, "registration_number or company_name (not both) are required search criteria" unless search_criteria[:registration_number].nil? ^ search_criteria[:company_name].nil?
         raise ArgumentError, "city is only supported for German searches" if search_criteria[:city] && search_criteria[:country_code] != 'DE'
       end
     end

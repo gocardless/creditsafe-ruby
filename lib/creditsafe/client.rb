@@ -14,10 +14,12 @@ require 'active_support/notifications'
 
 module Creditsafe
   class Client
-    def initialize(username: nil, password: nil, savon_opts: {}, environment: 'live', log_level: :warn)
+    ENVIRONMENTS = %i(live test).freeze
+
+    def initialize(username: nil, password: nil, savon_opts: {}, environment: :live, log_level: :warn)
       raise ArgumentError, "Username must be provided" if username.nil?
       raise ArgumentError, "Password must be provided" if password.nil?
-      raise ArgumentError, "Environment needs to be one of live/test" unless ['live', 'test'].include?(environment.to_s)
+      raise ArgumentError, "Environment needs to be one of #{ENVIRONMENTS.join('/')}" unless ENVIRONMENTS.include?(environment.to_sym)
       @environment = environment.to_s
       @log_level = log_level
       @username = username
