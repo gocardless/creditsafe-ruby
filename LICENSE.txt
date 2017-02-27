@@ -1,4 +1,4 @@
-Copyright (c) 2016 GoCardless
+Copyright (c) 2017 GoCardless Ltd
 
 MIT License
 

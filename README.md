@@ -3,17 +3,17 @@
 *Build status: [![Circle CI](https://circleci.com/gh/gocardless/creditsafe-ruby.svg?style=svg&circle-token=3f6e9b24fcc6a57abac110c59395b36032f156a5)](https://circleci.com/gh/gocardless/creditsafe-ruby)*
 
 A ruby library for interacting with the
-[creditsafe](http://www.creditsafeuk.com/) API.
+[Creditsafe](http://www.creditsafeuk.com/) API.
 
 Currently, it only partially implements the API to support finding companies by
-registration number and retrieving company online reports.
+registration number (and name in Germany), and retrieving company online reports.
 
 # Installation
 
 Install the gem from RubyGems.org by adding the following to your `Gemfile`:
 
 ```ruby
-gem 'creditsafe', '~> 0.3.1'
+gem 'creditsafe', '~> 0.3.2'
 ```
 
 Just run `bundle install` to install the gem and its dependencies.

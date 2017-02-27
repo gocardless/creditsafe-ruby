@@ -1,3 +1,9 @@
+## v0.3.2, 27 February 2017
+
+- Adds support for using Creditsafe's test environment, specified when instantiating the
+client, as well as customising the log level used by the Savon SOAP client
+- Adds support for finding companies in Germany by name, as well as company number
+
 ## v0.3.1, 6 January 2017
 
 - Suppress password when inspecting client
