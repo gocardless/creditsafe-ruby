@@ -16,3 +16,6 @@ Style/DotPosition:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 90

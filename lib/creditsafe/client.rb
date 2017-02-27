@@ -16,10 +16,15 @@ module Creditsafe
   class Client
     ENVIRONMENTS = %i(live test).freeze
 
-    def initialize(username: nil, password: nil, savon_opts: {}, environment: :live, log_level: :warn)
+    def initialize(username: nil, password: nil, savon_opts: {},
+                   environment: :live, log_level: :warn)
       raise ArgumentError, "Username must be provided" if username.nil?
       raise ArgumentError, "Password must be provided" if password.nil?
-      raise ArgumentError, "Environment needs to be one of #{ENVIRONMENTS.join('/')}" unless ENVIRONMENTS.include?(environment.to_sym)
+
+      unless ENVIRONMENTS.include?(environment.to_sym)
+        raise ArgumentError, "Environment needs to be one of #{ENVIRONMENTS.join('/')}"
+      end
+
       @environment = environment.to_s
       @log_level = log_level
       @username = username
@@ -129,7 +134,7 @@ module Creditsafe
         adapter: :excon,
         log: true,
         log_level: @log_level,
-        pretty_print_xml: true,
+        pretty_print_xml: true
       }
       Savon.client(options.merge(@savon_opts))
     end
