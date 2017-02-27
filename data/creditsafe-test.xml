@@ -50,8 +50,8 @@
             </wsp:All>
         </wsp:ExactlyOne>
     </wsp:Policy>
-    <wsdl:import namespace="http://www.creditsafe.com/globaldata/operations" location="https://webservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/meta?wsdl=wsdl0" />
-    <wsdl:import namespace="http://www.creditsafe.com/globaldata/operations/administration" location="https://webservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/meta?wsdl=wsdl1" />
+    <wsdl:import namespace="http://www.creditsafe.com/globaldata/operations" location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/meta?wsdl=wsdl0" />
+    <wsdl:import namespace="http://www.creditsafe.com/globaldata/operations/administration" location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/meta?wsdl=wsdl1" />
     <wsdl:types />
     <wsdl:binding name="BasicHttpBinding_GlobalDataService" type="i0:GlobalDataService">
         <wsp:PolicyReference URI="#BasicHttpBinding_GlobalDataService_policy" />
@@ -333,10 +333,10 @@
     </wsdl:binding>
     <wsdl:service name="MainServiceBasic">
         <wsdl:port name="BasicHttpBinding_GlobalDataService" binding="tns:BasicHttpBinding_GlobalDataService">
-            <soap:address location="https://webservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc" />
+            <soap:address location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc" />
         </wsdl:port>
         <wsdl:port name="BasicHttpBinding_DataInputService" binding="tns:BasicHttpBinding_DataInputService">
-            <soap:address location="https://webservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/dataInput" />
+            <soap:address location="https://testwebservices.creditsafe.com/GlobalData/1.3/MainServiceBasic.svc/dataInput" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

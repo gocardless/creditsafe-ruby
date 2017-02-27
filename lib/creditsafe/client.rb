@@ -14,10 +14,14 @@ require 'active_support/notifications'
 
 module Creditsafe
   class Client
-    def initialize(username: nil, password: nil, savon_opts: {})
+    ENVIRONMENTS = %i(live test).freeze
+
+    def initialize(username: nil, password: nil, savon_opts: {}, environment: :live, log_level: :warn)
       raise ArgumentError, "Username must be provided" if username.nil?
       raise ArgumentError, "Password must be provided" if password.nil?
-
+      raise ArgumentError, "Environment needs to be one of #{ENVIRONMENTS.join('/')}" unless ENVIRONMENTS.include?(environment.to_sym)
+      @environment = environment.to_s
+      @log_level = log_level
       @username = username
       @password = password
       @savon_opts = savon_opts
@@ -122,14 +126,17 @@ module Creditsafe
         wsdl: wsdl_path,
         headers: auth_header,
         convert_request_keys_to: :none,
-        adapter: :excon
+        adapter: :excon,
+        log: true,
+        log_level: @log_level,
+        pretty_print_xml: true,
       }
       Savon.client(options.merge(@savon_opts))
     end
 
     def wsdl_path
       root_dir = File.join(File.dirname(__FILE__), '..', '..')
-      File.join(root_dir, 'data', "creditsafe-live.xml")
+      File.join(root_dir, 'data', "creditsafe-#{@environment}.xml")
     end
   end
 end
