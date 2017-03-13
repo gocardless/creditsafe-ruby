@@ -10,11 +10,9 @@ module Creditsafe
       def message
         message = {
           "#{Creditsafe::Namespace::OPER}:portfolioIds" => [
-            "#{Creditsafe::Namespace::ARR}:unsignedInt"=> @portfolio_ids 
+            "#{Creditsafe::Namespace::ARR}:unsignedInt"=> @portfolio_ids
           ]
         }
-
-        
 
         message
       end
