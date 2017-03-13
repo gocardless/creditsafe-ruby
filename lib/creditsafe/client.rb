@@ -10,6 +10,8 @@ require 'creditsafe/namespace'
 require 'creditsafe/request/company_report'
 require 'creditsafe/request/find_company'
 require 'creditsafe/request/get_portfolios'
+require 'creditsafe/request/create_portfolio'
+require 'creditsafe/request/get_portfolio_monitoring_rules'
 
 require 'active_support/notifications'
 
@@ -70,6 +72,34 @@ module Creditsafe
       
         portfolios.nil? ? nil : portfolios.fetch(:portfolio)
     end
+    
+    def get_portfolio_monitoring_rules(portfolio_id)
+      request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
+      response = invoke_soap(:get_monitoring_rules, request.message)
+
+      binding.pry
+
+      result = response.
+        fetch(:get_monitoring_rules_response).
+        fetch(:get_monitoring_rules_result)
+     
+       messages = result.fetch(:messages).nil? ? [] : portfolios.fetch(:message)
+       rules = result.fetch(:rules).nil? ? [] : portfolios.fetch(:rule)
+
+       result = [rules, messages]
+    end
+
+    def remove_portfolios(portfolio_ids)
+      request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
+      response = invoke_soap(:remove_portfolios, request.message)
+      binding.pry
+    end
+
+    def create_portfolio(information_processing_enabled, name)
+      request = Creditsafe::Request::CreatePortfolio.new(information_processing_enabled, name)
+      response = invoke_soap(:create_portfolio, request.message)
+      binding.pry
+    end
 
     def inspect
       "#<#{self.class} @username='#{@username}'>"
@@ -83,7 +113,7 @@ module Creditsafe
         *response.xpath('//xmlns:Message')
       ].each do |message|
         api_message = Creditsafe::Messages.
-                      for_code(message.attributes['Code'].value)
+          for_code(message.attributes['Code'].value)
 
         api_error_message = api_message.message
         api_error_message += " (#{message.text})" unless message.text.blank?
