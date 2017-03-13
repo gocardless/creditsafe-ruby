@@ -9,7 +9,8 @@ module Creditsafe
 
       def message
         message = {
-          "#{Creditsafe::Namespace::OPER}:portfolioId" => @portfolio_id }
+          "#{Creditsafe::Namespace::OPER}:portfolioId" => @portfolio_id
+        }
 
         message
       end

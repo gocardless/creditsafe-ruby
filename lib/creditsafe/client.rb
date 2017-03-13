@@ -84,6 +84,32 @@ module Creditsafe
       request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
       response = invoke_soap(:get_monitoring_rules, request.message)
 
+      binding.pry
+
+      result = response.
+        fetch(:get_monitoring_rules_response).
+        fetch(:get_monitoring_rules_result)
+
+       messages = result.fetch(:messages).nil? ? [] : portfolios.fetch(:message)
+       rules = result.fetch(:rules).nil? ? [] : portfolios.fetch(:rule)
+
+       result = [rules, messages]
+    end
+
+    def remove_portfolios(portfolio_ids)
+      request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
+      invoke_soap(:remove_portfolios, request.message)
+    end
+
+    def create_portfolio(information_processing_enabled, name)
+      request = Creditsafe::Request::CreatePortfolio.new(information_processing_enabled, name)
+      invoke_soap(:create_portfolio, request.message)
+    end
+
+    def get_portfolio_monitoring_rules(portfolio_id)
+      request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
+      response = invoke_soap(:get_monitoring_rules, request.message)
+
 
       result = response.
         fetch(:get_monitoring_rules_response).
