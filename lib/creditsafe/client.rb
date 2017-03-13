@@ -7,6 +7,9 @@ require "excon"
 require "creditsafe/errors"
 require "creditsafe/messages"
 require "creditsafe/namespace"
+require 'creditsafe/request/company_report'
+require 'creditsafe/request/find_company'
+require 'creditsafe/request/get_portfolios'
 
 require "creditsafe/request/company_report"
 require "creditsafe/request/find_company"
@@ -55,6 +58,20 @@ module Creditsafe
         fetch(:retrieve_company_online_report_result).
         fetch(:reports).
         fetch(:report)
+    end
+
+    def get_portfolios(portfolio_ids)
+      request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
+      response = invoke_soap(:get_portfolios, request.message)
+
+      binding.pry
+
+      portfolios = response.
+        fetch(:get_portfolios_response).
+        fetch(:get_portfolios_result).
+        fetch(:portfolios)
+
+        portfolios.nil? ? nil : portfolios.fetch(:portfolio)
     end
 
     def inspect
