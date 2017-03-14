@@ -11,8 +11,6 @@ module Creditsafe
         message = {
           "#{Creditsafe::Namespace::OPER}:portfolioId" => @portfolio_id }
 
-        binding.pry
-
         message
       end
     end
