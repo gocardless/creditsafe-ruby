@@ -12,6 +12,8 @@ require 'creditsafe/request/find_company'
 require 'creditsafe/request/get_portfolios'
 require 'creditsafe/request/create_portfolio'
 require 'creditsafe/request/get_portfolio_monitoring_rules'
+require 'creditsafe/request/get_supported_change_events'
+require 'creditsafe/request/set_portfolio_monitoring_rules'
 
 require "creditsafe/request/company_report"
 require "creditsafe/request/find_company"
@@ -66,8 +68,6 @@ module Creditsafe
       request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
       response = invoke_soap(:get_portfolios, request.message)
 
-      binding.pry
-
       portfolios = response.
         fetch(:get_portfolios_response).
         fetch(:get_portfolios_result).
@@ -80,14 +80,13 @@ module Creditsafe
       request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
       response = invoke_soap(:get_monitoring_rules, request.message)
 
-      binding.pry
 
       result = response.
         fetch(:get_monitoring_rules_response).
         fetch(:get_monitoring_rules_result)
 
-       messages = result.fetch(:messages).nil? ? [] : portfolios.fetch(:message)
-       rules = result.fetch(:rules).nil? ? [] : portfolios.fetch(:rule)
+       messages = result.fetch(:messages).nil? ? [] : result.fetch(:message)
+       rules = result.fetch(:rules).nil? ? [] : result.fetch(:rules).fetch(:rule)
 
        result = [rules, messages]
     end
@@ -95,13 +94,22 @@ module Creditsafe
     def remove_portfolios(portfolio_ids)
       request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
       response = invoke_soap(:remove_portfolios, request.message)
-      binding.pry
     end
 
     def create_portfolio(information_processing_enabled, name)
       request = Creditsafe::Request::CreatePortfolio.new(information_processing_enabled, name)
       response = invoke_soap(:create_portfolio, request.message)
+    end
+
+    def get_supported_change_events(language, country)
+      request = Creditsafe::Request::GetSupportedChangeEvents.new(language, country)
+      response = invoke_soap(:get_supported_change_events, request.message)
+    end
+
+    def set_portfolio_monitoring_rules(portfolio_id, rules)
+      request = Creditsafe::Request::SetPortfolioMonitoringRules.new(portfolio_id, rules)
       binding.pry
+      response = invoke_soap(:set_monitoring_rules, request.message)
     end
 
     def inspect
