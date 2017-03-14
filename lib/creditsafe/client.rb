@@ -81,7 +81,6 @@ module Creditsafe
       request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
       response = invoke_soap(:get_monitoring_rules, request.message)
 
-      binding.pry
 
       result = response.
         fetch(:get_monitoring_rules_response).

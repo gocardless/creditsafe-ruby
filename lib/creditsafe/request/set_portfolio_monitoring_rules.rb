@@ -1,4 +1,3 @@
-
 require 'creditsafe/namespace'
 
 module Creditsafe
@@ -15,7 +14,7 @@ module Creditsafe
 
         message = {
           "#{Creditsafe::Namespace::OPER}:portfolioId" => @portfolio_id,
-          "#{Creditsafe::Namespace::OPER}:newRules" => { 
+          "#{Creditsafe::Namespace::OPER}:newRules" => {
           "#{Creditsafe::Namespace::DAT}:Rule" => empty_array,
             :attributes! => {"#{Creditsafe::Namespace::DAT}:Rule" => {:Enabled => "true", :EventCode => @rules, :MatchAllConditions => "true"}}
         }}
@@ -25,12 +24,3 @@ module Creditsafe
     end
   end
 end
-
-#<soapenv:Body>
-#<oper:SetMonitoringRules>
-#<oper:portfolioId>${Data#PortfolioId}</oper:portfolioId>
-#<oper:newRules>
-#<dat:Rule Enabled="true" EventCode="${Data#EventCode}" MatchAllConditions="true" xmlns:dat="http://www.creditsafe.com/globaldata/datatypes">
-#</dat:Rule>
-#</oper:newRules>
-#</oper:SetMonitoringRules>
