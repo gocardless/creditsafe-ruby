@@ -20,8 +20,6 @@ module Creditsafe
             :attributes! => {"#{Creditsafe::Namespace::DAT}:Rule" => {:Enabled => "true", :EventCode => @rules, :MatchAllConditions => "true"}}
         }}
 
-        
-
         message
       end
     end
