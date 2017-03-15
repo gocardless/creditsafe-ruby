@@ -188,6 +188,21 @@ module Creditsafe
       request = Creditsafe::Request::AddCompaniesToPortfolios.new(portfolio_ids, company_ids, company_descriptions)
       invoke_soap(:add_companies_to_portfolios, request.message)
     end
+    
+    def remove_companies_from_portfolios(portfolio_ids, company_ids)
+      request = Creditsafe::Request::RemoveCompaniesFromPortfolios.new(portfolio_ids, company_ids)
+      response = invoke_soap(:remove_companies_from_portfolios, request.message)
+    end
+    
+    def list_monitored_companies(portfolio_ids, first_position, page_size, changed_since, changed_only)
+      request = Creditsafe::Request::ListMonitoredCompanies.new(portfolio_ids, first_position, page_size, changed_since, changed_only)
+      response = invoke_soap(:list_monitored_companies, request.message)
+    end
+    
+    def set_default_changes_check_period(days)
+      request = Creditsafe::Request::SetDefaultChangesCheckPeriod.new(days)
+      response = invoke_soap(:set_default_changes_check_period, request.message)
+    end
 
     def inspect
       "#<#{self.class} @username='#{@username}'>"
