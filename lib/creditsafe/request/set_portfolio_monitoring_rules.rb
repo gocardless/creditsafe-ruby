@@ -1,3 +1,4 @@
+
 require 'creditsafe/namespace'
 
 module Creditsafe
