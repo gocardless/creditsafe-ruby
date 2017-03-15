@@ -15,6 +15,9 @@ require 'creditsafe/request/get_portfolio_monitoring_rules'
 require 'creditsafe/request/get_supported_change_events'
 require 'creditsafe/request/set_portfolio_monitoring_rules'
 require 'creditsafe/request/add_companies_to_portfolios'
+require 'creditsafe/request/remove_companies_from_portfolios'
+require 'creditsafe/request/list_monitored_companies'
+require 'creditsafe/request/set_default_changes_check_period'
 
 require 'active_support/notifications'
 
@@ -112,6 +115,21 @@ module Creditsafe
     def add_companies_to_portfolios(portfolio_ids, company_ids, company_descriptions)
       request = Creditsafe::Request::AddCompaniesToPortfolios.new(portfolio_ids, company_ids, company_descriptions)
       response = invoke_soap(:add_companies_to_portfolios, request.message)
+    end
+    
+    def remove_companies_from_portfolios(portfolio_ids, company_ids)
+      request = Creditsafe::Request::RemoveCompaniesFromPortfolios.new(portfolio_ids, company_ids)
+      response = invoke_soap(:remove_companies_from_portfolios, request.message)
+    end
+    
+    def list_monitored_companies(portfolio_ids, first_position, page_size, changed_since, changed_only)
+      request = Creditsafe::Request::ListMonitoredCompanies.new(portfolio_ids, first_position, page_size, changed_since, changed_only)
+      response = invoke_soap(:list_monitored_companies, request.message)
+    end
+    
+    def set_default_changes_check_period(days)
+      request = Creditsafe::Request::SetDefaultChangesCheckPeriod.new(days)
+      response = invoke_soap(:set_default_changes_check_period, request.message)
     end
 
     def inspect
