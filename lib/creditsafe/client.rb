@@ -184,6 +184,11 @@ module Creditsafe
       invoke_soap(:set_default_changes_check_period, request.message)
     end
 
+    def add_companies_to_portfolios(portfolio_ids, company_ids, company_descriptions)
+      request = Creditsafe::Request::AddCompaniesToPortfolios.new(portfolio_ids, company_ids, company_descriptions)
+      invoke_soap(:add_companies_to_portfolios, request.message)
+    end
+
     def inspect
       "#<#{self.class} @username='#{@username}'>"
     end
