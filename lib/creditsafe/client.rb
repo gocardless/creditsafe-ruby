@@ -97,42 +97,55 @@ module Creditsafe
 
     def remove_portfolios(portfolio_ids)
       request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
-      response = invoke_soap(:remove_portfolios, request.message)
+      invoke_soap(:remove_portfolios, request.message)
     end
 
     def create_portfolio(information_processing_enabled, name)
       request = Creditsafe::Request::CreatePortfolio.new(information_processing_enabled, name)
       response = invoke_soap(:create_portfolio, request.message)
+
+      result = response.
+        fetch(:create_portfolio_response).
+        fetch(:create_portfolio_result)
+
+      result
     end
 
     def get_supported_change_events(language, country)
       request = Creditsafe::Request::GetSupportedChangeEvents.new(language, country)
-      response = invoke_soap(:get_supported_change_events, request.message)
+      invoke_soap(:get_supported_change_events, request.message)
     end
 
     def set_portfolio_monitoring_rules(portfolio_id, rules)
       request = Creditsafe::Request::SetPortfolioMonitoringRules.new(portfolio_id, rules)
-      response = invoke_soap(:set_monitoring_rules, request.message)
+      invoke_soap(:set_monitoring_rules, request.message)
     end
-    
+
     def add_companies_to_portfolios(portfolio_ids, company_ids, company_descriptions)
       request = Creditsafe::Request::AddCompaniesToPortfolios.new(portfolio_ids, company_ids, company_descriptions)
-      response = invoke_soap(:add_companies_to_portfolios, request.message)
+      invoke_soap(:add_companies_to_portfolios, request.message)
     end
-    
+
     def remove_companies_from_portfolios(portfolio_ids, company_ids)
       request = Creditsafe::Request::RemoveCompaniesFromPortfolios.new(portfolio_ids, company_ids)
-      response = invoke_soap(:remove_companies_from_portfolios, request.message)
+      invoke_soap(:remove_companies_from_portfolios, request.message)
     end
-    
+
     def list_monitored_companies(portfolio_ids, first_position, page_size, changed_since, changed_only)
       request = Creditsafe::Request::ListMonitoredCompanies.new(portfolio_ids, first_position, page_size, changed_since, changed_only)
       response = invoke_soap(:list_monitored_companies, request.message)
+
+      result = response.
+        fetch(:list_monitored_companies_response).
+        fetch(:list_monitored_companies_result).
+        fetch(:portfolios)
+
+      result
     end
-    
+
     def set_default_changes_check_period(days)
       request = Creditsafe::Request::SetDefaultChangesCheckPeriod.new(days)
-      response = invoke_soap(:set_default_changes_check_period, request.message)
+      invoke_soap(:set_default_changes_check_period, request.message)
     end
 
     def inspect
