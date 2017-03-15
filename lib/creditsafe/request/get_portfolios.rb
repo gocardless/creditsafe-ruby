@@ -14,7 +14,7 @@ module Creditsafe
           ]
         }
 
-        binding.pry
+        
 
         message
       end

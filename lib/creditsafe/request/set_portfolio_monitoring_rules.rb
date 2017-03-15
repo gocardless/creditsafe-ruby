@@ -1,3 +1,4 @@
+
 require 'creditsafe/namespace'
 
 module Creditsafe
@@ -9,11 +10,6 @@ module Creditsafe
       end
 
       def message
-        #rules = @rules.map do |rule| 
-          #{"#{Creditsafe::Namespace::DAT}:Rule" => 1,
-            #:attributes! => {"#{Creditsafe::Namespace::DAT}:Rule" => {:Enabled => "true", :EventCode => rule, :MatchAllConditions => "true"}}}
-        #end
-
         empty_array = []
         @rules.each {|rule| empty_array << {}}
 
@@ -24,7 +20,7 @@ module Creditsafe
             :attributes! => {"#{Creditsafe::Namespace::DAT}:Rule" => {:Enabled => "true", :EventCode => @rules, :MatchAllConditions => "true"}}
         }}
 
-        binding.pry
+        
 
         message
       end
