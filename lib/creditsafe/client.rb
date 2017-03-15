@@ -14,6 +14,7 @@ require 'creditsafe/request/create_portfolio'
 require 'creditsafe/request/get_portfolio_monitoring_rules'
 require 'creditsafe/request/get_supported_change_events'
 require 'creditsafe/request/set_portfolio_monitoring_rules'
+require 'creditsafe/request/add_companies_to_portfolios'
 
 require 'active_support/notifications'
 
@@ -105,8 +106,12 @@ module Creditsafe
     
     def set_portfolio_monitoring_rules(portfolio_id, rules)
       request = Creditsafe::Request::SetPortfolioMonitoringRules.new(portfolio_id, rules)
-      binding.pry
       response = invoke_soap(:set_monitoring_rules, request.message)
+    end
+    
+    def add_companies_to_portfolios(portfolio_ids, company_ids, company_descriptions)
+      request = Creditsafe::Request::AddCompaniesToPortfolios.new(portfolio_ids, company_ids, company_descriptions)
+      response = invoke_soap(:add_companies_to_portfolios, request.message)
     end
 
     def inspect

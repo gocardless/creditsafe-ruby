@@ -14,7 +14,7 @@ module Creditsafe
             :attributes! => {"#{Creditsafe::Namespace::OPER}:settings" => {:Enabled => @information_processing_enabled.to_s, :Name => @name}}
           }
 
-          binding.pry
+          
 
         message
       end
