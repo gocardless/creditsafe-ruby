@@ -80,21 +80,6 @@ module Creditsafe
         portfolios.nil? ? nil : portfolios.fetch(:portfolio)
     end
 
-    def get_portfolio_monitoring_rules(portfolio_id)
-      request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
-      response = invoke_soap(:get_monitoring_rules, request.message)
-
-
-      result = response.
-        fetch(:get_monitoring_rules_response).
-        fetch(:get_monitoring_rules_result)
-
-       messages = result.fetch(:messages).nil? ? [] : portfolios.fetch(:message)
-       rules = result.fetch(:rules).nil? ? [] : portfolios.fetch(:rule)
-
-       result = [rules, messages]
-    end
-
     def remove_portfolios(portfolio_ids)
       request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
       invoke_soap(:remove_portfolios, request.message)
@@ -182,26 +167,6 @@ module Creditsafe
     def set_default_changes_check_period(days)
       request = Creditsafe::Request::SetDefaultChangesCheckPeriod.new(days)
       invoke_soap(:set_default_changes_check_period, request.message)
-    end
-
-    def add_companies_to_portfolios(portfolio_ids, company_ids, company_descriptions)
-      request = Creditsafe::Request::AddCompaniesToPortfolios.new(portfolio_ids, company_ids, company_descriptions)
-      invoke_soap(:add_companies_to_portfolios, request.message)
-    end
-    
-    def remove_companies_from_portfolios(portfolio_ids, company_ids)
-      request = Creditsafe::Request::RemoveCompaniesFromPortfolios.new(portfolio_ids, company_ids)
-      response = invoke_soap(:remove_companies_from_portfolios, request.message)
-    end
-    
-    def list_monitored_companies(portfolio_ids, first_position, page_size, changed_since, changed_only)
-      request = Creditsafe::Request::ListMonitoredCompanies.new(portfolio_ids, first_position, page_size, changed_since, changed_only)
-      response = invoke_soap(:list_monitored_companies, request.message)
-    end
-    
-    def set_default_changes_check_period(days)
-      request = Creditsafe::Request::SetDefaultChangesCheckPeriod.new(days)
-      response = invoke_soap(:set_default_changes_check_period, request.message)
     end
 
     def inspect
