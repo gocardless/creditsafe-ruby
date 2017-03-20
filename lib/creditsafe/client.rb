@@ -137,8 +137,19 @@ module Creditsafe
 
       result = response.
         fetch(:list_monitored_companies_response).
-        fetch(:list_monitored_companies_result).
-        fetch(:portfolios)
+        fetch(:list_monitored_companies_result)
+
+      begin
+        result = result.fetch(:portfolios)
+      rescue
+        message =  result.fetch(:messages).fetch(:message)
+
+        if message == 'There are no results matching specified criteria.'
+          result = message
+        else
+          raise '' + message
+        end
+      end
 
       result
     end
