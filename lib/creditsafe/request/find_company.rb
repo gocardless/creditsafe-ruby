@@ -14,6 +14,7 @@ module Creditsafe
         @postal_code = search_criteria[:postal_code]
       end
 
+      # rubocop:disable Metrics/MethodLength
       def message
         search_criteria = {}
 
@@ -37,6 +38,7 @@ module Creditsafe
 
         build_message(search_criteria)
       end
+      # rubocop:enable Metrics/MethodLength
 
       private
 
@@ -51,7 +53,8 @@ module Creditsafe
         }
       end
 
-      # rubocop:disable Style/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
@@ -74,7 +77,8 @@ module Creditsafe
           raise ArgumentError, "Postal code is only supported for German searches"
         end
       end
-      # rubocop:enable Style/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:enable Metrics/PerceivedComplexity, Metrics/MethodLength
 
       def only_registration_number_or_company_name_provided?(search_criteria)
         search_criteria[:registration_number].nil? ^ search_criteria[:company_name].nil?
