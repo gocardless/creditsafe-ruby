@@ -18,23 +18,29 @@ module Creditsafe
       def message
         search_criteria = {}
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => 'MatchBlock',
-          :content! => company_name
-        } unless company_name.nil?
+        unless company_name.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
+            '@MatchType' => 'MatchBlock',
+            :content! => company_name
+          }
+        end
 
         unless registration_number.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:RegistrationNumber"] =
             registration_number
         end
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:City" => city
-        } unless city.nil?
+        unless city.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+            "#{Creditsafe::Namespace::DAT}:City" => city
+          }
+        end
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code
-        } unless postal_code.nil?
+        unless postal_code.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+            "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code
+          }
+        end
 
         build_message(search_criteria)
       end
@@ -54,7 +60,7 @@ module Creditsafe
       end
 
       # rubocop:disable Metrics/CyclomaticComplexity, Metrics/AbcSize
-      # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength
+      # rubocop:disable Metrics/PerceivedComplexity
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
@@ -78,7 +84,7 @@ module Creditsafe
         end
       end
       # rubocop:enable Metrics/CyclomaticComplexity, Metrics/AbcSize
-      # rubocop:enable Metrics/PerceivedComplexity, Metrics/MethodLength
+      # rubocop:enable Metrics/PerceivedComplexity
 
       def only_registration_number_or_company_name_provided?(search_criteria)
         search_criteria[:registration_number].nil? ^ search_criteria[:company_name].nil?

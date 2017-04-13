@@ -16,6 +16,9 @@ module Creditsafe
   class Client
     ENVIRONMENTS = %i(live test).freeze
 
+    RETRY_SLEEP_TIME = 5
+    RETRY_LIMIT = 3
+
     def initialize(username: nil, password: nil, savon_opts: {},
                    environment: :live, log_level: :warn)
       raise ArgumentError, "Username must be provided" if username.nil?
@@ -78,6 +81,8 @@ module Creditsafe
     end
 
     def invoke_soap(message_type, message)
+      retries ||= RETRY_LIMIT
+
       started = Time.now
       notification_payload = { request: message }
 
@@ -86,6 +91,15 @@ module Creditsafe
       notification_payload[:response] = response.body
     rescue => raw_error
       processed_error = handle_error(raw_error)
+
+      if processed_error.class == AccountError
+        retries -= 1
+        if retries.positive?
+          sleep(RETRY_SLEEP_TIME)
+          retry
+        end
+      end
+
       notification_payload[:error] = processed_error
       raise processed_error
     ensure
