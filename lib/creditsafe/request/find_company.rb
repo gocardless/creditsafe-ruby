@@ -89,6 +89,10 @@ module Creditsafe
                                "vat number is required search criteria"
         end
 
+        #if search_criteria[:country_code] != 'DE' && !search_criteria[:company_name].nil?
+          #raise ArgumentError, "company name search is only possible for German searches"
+        #end
+
         if search_criteria[:city] && search_criteria[:country_code] != "DE"
           raise ArgumentError, "city is only supported for German searches"
         end
