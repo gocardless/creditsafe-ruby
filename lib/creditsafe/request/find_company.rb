@@ -17,7 +17,7 @@ module Creditsafe
         search_criteria = {}
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => 'MatchBlock',
+          '@MatchType' => 'MatchBlockOrWords',
           :content! => company_name
         } unless company_name.nil?
 
@@ -52,9 +52,9 @@ module Creditsafe
           raise ArgumentError, "country_code is a required search criteria"
         end
 
-        if search_criteria[:country_code] != 'DE' && !search_criteria[:company_name].nil?
-          raise ArgumentError, "company name search is only possible for German searches"
-        end
+        #if search_criteria[:country_code] != 'DE' && !search_criteria[:company_name].nil?
+          #raise ArgumentError, "company name search is only possible for German searches"
+        #end
 
         unless only_registration_number_or_company_name_provided?(search_criteria)
           raise ArgumentError, "registration_number or company_name (not both) are " \
