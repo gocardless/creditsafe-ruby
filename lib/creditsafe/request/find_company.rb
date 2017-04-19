@@ -22,12 +22,10 @@ module Creditsafe
       def message
         search_criteria = {}
 
-        unless company_name.nil?
-          search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-            "@MatchType" => match_type,
-            :content! => company_name,
-          }
-        end
+        search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
+          '@MatchType' => 'MatchBlock',
+          :content! => company_name
+        } unless company_name.nil?
 
         unless registration_number.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:RegistrationNumber"] =
