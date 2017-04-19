@@ -11,13 +11,14 @@ module Creditsafe
         @registration_number = search_criteria[:registration_number]
         @company_name = search_criteria[:company_name]
         @city = search_criteria[:city]
+        @match_type = search_criteria[:match_type] || 'MatchBeginning'
       end
 
       def message
         search_criteria = {}
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => 'MatchWords',
+          '@MatchType' => @match_type,
           :content! => company_name
         } unless company_name.nil?
 
