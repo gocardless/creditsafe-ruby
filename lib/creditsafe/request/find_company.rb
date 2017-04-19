@@ -15,6 +15,7 @@ module Creditsafe
         @vat_number = search_criteria[:vat_number]
         @city = search_criteria[:city]
         @postal_code = search_criteria[:postal_code]
+        @match_type = search_criteria[:match_type] || 'MatchBeginning'
       end
 
       # rubocop:disable Metrics/MethodLength
@@ -23,7 +24,7 @@ module Creditsafe
         search_criteria = {}
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => 'MatchWords',
+          '@MatchType' => @match_type,
           :content! => company_name
         } unless company_name.nil?
 
