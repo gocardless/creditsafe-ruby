@@ -19,7 +19,7 @@ module Creditsafe
         search_criteria = {}
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => 'MatchBlock',
+          '@MatchType' => 'ClosestKeywords',
           :content! => company_name
         } unless company_name.nil?
 
