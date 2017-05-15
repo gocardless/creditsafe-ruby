@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'creditsafe/namespace'
 
 module Creditsafe
@@ -9,20 +11,23 @@ module Creditsafe
         @company_descriptions = company_descriptions
       end
 
+      # rubocop:disable MethodLength
       def message
-        message = {
+        {
           "#{Creditsafe::Namespace::OPER}:portfolioIds" => [
-            "#{Creditsafe::Namespace::ARR}:unsignedInt"=> @portfolio_ids
+            "#{Creditsafe::Namespace::ARR}:unsignedInt" => @portfolio_ids
           ],
           "#{Creditsafe::Namespace::OPER}:companies" => {
             "#{Creditsafe::Namespace::DAT}:Companies" => {
               "#{Creditsafe::Namespace::DAT}:Company" => @company_descriptions,
-              :attributes! => {"#{Creditsafe::Namespace::DAT}:Company" => {:key => @company_ids}}
+              :attributes! => {
+                "#{Creditsafe::Namespace::DAT}:Company" => {
+                  key: @company_ids
+                }
+              }
             }
           }
         }
-
-        message
       end
     end
   end
