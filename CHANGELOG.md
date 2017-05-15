@@ -1,3 +1,8 @@
+## v0.4.0, 3 April 2017
+
+- Adds support for including a postal code when searching for German companies by name 
+(@manojapr)
+
 ## v0.3.2, 27 February 2017
 
 - Adds support for using Creditsafe's test environment, specified when instantiating the

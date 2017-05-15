@@ -12,8 +12,11 @@ module Creditsafe
         @company_name = search_criteria[:company_name]
         @city = search_criteria[:city]
         @match_type = search_criteria[:match_type] || 'MatchBeginning'
+        @postal_code = search_criteria[:postal_code]
+
       end
 
+      # rubocop:disable Metrics/MethodLength
       def message
         search_criteria = {}
 
@@ -31,12 +34,17 @@ module Creditsafe
           "#{Creditsafe::Namespace::DAT}:City" => city
         } unless city.nil?
 
+        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+          "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code
+        } unless postal_code.nil?
+
         build_message(search_criteria)
       end
+      # rubocop:enable Metrics/MethodLength
 
       private
 
-      attr_reader :country_code, :registration_number, :city, :company_name
+      attr_reader :country_code, :registration_number, :city, :company_name, :postal_code
 
       def build_message(search_criteria)
         {
@@ -47,7 +55,8 @@ module Creditsafe
         }
       end
 
-      # rubocop:disable Style/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
@@ -65,8 +74,13 @@ module Creditsafe
         if search_criteria[:city] && search_criteria[:country_code] != 'DE'
           raise ArgumentError, "city is only supported for German searches"
         end
+
+        if search_criteria[:postal_code] && search_criteria[:country_code] != 'DE'
+          raise ArgumentError, "Postal code is only supported for German searches"
+        end
       end
-      # rubocop:enable Style/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/AbcSize
+      # rubocop:enable Metrics/PerceivedComplexity, Metrics/MethodLength
 
       def only_registration_number_or_company_name_provided?(search_criteria)
         search_criteria[:registration_number].nil? ^ search_criteria[:company_name].nil?

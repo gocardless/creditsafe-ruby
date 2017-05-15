@@ -13,7 +13,7 @@ registration number (and name in Germany), and retrieving company online reports
 Install the gem from RubyGems.org by adding the following to your `Gemfile`:
 
 ```ruby
-gem 'creditsafe', '~> 0.3.2'
+gem 'creditsafe', '~> 0.4.0'
 ```
 
 Just run `bundle install` to install the gem and its dependencies.
@@ -31,7 +31,7 @@ client = Creditsafe::Client.new(username: "foo", password: "bar", environment: :
 
 ### Company Search
 
-To perform a search for a company, you need to provide a country code and a company registration number.
+To perform a search for a company, you need to provide a country code and a company registration number:
 
 ```ruby
 client.find_company(country_code: "GB", registration_number: "07495895")
@@ -54,10 +54,12 @@ client.find_company(country_code: "GB", registration_number: "07495895")
    }
 ```
 
-In Germany you can also perform a name search. For this you need to provide a country code and a company name.
+In Germany you can also perform a name search. For this you need to provide a country code
+and a company name, and can optionally provided a postal code to filter the results
+further:
 
 ```ruby
-client.find_company(country_code: "DE", company_name: "zalando")
+client.find_company(country_code: "DE", company_name: "zalando", postal_code: "10243")
 => [
   {
     "name": "Zalando Logistics Süd SE & Co. KG",
@@ -120,8 +122,8 @@ client.find_company(country_code: "DE", company_name: "zalando")
 ### Company Report
 
 To download all the information available in an online company report, you will
-need the company's creditsafe identifier (obtainable using
-[find_company](#find_company) above.
+need the company's Creditsafe identifier (obtainable using
+[find_company](#find_company) above):
 
 ```ruby
 client.company_report("GB003/0/07495895")

@@ -127,11 +127,13 @@ RSpec.describe(Creditsafe::Client) do
     let(:country_code) { "GB" }
     let(:registration_number) { "RN123" }
     let(:city) { nil }
+    let(:postal_code) { nil }
     let(:search_criteria) do
       {
         country_code: country_code,
         registration_number: registration_number,
-        city: city
+        city: city,
+        postal_code: postal_code
       }.reject { |_, v| v.nil? }
     end
 
@@ -160,6 +162,16 @@ RSpec.describe(Creditsafe::Client) do
 
     context "with a city" do
       let(:city) { "Berlin" }
+      it { is_expected.to raise_error(ArgumentError) }
+
+      context "in Germany" do
+        let(:country_code) { "DE" }
+        it { is_expected.to_not raise_error }
+      end
+    end
+
+    context "with a postal_code" do
+      let(:postal_code) { "41199" }
       it { is_expected.to raise_error(ArgumentError) }
 
       context "in Germany" do
