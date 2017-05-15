@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <SetMonitoringRulesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <SetMonitoringRulesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes"/>
+    </SetMonitoringRulesResponse>
+  </s:Body>
+</s:Envelope>

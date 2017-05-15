@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetSupportedChangeEventsResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <GetSupportedChangeEventsResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+        <q1:Messages>
+          <q1:Message Type="Error" Code="30102">Specified language is not supported.</q1:Message>
+        </q1:Messages>
+      </GetSupportedChangeEventsResult>
+    </GetSupportedChangeEventsResponse>
+  </s:Body>
+</s:Envelope>

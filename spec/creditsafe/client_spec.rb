@@ -318,4 +318,434 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
   end
+
+  describe 'get_portfolios' do
+    let(:soap_verb) { 'get_portfolios' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('get-portfolios-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
+    subject(:get_portfolios) do
+      client.get_portfolios([14462, 14461])
+    end
+    subject(:method_call) { get_portfolios }
+
+    it 'requests the portfolios' do
+      get_portfolios
+      expect(a_request(:post, URL).with do |req|
+               expect(CompareXML.equivalent?(
+                        Nokogiri::XML(req.body),
+                        load_xml_fixture('get-portfolios-request.xml'),
+                        verbose: true
+               )).to eq([])
+             end).to have_been_made
+    end
+
+    it 'returns the portfolio' do
+      expect(get_portfolios[0]).to include({:@id => "14460"})
+    end
+
+    context 'when a portfolio is unavailable' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('get-portfolios-not-found.xml'))
+      end
+
+      it 'raises an error' do
+        expect { get_portfolios }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { get_portfolios }.to raise_error(
+          Creditsafe::RequestError, /Invalid portfolio list/
+        )
+      end
+    end
+  end
+
+  describe 'get_portfolio_monitoring_rules' do
+    let(:soap_verb) { 'get_monitoring_rules' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('get-monitoring-rules-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
+    subject(:get_portfolio_monitoring_rules) do
+      client.get_portfolio_monitoring_rules([14462])
+    end
+    subject(:method_call) { get_portfolios_monitoring_rules }
+
+    it 'requests portfolio monitoring rules' do
+      get_portfolio_monitoring_rules
+      expect(a_request(:post, URL).with do |req|
+               expect(CompareXML.equivalent?(
+                        Nokogiri::XML(req.body),
+                        load_xml_fixture('get-monitoring-rules-request.xml'),
+                        verbose: true
+               )).to eq([])
+             end).to have_been_made
+    end
+
+    it 'returns the portfolio rules' do
+      expect(get_portfolio_monitoring_rules.first.first).to include({:@event_code => "CR"})
+    end
+
+    context 'when the portfolio_rules are unavailable' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('get-monitoring-rules-not-found.xml'))
+      end
+
+      it 'raises an error' do
+        expect { get_portfolio_monitoring_rules }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { get_portfolio_monitoring_rules }.to raise_error(
+          Creditsafe::RequestError, /Invalid portfolio ID/
+        )
+      end
+    end
+  end
+
+  describe 'create_portfolio' do
+    let(:soap_verb) { 'create_portfolio' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('create-portfolio-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    subject(:create_portfolio) do
+      client.create_portfolio(true, 'development_test')
+    end
+    subject(:method_call) { create_portfolio }
+
+    it 'requests the portfolios' do
+      create_portfolio
+      expect(a_request(:post, URL).with do |req|
+               expect(CompareXML.equivalent?(
+                        Nokogiri::XML(req.body),
+                        load_xml_fixture('create-portfolio-request.xml'),
+                        verbose: true
+               )).to eq([])
+             end).to have_been_made
+    end
+
+    it 'returns the created portfolio' do
+      expect(create_portfolio).to include(:portfolios)
+    end
+  end
+
+  describe 'remove_portfolios' do
+    let(:soap_verb) { 'remove_portfolios' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('remove-portfolios-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
+    subject(:remove_portfolios) do
+      client.remove_portfolios([12421])
+    end
+    subject(:method_call) { remove_portfolios }
+
+    it 'requests portfolio monitoring rules' do
+      remove_portfolios
+      expect(a_request(:post, URL).with do |req|
+               expect(CompareXML.equivalent?(
+                        Nokogiri::XML(req.body),
+                        load_xml_fixture('remove-portfolios-request.xml'),
+                        verbose: true
+               )).to eq([])
+             end).to have_been_made
+    end
+
+    context 'when the portfolio_rules are unavailable' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('remove-portfolios-not-found.xml'))
+      end
+
+      it 'raises an error' do
+        expect { remove_portfolios }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { remove_portfolios }.to raise_error(
+          Creditsafe::RequestError, /Invalid portfolio list/
+        )
+      end
+    end
+  end
+
+  describe 'get_supported_change_events' do
+    let(:soap_verb) { 'get_supported_change_events' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('get-supported-change-event-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
+    subject(:get_supported_change_events) do
+      client.get_supported_change_events('EN', 'NL')
+    end
+    subject(:method_call) { get_supported_change_events }
+
+    it 'request supported change events' do
+      get_supported_change_events
+      expect(a_request(:post, URL).with do |req|
+               expect(CompareXML.equivalent?(
+                        Nokogiri::XML(req.body),
+                        load_xml_fixture('get-supported-change-event-request.xml'),
+                        verbose: true
+               )).to eq([])
+             end).to have_been_made
+    end
+
+    context 'language not supported' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('get-supported-change-event-language-not-found.xml'))
+      end
+
+      it 'raises an error' do
+        expect { get_supported_change_events }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { get_supported_change_events }.to raise_error(
+          Creditsafe::RequestError, /language is not supported/
+        )
+      end
+    end
+  end
+
+  describe 'set_portfolio_monitoring_rules' do
+    let(:soap_verb) { 'set_monitoring_rules' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('set-portfolio-monitoring-rules-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
+    subject(:set_portfolio_monitoring_rules) do
+      client.set_portfolio_monitoring_rules(12422, ["CR", "PR", "NC", "AC", "DN", "EC", "FN", "UC", "IC", "CL", "HO", "BN"])
+    end
+    subject(:method_call) { set_monitoring_rules }
+
+    it 'request supported change events' do
+      set_portfolio_monitoring_rules
+      expect(a_request(:post, URL).with do |req|
+        expect(CompareXML.equivalent?(
+          Nokogiri::XML(req.body),
+          load_xml_fixture('set-portfolio-monitoring-rules-request.xml'),
+          verbose: true
+        )).to eq([])
+      end).to have_been_made
+    end
+
+    context 'language not supported' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('set-portfolio-monitoring-rules-not-found.xml'))
+      end
+
+      it 'raises an error' do
+        expect { set_portfolio_monitoring_rules }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { set_portfolio_monitoring_rules }.to raise_error(
+          Creditsafe::RequestError, /Invalid portfolio ID/
+        )
+      end
+    end
+  end
+
+  describe 'add_companies_to_portfolios' do
+    let(:soap_verb) { 'add_companies_to_portfolios' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('add-companies-to-portfolios-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    subject(:add_companies_to_portfolios) do
+      client.add_companies_to_portfolios([12422], ["NL007/X/629173310000"], ["test1"])
+    end
+    subject(:method_call) { set_monitoring_rules }
+
+    it 'request supported change events' do
+      add_companies_to_portfolios
+      expect(a_request(:post, URL).with do |req|
+        expect(CompareXML.equivalent?(
+          Nokogiri::XML(req.body),
+          load_xml_fixture('add-companies-to-portfolios-request.xml'),
+          verbose: true
+        )).to eq([])
+      end).to have_been_made
+    end
+
+    context 'company is already being monitored' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('add-companies-to-monitoring-already-being-monitored.xml'))
+      end
+
+      it 'raises an error' do
+        expect { add_companies_to_portfolios }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { add_companies_to_portfolios }.to raise_error(
+          Creditsafe::RequestError, /Company is already being monitored/
+        )
+      end
+    end
+  end
+
+  describe 'remove_companies_from_portfolios' do
+    let(:soap_verb) { 'remove_companies_from_portfolios' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('remove-companies-from-portfolios-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    subject(:remove_companies_from_portfolios) do
+      client.remove_companies_from_portfolios([12422], ["NL007/X/629173310000"])
+    end
+    subject(:method_call) { remove_companies_from_portfolios }
+
+    it 'request supported change events' do
+      remove_companies_from_portfolios
+      expect(a_request(:post, URL).with do |req|
+        expect(CompareXML.equivalent?(
+          Nokogiri::XML(req.body),
+          load_xml_fixture('remove-companies-from-portfolios-request.xml'),
+          verbose: true
+        )).to eq([])
+      end).to have_been_made
+    end
+
+    context 'company is already removed or invalid id' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('remove-companies-from-portfolios-invalid-company-id.xml'))
+      end
+
+      it 'raises an error' do
+        expect { remove_companies_from_portfolios }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { remove_companies_from_portfolios }.to raise_error(
+          Creditsafe::RequestError, /Invalid company ID/
+        )
+      end
+    end
+  end
+
+  describe 'list_monitored_companies' do
+    let(:soap_verb) { 'list_monitored_companies' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('list-monitored-companies-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    subject(:list_monitored_companies) do
+      dateTime = DateTime.parse('2017-04-15T10:27:08+02:00')
+      client.list_monitored_companies([14462], 0, 1000, dateTime.to_s, "true")
+    end
+    subject(:method_call) { list_monitored_companies }
+
+    it 'request supported change events' do
+      list_monitored_companies
+      expect(a_request(:post, URL).with do |req|
+        expect(CompareXML.equivalent?(
+          Nokogiri::XML(req.body),
+          load_xml_fixture('list-monitored-companies-request.xml'),
+          verbose: true
+        )).to eq([])
+      end).to have_been_made
+    end
+
+    it 'returns the company details' do
+      expect(list_monitored_companies).to include(:portfolio)
+      expect(list_monitored_companies[:portfolio]).to include(:companies)
+    end
+
+    context 'no companies are found' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('list-monitored-companies-not-found.xml'))
+      end
+
+      it 'not raise an error' do
+        expect { list_monitored_companies }.not_to raise_error
+      end
+    end
+  end
+
+  describe 'set_default_changes_check_period' do
+    let(:soap_verb) { 'set_default_changes_check_period' }
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture('set-default-changes-check-period-succes.xml'),
+        status: 200
+      )
+    end
+    let(:client) { described_class.new(username: username, password: password) }
+    subject(:set_default_changes_check_period) do
+      client.set_default_changes_check_period(20)
+    end
+    subject(:method_call) { set_default_changes_check_period }
+
+    it 'request supported change events' do
+      set_default_changes_check_period
+      expect(a_request(:post, URL).with do |req|
+        expect(CompareXML.equivalent?(
+          Nokogiri::XML(req.body),
+          load_xml_fixture('set-default-changes-check-period-request.xml'),
+          verbose: true
+        )).to eq([])
+      end).to have_been_made
+    end
+
+    context 'no companies are found' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('set-default-changes-check-period-fail.xml'))
+      end
+
+      it 'not raise an error' do
+        expect { set_default_changes_check_period }.to raise_error(Creditsafe::RequestError)
+      end
+
+      it 'gives a useful error message' do
+        expect { set_default_changes_check_period }.to raise_error(
+          Creditsafe::RequestError, /The maximal value possible to set is 30 days/
+        )
+      end
+    end
+  end
 end
