@@ -13,7 +13,6 @@ module Creditsafe
         @city = search_criteria[:city]
         @match_type = search_criteria[:match_type] || 'MatchBeginning'
         @postal_code = search_criteria[:postal_code]
-
       end
 
       # rubocop:disable Metrics/MethodLength
@@ -61,10 +60,6 @@ module Creditsafe
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
         end
-
-        #if search_criteria[:country_code] != 'DE' && !search_criteria[:company_name].nil?
-          #raise ArgumentError, "company name search is only possible for German searches"
-        #end
 
         unless only_registration_number_or_company_name_provided?(search_criteria)
           raise ArgumentError, "registration_number or company_name (not both) are " \
