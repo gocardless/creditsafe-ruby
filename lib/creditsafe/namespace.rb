@@ -14,7 +14,6 @@ module Creditsafe
     ARR = 'arr'
     ARR_VAL = 'http://schemas.microsoft.com/2003/10/Serialization/Arrays'
 
-
     ALL = {
       "xmlns:#{Creditsafe::Namespace::OPER}" => Creditsafe::Namespace::OPER_VAL,
       "xmlns:#{Creditsafe::Namespace::DAT}" => Creditsafe::Namespace::DAT_VAL,
