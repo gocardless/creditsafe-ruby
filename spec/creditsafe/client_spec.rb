@@ -406,9 +406,7 @@ RSpec.describe(Creditsafe::Client) do
     end
 
     it 'returns the portfolio rules' do
-      expect do
-        get_portfolio_monitoring_rules.first.first
-      end.to include(:@event_code => 'CR')
+      expect(get_portfolio_monitoring_rules.first.first).to include(:@event_code)
     end
 
     context 'when the portfolio_rules are unavailable' do
