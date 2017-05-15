@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetMonitoringRulesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <GetMonitoringRulesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes" PortfolioId="0">
+        <q1:Messages>
+          <q1:Message Type="Error" Code="30102">Invalid portfolio ID specified.</q1:Message>
+        </q1:Messages>
+      </GetMonitoringRulesResult>
+    </GetMonitoringRulesResponse>
+  </s:Body>
+</s:Envelope>

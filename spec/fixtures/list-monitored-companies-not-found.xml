@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <ListMonitoredCompaniesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <ListMonitoredCompaniesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes" Results="0" FirstPosition="0" TotalResults="0" PageSize="1000">
+        <q1:Messages>
+          <q1:Message Type="Information" Code="10101">There are no results matching specified criteria.</q1:Message>
+        </q1:Messages>
+      </ListMonitoredCompaniesResult>
+    </ListMonitoredCompaniesResponse>
+  </s:Body>
+</s:Envelope>

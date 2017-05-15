@@ -1,0 +1,14 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <CreatePortfolioResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <CreatePortfolioResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+        <q1:Portfolios>
+          <q1:Portfolio Id="12421" Enabled="true" Name="development_test" CreationDate="2017-05-11T14:50:51Z" LastSettingsChangeDate="2017-05-11T14:50:51Z">
+            <q1:ChangedCompanies>0</q1:ChangedCompanies>
+            <q1:MonitoredCompanies>0</q1:MonitoredCompanies>
+          </q1:Portfolio>
+        </q1:Portfolios>
+      </CreatePortfolioResult>
+    </CreatePortfolioResponse>
+  </s:Body>
+</s:Envelope>

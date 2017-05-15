@@ -57,8 +57,7 @@ module Creditsafe
     end
 
     def company_report(creditsafe_id, custom_data: nil)
-      request =
-        Creditsafe::Request::CompanyReport.new(creditsafe_id, custom_data)
+      request = Creditsafe::Request::CompanyReport.new(creditsafe_id, custom_data)
       response = invoke_soap(:retrieve_company_online_report, request.message)
 
       response.
@@ -94,7 +93,6 @@ module Creditsafe
       request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
       response = invoke_soap(:get_monitoring_rules, request.message)
 
-
       result = response.
         fetch(:get_monitoring_rules_response).
         fetch(:get_monitoring_rules_result)
@@ -108,6 +106,9 @@ module Creditsafe
     def remove_portfolios(portfolio_ids)
       request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
       invoke_soap(:remove_portfolios, request.message)
+
+    rescue ProcessingError => e
+      throw e if (e.message =~ /successfully/i).nil?
     end
 
     def create_portfolio(information_processing_enabled, name)
