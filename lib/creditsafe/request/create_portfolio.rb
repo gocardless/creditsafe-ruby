@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'creditsafe/namespace'
 
 module Creditsafe
@@ -9,18 +11,18 @@ module Creditsafe
       end
 
       def message
-          message = {
-            "#{Creditsafe::Namespace::OPER}:settings" => {},
-            :attributes! => {
-              "#{Creditsafe::Namespace::OPER}:settings" =>
-              {
-                :Enabled => @information_processing_enabled.to_s,
-                :Name => @name
-              }
+        message = {
+          "#{Creditsafe::Namespace::OPER}:settings" => {},
+          :attributes! => {
+            "#{Creditsafe::Namespace::OPER}:settings" =>
+            {
+              Enabled: @information_processing_enabled.to_s,
+              Name: @name
             }
           }
+        }
 
-          message
+        message
       end
     end
   end
