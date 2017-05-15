@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'creditsafe/namespace'
 
@@ -11,14 +12,19 @@ module Creditsafe
 
       def message
         empty_array = []
-        @rules.each {|rule| empty_array << {}}
+        @rules.each { empty_array << {} }
 
         message = {
           "#{Creditsafe::Namespace::OPER}:portfolioId" => @portfolio_id,
           "#{Creditsafe::Namespace::OPER}:newRules" => {
-          "#{Creditsafe::Namespace::DAT}:Rule" => empty_array,
-            :attributes! => {"#{Creditsafe::Namespace::DAT}:Rule" => {:Enabled => "true", :EventCode => @rules, :MatchAllConditions => "true"}}
-        }}
+            "#{Creditsafe::Namespace::DAT}:Rule" => empty_array,
+            :attributes! => {
+              "#{Creditsafe::Namespace::DAT}:Rule" => {
+                Enabled:  "true", EventCode: @rules, MatchAllConditions: "true"
+              }
+            }
+          }
+        }
 
         message
       end
