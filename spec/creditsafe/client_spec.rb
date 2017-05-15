@@ -440,23 +440,23 @@ RSpec.describe(Creditsafe::Client) do
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
     subject(:get_portfolios) do
-      client.get_portfolios([14462, 14461])
+      client.get_portfolios([14_462, 14_461])
     end
     subject(:method_call) { get_portfolios }
 
     it 'requests the portfolios' do
       get_portfolios
       expect(a_request(:post, URL).with do |req|
-               expect(CompareXML.equivalent?(
-                        Nokogiri::XML(req.body),
-                        load_xml_fixture('get-portfolios-request.xml'),
-                        verbose: true
-               )).to eq([])
-             end).to have_been_made
+        expect(CompareXML.equivalent?(
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('get-portfolios-request.xml'),
+                 verbose: true
+        )).to eq([])
+      end).to have_been_made
     end
 
     it 'returns the portfolio' do
-      expect(get_portfolios[0]).to include({:@id => "14460"})
+      expect(get_portfolios[0]).to include(:@id => "14460")
     end
 
     context 'when a portfolio is unavailable' do
@@ -488,23 +488,25 @@ RSpec.describe(Creditsafe::Client) do
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
     subject(:get_portfolio_monitoring_rules) do
-      client.get_portfolio_monitoring_rules([14462])
+      client.get_portfolio_monitoring_rules([14_462])
     end
     subject(:method_call) { get_portfolios_monitoring_rules }
 
     it 'requests portfolio monitoring rules' do
       get_portfolio_monitoring_rules
       expect(a_request(:post, URL).with do |req|
-               expect(CompareXML.equivalent?(
-                        Nokogiri::XML(req.body),
-                        load_xml_fixture('get-monitoring-rules-request.xml'),
-                        verbose: true
-               )).to eq([])
-             end).to have_been_made
+        expect(CompareXML.equivalent?(
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('get-monitoring-rules-request.xml'),
+                 verbose: true
+        )).to eq([])
+      end).to have_been_made
     end
 
     it 'returns the portfolio rules' do
-      expect(get_portfolio_monitoring_rules.first.first).to include({:@event_code => "CR"})
+      expect do
+        get_portfolio_monitoring_rules.first.first
+      end.to include(:@event_code => 'CR')
     end
 
     context 'when the portfolio_rules are unavailable' do
@@ -542,12 +544,12 @@ RSpec.describe(Creditsafe::Client) do
     it 'requests the portfolios' do
       create_portfolio
       expect(a_request(:post, URL).with do |req|
-               expect(CompareXML.equivalent?(
-                        Nokogiri::XML(req.body),
-                        load_xml_fixture('create-portfolio-request.xml'),
-                        verbose: true
-               )).to eq([])
-             end).to have_been_made
+        expect(CompareXML.equivalent?(
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('create-portfolio-request.xml'),
+                 verbose: true
+        )).to eq([])
+      end).to have_been_made
     end
 
     it 'returns the created portfolio' do
@@ -566,19 +568,19 @@ RSpec.describe(Creditsafe::Client) do
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
     subject(:remove_portfolios) do
-      client.remove_portfolios([12421])
+      client.remove_portfolios([12_421])
     end
     subject(:method_call) { remove_portfolios }
 
     it 'requests portfolio monitoring rules' do
       remove_portfolios
       expect(a_request(:post, URL).with do |req|
-               expect(CompareXML.equivalent?(
-                        Nokogiri::XML(req.body),
-                        load_xml_fixture('remove-portfolios-request.xml'),
-                        verbose: true
-               )).to eq([])
-             end).to have_been_made
+        expect(CompareXML.equivalent?(
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('remove-portfolios-request.xml'),
+                 verbose: true
+        )).to eq([])
+      end).to have_been_made
     end
 
     context 'when the portfolio_rules are unavailable' do
@@ -617,18 +619,19 @@ RSpec.describe(Creditsafe::Client) do
     it 'request supported change events' do
       get_supported_change_events
       expect(a_request(:post, URL).with do |req|
-               expect(CompareXML.equivalent?(
-                        Nokogiri::XML(req.body),
-                        load_xml_fixture('get-supported-change-event-request.xml'),
-                        verbose: true
-               )).to eq([])
-             end).to have_been_made
+        expect(CompareXML.equivalent?(
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('get-supported-change-event-request.xml'),
+                 verbose: true
+        )).to eq([])
+      end).to have_been_made
     end
 
     context 'language not supported' do
       before do
-        stub_request(:post, URL).
-          to_return(body: load_fixture('get-supported-change-event-language-not-found.xml'))
+        stub_request(:post, URL).to_return(
+          body: load_fixture('get-supported-change-event-language-not-found.xml')
+        )
       end
 
       it 'raises an error' do
@@ -654,7 +657,10 @@ RSpec.describe(Creditsafe::Client) do
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
     subject(:set_portfolio_monitoring_rules) do
-      client.set_portfolio_monitoring_rules(12422, ["CR", "PR", "NC", "AC", "DN", "EC", "FN", "UC", "IC", "CL", "HO", "BN"])
+      client.set_portfolio_monitoring_rules(
+        12_422,
+        %w(CR PR NC AC DN EC FN UC IC CL HO BN)
+      )
     end
     subject(:method_call) { set_monitoring_rules }
 
@@ -662,9 +668,9 @@ RSpec.describe(Creditsafe::Client) do
       set_portfolio_monitoring_rules
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
-          Nokogiri::XML(req.body),
-          load_xml_fixture('set-portfolio-monitoring-rules-request.xml'),
-          verbose: true
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('set-portfolio-monitoring-rules-request.xml'),
+                 verbose: true
         )).to eq([])
       end).to have_been_made
     end
@@ -697,7 +703,7 @@ RSpec.describe(Creditsafe::Client) do
     end
     let(:client) { described_class.new(username: username, password: password) }
     subject(:add_companies_to_portfolios) do
-      client.add_companies_to_portfolios([12422], ["NL007/X/629173310000"], ["test1"])
+      client.add_companies_to_portfolios([12_422], ["NL007/X/629173310000"], ["test1"])
     end
     subject(:method_call) { set_monitoring_rules }
 
@@ -705,9 +711,9 @@ RSpec.describe(Creditsafe::Client) do
       add_companies_to_portfolios
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
-          Nokogiri::XML(req.body),
-          load_xml_fixture('add-companies-to-portfolios-request.xml'),
-          verbose: true
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('add-companies-to-portfolios-request.xml'),
+                 verbose: true
         )).to eq([])
       end).to have_been_made
     end
@@ -715,7 +721,9 @@ RSpec.describe(Creditsafe::Client) do
     context 'company is already being monitored' do
       before do
         stub_request(:post, URL).
-          to_return(body: load_fixture('add-companies-to-monitoring-already-being-monitored.xml'))
+          to_return(
+            body: load_fixture('add-companies-to-monitoring-already-being-monitored.xml')
+          )
       end
 
       it 'raises an error' do
@@ -740,7 +748,7 @@ RSpec.describe(Creditsafe::Client) do
     end
     let(:client) { described_class.new(username: username, password: password) }
     subject(:remove_companies_from_portfolios) do
-      client.remove_companies_from_portfolios([12422], ["NL007/X/629173310000"])
+      client.remove_companies_from_portfolios([12_422], ["NL007/X/629173310000"])
     end
     subject(:method_call) { remove_companies_from_portfolios }
 
@@ -748,21 +756,24 @@ RSpec.describe(Creditsafe::Client) do
       remove_companies_from_portfolios
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
-          Nokogiri::XML(req.body),
-          load_xml_fixture('remove-companies-from-portfolios-request.xml'),
-          verbose: true
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('remove-companies-from-portfolios-request.xml'),
+                 verbose: true
         )).to eq([])
       end).to have_been_made
     end
 
     context 'company is already removed or invalid id' do
       before do
-        stub_request(:post, URL).
-          to_return(body: load_fixture('remove-companies-from-portfolios-invalid-company-id.xml'))
+        stub_request(:post, URL).to_return(
+          body: load_fixture('remove-companies-from-portfolios-invalid-company-id.xml')
+        )
       end
 
       it 'raises an error' do
-        expect { remove_companies_from_portfolios }.to raise_error(Creditsafe::RequestError)
+        expect do
+          remove_companies_from_portfolios
+        end.to raise_error(Creditsafe::RequestError)
       end
 
       it 'gives a useful error message' do
@@ -783,8 +794,8 @@ RSpec.describe(Creditsafe::Client) do
     end
     let(:client) { described_class.new(username: username, password: password) }
     subject(:list_monitored_companies) do
-      dateTime = DateTime.parse('2017-04-15T10:27:08+02:00')
-      client.list_monitored_companies([14462], 0, 1000, dateTime.to_s, "true")
+      date_time = DateTime.parse('2017-04-15T10:27:08+02:00')
+      client.list_monitored_companies([14_462], 0, 1000, date_time.to_s, "true")
     end
     subject(:method_call) { list_monitored_companies }
 
@@ -792,9 +803,9 @@ RSpec.describe(Creditsafe::Client) do
       list_monitored_companies
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
-          Nokogiri::XML(req.body),
-          load_xml_fixture('list-monitored-companies-request.xml'),
-          verbose: true
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('list-monitored-companies-request.xml'),
+                 verbose: true
         )).to eq([])
       end).to have_been_made
     end
@@ -834,9 +845,9 @@ RSpec.describe(Creditsafe::Client) do
       set_default_changes_check_period
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
-          Nokogiri::XML(req.body),
-          load_xml_fixture('set-default-changes-check-period-request.xml'),
-          verbose: true
+                 Nokogiri::XML(req.body),
+                 load_xml_fixture('set-default-changes-check-period-request.xml'),
+                 verbose: true
         )).to eq([])
       end).to have_been_made
     end
@@ -848,7 +859,9 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it 'not raise an error' do
-        expect { set_default_changes_check_period }.to raise_error(Creditsafe::RequestError)
+        expect do
+          set_default_changes_check_period
+        end.to raise_error(Creditsafe::RequestError)
       end
 
       it 'gives a useful error message' do
