@@ -79,19 +79,6 @@ module Creditsafe
       portfolios.nil? ? nil : portfolios.fetch(:portfolio)
     end
 
-    def remove_portfolios(portfolio_ids)
-      request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
-      invoke_soap(:remove_portfolios, request.message)
-    end
-
-    def create_portfolio(information_processing_enabled, name)
-      request = Creditsafe::Request::CreatePortfolio.new(
-        information_processing_enabled,
-        name
-      )
-      invoke_soap(:create_portfolio, request.message)
-    end
-
     def get_portfolio_monitoring_rules(portfolio_id)
       request = Creditsafe::Request::GetPortfolioMonitoringRules.new(portfolio_id)
       response = invoke_soap(:get_monitoring_rules, request.message)
@@ -176,19 +163,20 @@ module Creditsafe
                fetch(:list_monitored_companies_response).
                fetch(:list_monitored_companies_result)
 
-      begin
-        result = result.fetch(:portfolios)
-      rescue
-        message =  result.fetch(:messages).fetch(:message)
+      messages = result[:messages].nil? ? [] : result.fetch(:messages).fetch(:message)
+      result = result.fetch(:portfolios)
+      result = result.is_a?(Array) ? result : [result]
 
-        if message == 'There are no results matching specified criteria.'
-          result = message
-        else
-          raise '' + message
-        end
+      { result: result, messages: messages }
+    rescue
+      if messages == 'There are no results matching specified criteria.'
+        return { result: [], messages: [] }
       end
 
-      result
+      if messages.is_a?(Array)
+        messages = messages.reduce { |a, e| a + ' ; ' + e }
+      end
+      raise '' + messages
     end
 
     # rubocop:disable AccessorMethodName

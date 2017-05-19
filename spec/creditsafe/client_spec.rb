@@ -809,8 +809,8 @@ RSpec.describe(Creditsafe::Client) do
     end
 
     it 'returns the company details' do
-      expect(list_monitored_companies).to include(:portfolio)
-      expect(list_monitored_companies[:portfolio]).to include(:companies)
+      expect(list_monitored_companies[:result].first).to include(:portfolio)
+      expect(list_monitored_companies[:result].first[:portfolio]).to include(:companies)
     end
 
     context 'no companies are found' do
@@ -821,6 +821,34 @@ RSpec.describe(Creditsafe::Client) do
 
       it 'not raise an error' do
         expect { list_monitored_companies }.not_to raise_error
+      end
+    end
+
+    context 'multiple messages without payload' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('list-monitored-companies-multiple-messages.xml'))
+      end
+
+      it 'should raise an error' do
+        expect { list_monitored_companies }.to raise_error
+      end
+    end
+
+    context 'multiple messages with payload' do
+      before do
+        stub_request(:post, URL).
+          to_return(body: load_fixture('list-monitored-companies-multiple-messages-with-payload.xml'))
+      end
+
+      it 'should not raise an error' do
+        expect { list_monitored_companies }.not_to raise_error
+      end
+
+      it 'should return the message and result' do
+        expect(list_monitored_companies.size).to eq(2)
+        expect(list_monitored_companies[:result].nil?).to eq(false)
+        expect(list_monitored_companies[:messages].first).to eq('bla')
       end
     end
   end
