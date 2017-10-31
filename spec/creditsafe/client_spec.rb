@@ -830,8 +830,15 @@ RSpec.describe(Creditsafe::Client) do
           to_return(body: load_fixture('list-monitored-companies-multiple-messages.xml'))
       end
 
-      it 'should raise an error' do
-        expect { list_monitored_companies }.to raise_error
+      it 'should not raise an error' do
+        expect { list_monitored_companies }.not_to raise_error
+      end
+
+      it 'should return empty message' do
+        expect(list_monitored_companies).to eq(
+          messages: ['There are no results matching specified criteria.', 'bla'],
+          result: []
+        )
       end
     end
 
