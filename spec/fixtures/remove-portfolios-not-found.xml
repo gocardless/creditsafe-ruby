@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <RemovePortfoliosResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <RemovePortfoliosResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+        <q1:Messages>
+          <q1:Message Type="Error" Code="30102">Invalid portfolio list specified.</q1:Message>
+        </q1:Messages>
+      </RemovePortfoliosResult>
+    </RemovePortfoliosResponse>
+  </s:Body>
+</s:Envelope>
