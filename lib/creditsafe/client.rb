@@ -164,6 +164,7 @@ module Creditsafe
                fetch(:list_monitored_companies_result)
 
       messages = result[:messages].nil? ? [] : result.fetch(:messages).fetch(:message)
+      messages = [messages].flatten
       result = result.fetch(:portfolios, [])
       result = [result].flatten
 
