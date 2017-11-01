@@ -161,19 +161,11 @@ module Creditsafe
                fetch(:list_monitored_companies_result)
 
       messages = result[:messages].nil? ? [] : result.fetch(:messages).fetch(:message)
-      result = result.fetch(:portfolios)
-      result = result.is_a?(Array) ? result : [result]
+      messages = [messages].flatten
+      result = result.fetch(:portfolios, [])
+      result = [result].flatten
 
       { result: result, messages: messages }
-    rescue
-      if messages == 'There are no results matching specified criteria.'
-        return { result: [], messages: [] }
-      end
-
-      if messages.is_a?(Array)
-        messages = messages.reduce { |a, e| a + ' ; ' + e }
-      end
-      raise '' + messages
     end
 
     # rubocop:disable AccessorMethodName
