@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oper="http://www.creditsafe.com/globaldata/operations" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dat="http://www.creditsafe.com/globaldata/datatypes" xmlns:cred="http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData" xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+  <soapenv:Body>
+    <oper:ListMonitoredCompanies>
+      <oper:portfolioIds>
+        <arr:unsignedInt>14462</arr:unsignedInt>
+      </oper:portfolioIds>
+      <oper:changedOnly>true</oper:changedOnly>
+      <oper:changedSince>2017-04-15T10:27:08+02:00</oper:changedSince>
+      <oper:pageSize>1000</oper:pageSize>
+      <oper:firstPosition>0</oper:firstPosition>
+    </oper:ListMonitoredCompanies>
+  </soapenv:Body>
+</soapenv:Envelope>
