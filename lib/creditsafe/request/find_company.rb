@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'creditsafe/namespace'
+require 'creditsafe/match_type'
 
 module Creditsafe
   module Request
@@ -15,11 +16,12 @@ module Creditsafe
       end
 
       # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/AbcSize
       def message
         search_criteria = {}
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => 'MatchBlock',
+          '@MatchType' => match_type,
           :content! => company_name
         } unless company_name.nil?
 
@@ -38,11 +40,17 @@ module Creditsafe
 
         build_message(search_criteria)
       end
+      # rubocop:enable Metrics/AbcSize
       # rubocop:enable Metrics/MethodLength
 
       private
 
       attr_reader :country_code, :registration_number, :city, :company_name, :postal_code
+
+      def match_type
+        Creditsafe::MatchType::ALLOWED[country_code.upcase.to_sym]&.first ||
+          Creditsafe::MatchType::MATCH_BLOCK
+      end
 
       def build_message(search_criteria)
         {
@@ -53,15 +61,10 @@ module Creditsafe
         }
       end
 
-      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/AbcSize
-      # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength
+      # rubocop:disable Metrics/CyclomaticComplexity
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
-        end
-
-        if search_criteria[:country_code] != 'DE' && !search_criteria[:company_name].nil?
-          raise ArgumentError, "company name search is only possible for German searches"
         end
 
         unless only_registration_number_or_company_name_provided?(search_criteria)
@@ -77,8 +80,7 @@ module Creditsafe
           raise ArgumentError, "Postal code is only supported for German searches"
         end
       end
-      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/AbcSize
-      # rubocop:enable Metrics/PerceivedComplexity, Metrics/MethodLength
+      # rubocop:enable Metrics/CyclomaticComplexity
 
       def only_registration_number_or_company_name_provided?(search_criteria)
         search_criteria[:registration_number].nil? ^ search_criteria[:company_name].nil?
