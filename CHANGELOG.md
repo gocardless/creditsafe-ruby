@@ -1,3 +1,7 @@
+## v0.5.0, 27 February 2018
+
+- Automatically chooses a valid MatchType when searching for companies by name
+
 ## v0.4.0, 3 April 2017
 
 - Adds support for including a postal code when searching for German companies by name 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    creditsafe (0.4.0)
+    creditsafe (0.5.0)
       activesupport (>= 4.2.0)
       excon (~> 0.45)
       savon (~> 2.8)
