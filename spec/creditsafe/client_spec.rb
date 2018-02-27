@@ -180,6 +180,24 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
 
+    context "with a company name" do
+      let(:search_criteria) { { country_code: "FR", company_name: "Mimes Inc" } }
+
+      it { is_expected.to_not raise_error }
+
+      it "selects a valid match type for the country code" do
+        find_company
+
+        request = a_request(:post, URL).with do |req|
+          body = Nokogiri::XML(req.body)
+          expect(body.xpath("//dat:Name").first.attributes["MatchType"].value).
+            to eq("MatchBeginning")
+        end
+
+        expect(request).to have_been_made
+      end
+    end
+
     it 'requests the company deatils' do
       find_company
       expect(a_request(:post, URL).with do |req|
