@@ -15,7 +15,7 @@ require "active_support/notifications"
 
 module Creditsafe
   class Client
-    ENVIRONMENTS = %i(live test).freeze
+    ENVIRONMENTS = %i[live test].freeze
 
     def initialize(username: nil, password: nil, savon_opts: {},
                    environment: :live, log_level: :warn)
