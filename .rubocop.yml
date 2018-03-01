@@ -1,24 +1,11 @@
-inherit_from: .rubocop_todo.yml
+inherit_gem:
+  gc_ruboconfig: rubocop.yml
 
-# Avoid single-line methods.
-SingleLineMethods:
-  AllowIfMethodIsEmpty: true
+RSpec/NestedGroups:
+  Max: 5
 
-StringLiterals:
-  Enabled: false
+RSpec/ExampleLength:
+  Max: 20
 
-Style/SignalException:
-  EnforcedStyle: 'only_raise'
-
-# Use trailing rather than leading dots on multi-line call chains
-Style/DotPosition:
-  EnforcedStyle: trailing
-
-Style/Documentation:
-  Enabled: false
-
-Metrics/LineLength:
-  Max: 90
-
-Metrics/ModuleLength:
-  Max: 120
+RSpec/MultipleExpectations:
+  Max: 2

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
-require 'creditsafe/match_type'
+require "creditsafe/match_type"
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -20,23 +20,29 @@ module Creditsafe
       def message
         search_criteria = {}
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => match_type,
-          :content! => company_name
-        } unless company_name.nil?
+        unless company_name.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
+            "@MatchType" => match_type,
+            :content! => company_name,
+          }
+        end
 
         unless registration_number.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:RegistrationNumber"] =
             registration_number
         end
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:City" => city
-        } unless city.nil?
+        unless city.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+            "#{Creditsafe::Namespace::DAT}:City" => city,
+          }
+        end
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code
-        } unless postal_code.nil?
+        unless postal_code.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+            "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code,
+          }
+        end
 
         build_message(search_criteria)
       end
@@ -55,13 +61,14 @@ module Creditsafe
       def build_message(search_criteria)
         {
           "#{Creditsafe::Namespace::OPER}:countries" => {
-            "#{Creditsafe::Namespace::CRED}:CountryCode" => country_code
+            "#{Creditsafe::Namespace::CRED}:CountryCode" => country_code,
           },
-          "#{Creditsafe::Namespace::OPER}:searchCriteria" => search_criteria
+          "#{Creditsafe::Namespace::OPER}:searchCriteria" => search_criteria,
         }
       end
 
       # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/MethodLength
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
@@ -72,14 +79,15 @@ module Creditsafe
                                "required search criteria"
         end
 
-        if search_criteria[:city] && search_criteria[:country_code] != 'DE'
+        if search_criteria[:city] && search_criteria[:country_code] != "DE"
           raise ArgumentError, "city is only supported for German searches"
         end
 
-        if search_criteria[:postal_code] && search_criteria[:country_code] != 'DE'
+        if search_criteria[:postal_code] && search_criteria[:country_code] != "DE"
           raise ArgumentError, "Postal code is only supported for German searches"
         end
       end
+      # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/CyclomaticComplexity
 
       def only_registration_number_or_company_name_provided?(search_criteria)

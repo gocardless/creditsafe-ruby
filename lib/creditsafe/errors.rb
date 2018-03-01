@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Creditsafe
   class Error < StandardError; end
 

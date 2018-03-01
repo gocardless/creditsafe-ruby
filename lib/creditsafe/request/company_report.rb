@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -10,23 +10,25 @@ module Creditsafe
         @custom_data = custom_data
       end
 
+      # rubocop:disable Metrics/MethodLength
       def message
         message = {
           "#{Creditsafe::Namespace::OPER}:companyId" => company_id.to_s,
-          "#{Creditsafe::Namespace::OPER}:reportType" => 'Full',
-          "#{Creditsafe::Namespace::OPER}:language" => "EN"
+          "#{Creditsafe::Namespace::OPER}:reportType" => "Full",
+          "#{Creditsafe::Namespace::OPER}:language" => "EN",
         }
 
         unless custom_data.nil?
           message["#{Creditsafe::Namespace::OPER}:customData"] = {
             "#{Creditsafe::Namespace::DAT}:Entries" => {
-              "#{Creditsafe::Namespace::DAT}:Entry" => custom_data_entries
-            }
+              "#{Creditsafe::Namespace::DAT}:Entry" => custom_data_entries,
+            },
           }
         end
 
         message
       end
+      # rubocop:enable Metrics/MethodLength
 
       private
 
