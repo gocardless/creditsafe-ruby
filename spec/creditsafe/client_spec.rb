@@ -142,6 +142,7 @@ RSpec.describe(Creditsafe::Client) do
     end
 
     subject(:find_company) { client.find_company(search_criteria) }
+
     subject(:method_call) { find_company }
 
     before do
@@ -152,6 +153,7 @@ RSpec.describe(Creditsafe::Client) do
     end
 
     subject { -> { method_call } }
+
     it { is_expected.to_not raise_error }
 
     context "without a country_code" do
@@ -322,6 +324,7 @@ RSpec.describe(Creditsafe::Client) do
     subject(:company_report) do
       client.company_report("GB003/0/07495895", custom_data: custom_data)
     end
+
     subject(:method_call) { company_report }
 
     it "requests the company details" do
