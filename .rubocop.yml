@@ -4,3 +4,6 @@ inherit_gem:
 
 RSpec/NestedGroups:
   Max: 5
+
+RSpec/ExampleLength:
+  Max: 20
