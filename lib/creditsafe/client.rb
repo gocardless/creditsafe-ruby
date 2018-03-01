@@ -68,8 +68,7 @@ module Creditsafe
         *response.xpath("//q1:Message"),
         *response.xpath("//xmlns:Message"),
       ].each do |message|
-        api_message = Creditsafe::Messages.
-          for_code(message.attributes["Code"].value)
+        api_message = Creditsafe::Messages.for_code(message.attributes["Code"].value)
 
         api_error_message = api_message.message
         api_error_message += " (#{message.text})" unless message.text.blank?
@@ -78,6 +77,7 @@ module Creditsafe
       end
     end
 
+    # rubocop:disable Style/RescueStandardError
     def invoke_soap(message_type, message)
       started = Time.now
       notification_payload = { request: message }
@@ -93,6 +93,7 @@ module Creditsafe
       publish("creditsafe.#{message_type}", started, Time.now,
               SecureRandom.hex(10), notification_payload)
     end
+    # rubocop:enable Style/RescueStandardError
 
     def publish(*args)
       ActiveSupport::Notifications.publish(*args)

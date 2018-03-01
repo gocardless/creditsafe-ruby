@@ -41,9 +41,7 @@ RSpec.describe(Creditsafe::Messages) do
   end
 
   describe(Creditsafe::Messages::Message) do
-    subject(:message) do
-      described_class.new(code: code, message: text, error: error)
-    end
+    subject(:message) { described_class.new(code: code, message: text, error: error) }
 
     let(:text) { "Error message" }
     let(:code) { "020101" }

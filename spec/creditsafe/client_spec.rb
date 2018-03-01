@@ -12,31 +12,39 @@ RSpec.describe(Creditsafe::Client) do
   let(:username) { "AzureDiamond" }
   let(:password) { "hunter2" }
 
+  # rubocop:disable RSpec/BeforeAfterAll
   before(:all) do
     ActiveSupport::Notifications.subscribe do |*args|
       notifications << ActiveSupport::Notifications::Event.new(*args)
     end
   end
+  # rubocop:enable RSpec/BeforeAfterAll
+
   before { notifications = [] }
 
   shared_examples_for "sends notifications" do
     let(:time) { Time.local(1990) }
+
     it "records a SOAP event" do
-      Timecop.freeze(time) do
-        method_call
-      end
-      expect(notifications).to match([have_attributes(
-        name: "creditsafe.#{soap_verb}",
-        transaction_id: match(/\A.{20}\Z/),
-        time: time,
-        end: time,
-        payload: {
-          request: be_truthy,
-          response: be_truthy,
-        },
-      )])
+      Timecop.freeze(time) { method_call }
+
+      expect(notifications).to match(
+        [
+          have_attributes(
+            name: "creditsafe.#{soap_verb}",
+            transaction_id: match(/\A.{20}\Z/),
+            time: time,
+            end: time,
+            payload: {
+              request: be_truthy,
+              response: be_truthy,
+            },
+          ),
+        ],
+      )
     end
   end
+
   shared_examples_for "handles api errors" do
     context "when an error occurs due to invalid credentials" do
       before do
@@ -72,9 +80,7 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it "raises an UnknownApiError" do
-        expect { method_call }.to raise_error(
-          Creditsafe::UnknownApiError,
-        ) do |error|
+        expect { method_call }.to raise_error(Creditsafe::UnknownApiError) do |error|
           expect(notifications).to match(
             [
               have_attributes(
@@ -96,9 +102,8 @@ RSpec.describe(Creditsafe::Client) do
       end
 
       it "raises an HttpError" do
-        expect { method_call }.to(
-          raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/),
-        )
+        expect { method_call }.
+          to raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/)
       end
     end
   end
@@ -126,10 +131,6 @@ RSpec.describe(Creditsafe::Client) do
   end
 
   describe "#find_company" do
-    subject(:find_company) { client.find_company(search_criteria) }
-
-    subject(:method_call) { find_company }
-
     subject { -> { method_call } }
 
     let(:soap_verb) { "find_companies" }
@@ -146,6 +147,9 @@ RSpec.describe(Creditsafe::Client) do
         postal_code: postal_code,
       }.reject { |_, v| v.nil? }
     end
+
+    let(:find_company) { client.find_company(search_criteria) }
+    let(:method_call) { find_company }
 
     before do
       stub_request(:post, URL).to_return(
@@ -311,31 +315,34 @@ RSpec.describe(Creditsafe::Client) do
   end
 
   describe "#company_report" do
-    subject(:company_report) do
-      client.company_report("GB003/0/07495895", custom_data: custom_data)
-    end
-
-    subject(:method_call) { company_report }
-
-    let(:soap_verb) { "retrieve_company_online_report" }
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("company-report-successful.xml"),
         status: 200,
       )
     end
+
+    let(:soap_verb) { "retrieve_company_online_report" }
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
+    let(:company_report) do
+      client.company_report("GB003/0/07495895", custom_data: custom_data)
+    end
+    let(:method_call) { company_report }
 
     it "requests the company details" do
       company_report
-      expect(a_request(:post, URL).with do |req|
-               expect(CompareXML.equivalent?(
-                        Nokogiri::XML(req.body),
-                        load_xml_fixture("company-report-request.xml"),
-                        verbose: true,
-               )).to eq([])
-             end).to have_been_made
+      request = a_request(:post, URL).with do |req|
+        expect(
+          CompareXML.equivalent?(
+            Nokogiri::XML(req.body),
+            load_xml_fixture("company-report-request.xml"),
+            verbose: true,
+          ),
+        ).to eq([])
+      end
+
+      expect(request).to have_been_made
     end
 
     it "returns the company details" do
