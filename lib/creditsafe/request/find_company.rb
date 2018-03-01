@@ -20,23 +20,29 @@ module Creditsafe
       def message
         search_criteria = {}
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          "@MatchType" => match_type,
-          :content! => company_name,
-        } unless company_name.nil?
+        unless company_name.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
+            "@MatchType" => match_type,
+            :content! => company_name,
+          }
+        end
 
         unless registration_number.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:RegistrationNumber"] =
             registration_number
         end
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:City" => city,
-        } unless city.nil?
+        unless city.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+            "#{Creditsafe::Namespace::DAT}:City" => city,
+          }
+        end
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code,
-        } unless postal_code.nil?
+        unless postal_code.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+            "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code,
+          }
+        end
 
         build_message(search_criteria)
       end

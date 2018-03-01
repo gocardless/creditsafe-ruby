@@ -15,7 +15,7 @@ module Creditsafe
         @error = error
       end
 
-      alias error? error
+      alias_method :error?, :error
 
       def error_class
         return unless error?
