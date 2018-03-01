@@ -33,7 +33,7 @@ RSpec.describe(Creditsafe::Client) do
         payload: {
           request: be_truthy,
           response: be_truthy
-        }
+        },
       )])
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe(Creditsafe::Client) do
       before do
         stub_request(:post, URL).to_return(
           body: load_fixture("error-invalid-credentials.html"),
-          status: 401
+          status: 401,
         )
       end
 
@@ -57,9 +57,9 @@ RSpec.describe(Creditsafe::Client) do
                 payload: {
                   request: be_truthy,
                   error: error
-                }
+                },
               )
-            ]
+            ],
           )
         end
       end
@@ -73,7 +73,7 @@ RSpec.describe(Creditsafe::Client) do
 
       it "raises an UnknownApiError" do
         expect { method_call }.to raise_error(
-          Creditsafe::UnknownApiError
+          Creditsafe::UnknownApiError,
         ) do |error|
           expect(notifications).to match(
             [
@@ -82,9 +82,9 @@ RSpec.describe(Creditsafe::Client) do
                 payload: {
                   request: be_truthy,
                   error: error
-                }
+                },
               )
-            ]
+            ],
           )
         end
       end
@@ -97,7 +97,7 @@ RSpec.describe(Creditsafe::Client) do
 
       it "raises an HttpError" do
         expect { method_call }.to(
-          raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/)
+          raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/),
         )
       end
     end
@@ -148,7 +148,7 @@ RSpec.describe(Creditsafe::Client) do
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("find-companies-successful.xml"),
-        status: 200
+        status: 200,
       )
     end
 
@@ -216,7 +216,7 @@ RSpec.describe(Creditsafe::Client) do
                expect(CompareXML.equivalent?(
                         Nokogiri::XML(req.body),
                         load_xml_fixture("find-companies-request.xml"),
-                        verbose: true
+                        verbose: true,
                )).to eq([])
              end).to have_been_made
     end
@@ -247,7 +247,7 @@ RSpec.describe(Creditsafe::Client) do
       before do
         stub_request(:post, URL).to_return(
           body: load_fixture("find-companies-none-found.xml"),
-          status: 200
+          status: 200,
         )
       end
 
@@ -265,14 +265,14 @@ RSpec.describe(Creditsafe::Client) do
                 find_companies_result: include(
                   messages: {
                     message: include(
-                      "There are no results matching specified criteria."
+                      "There are no results matching specified criteria.",
                     )
                   },
-                  companies: be_nil
-                )
+                  companies: be_nil,
+                ),
               )
             }
-          }
+          },
         )])
       end
     end
@@ -281,14 +281,14 @@ RSpec.describe(Creditsafe::Client) do
       before do
         stub_request(:post, URL).to_return(
           body: load_fixture("find-companies-error.xml"),
-          status: 200
+          status: 200,
         )
       end
 
       it "gives a useful error, with the specific error in the response" do
         expect { method_call }.to raise_error(
           Creditsafe::RequestError,
-          "Invalid operation parameters (Invalid countries list specified.)"
+          "Invalid operation parameters (Invalid countries list specified.)",
         )
       end
 
@@ -296,14 +296,14 @@ RSpec.describe(Creditsafe::Client) do
         before do
           stub_request(:post, URL).to_return(
             body: load_fixture("find-companies-error-no-text.xml"),
-            status: 200
+            status: 200,
           )
         end
 
         it "gives a useful error, with the specific error in the response" do
           expect { method_call }.to raise_error(
             Creditsafe::RequestError,
-            "Invalid operation parameters"
+            "Invalid operation parameters",
           )
         end
       end
@@ -315,7 +315,7 @@ RSpec.describe(Creditsafe::Client) do
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("company-report-successful.xml"),
-        status: 200
+        status: 200,
       )
     end
     let(:client) { described_class.new(username: username, password: password) }
@@ -333,7 +333,7 @@ RSpec.describe(Creditsafe::Client) do
                expect(CompareXML.equivalent?(
                         Nokogiri::XML(req.body),
                         load_xml_fixture("company-report-request.xml"),
-                        verbose: true
+                        verbose: true,
                )).to eq([])
              end).to have_been_made
     end
