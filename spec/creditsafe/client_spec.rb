@@ -119,6 +119,7 @@ RSpec.describe(Creditsafe::Client) do
 
   describe "#inspect" do
     subject { client.inspect }
+
     let(:client) { described_class.new(username: username, password: password) }
 
     it { is_expected.to_not include(password) }
@@ -126,8 +127,11 @@ RSpec.describe(Creditsafe::Client) do
 
   describe "#find_company" do
     subject(:find_company) { client.find_company(search_criteria) }
+
     subject(:method_call) { find_company }
+
     subject { -> { method_call } }
+
     let(:soap_verb) { "find_companies" }
     let(:client) { described_class.new(username: username, password: password) }
     let(:country_code) { "GB" }
@@ -310,7 +314,9 @@ RSpec.describe(Creditsafe::Client) do
     subject(:company_report) do
       client.company_report("GB003/0/07495895", custom_data: custom_data)
     end
+
     subject(:method_call) { company_report }
+
     let(:soap_verb) { "retrieve_company_online_report" }
     before do
       stub_request(:post, URL).to_return(
