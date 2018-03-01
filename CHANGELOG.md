@@ -1,3 +1,7 @@
+## v0.5.1, 1 March 2018
+
+- Update allowed MatchTypes for some geos to reflect real world tests
+
 ## v0.5.0, 27 February 2018
 
 - Automatically chooses a valid MatchType when searching for companies by name
