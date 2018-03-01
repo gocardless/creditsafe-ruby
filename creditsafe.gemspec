@@ -26,8 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rspec_junit_formatter', '~> 0.3'
   spec.add_development_dependency 'rspec-its', '~> 1.2'
-  spec.add_development_dependency 'guard-rspec', '~> 4.5'
-  spec.add_development_dependency 'guard-rubocop', '~> 1.2'
   spec.add_development_dependency 'rubocop', '~> 0.37'
   spec.add_development_dependency 'webmock', '~> 1.20'
   spec.add_development_dependency 'timecop', '~> 0.8'
