@@ -1,3 +1,6 @@
 inherit_from: .rubocop_todo.yml
 inherit_gem:
   gc_ruboconfig: rubocop.yml
+
+RSpec/NestedGroups:
+  Max: 5
