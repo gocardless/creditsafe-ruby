@@ -11,6 +11,7 @@ RSpec.describe(Creditsafe::Client) do
   notifications = []
   let(:username) { "AzureDiamond" }
   let(:password) { "hunter2" }
+
   before(:all) do
     ActiveSupport::Notifications.subscribe do |*args|
       notifications << ActiveSupport::Notifications::Event.new(*args)
@@ -111,12 +112,14 @@ RSpec.describe(Creditsafe::Client) do
 
     context "without a username" do
       let(:username) { nil }
+
       it { is_expected.to raise_error(ArgumentError) }
     end
   end
 
   describe "#inspect" do
     let(:client) { described_class.new(username: username, password: password) }
+
     subject { client.inspect }
 
     it { is_expected.to_not include(password) }
@@ -153,30 +156,36 @@ RSpec.describe(Creditsafe::Client) do
 
     context "without a country_code" do
       let(:country_code) { nil }
+
       it { is_expected.to raise_error(ArgumentError) }
     end
 
     context "without a registration_number" do
       let(:registration_number) { nil }
+
       it { is_expected.to raise_error(ArgumentError) }
     end
 
     context "with a city" do
       let(:city) { "Berlin" }
+
       it { is_expected.to raise_error(ArgumentError) }
 
       context "in Germany" do
         let(:country_code) { "DE" }
+
         it { is_expected.to_not raise_error }
       end
     end
 
     context "with a postal_code" do
       let(:postal_code) { "41199" }
+
       it { is_expected.to raise_error(ArgumentError) }
 
       context "in Germany" do
         let(:country_code) { "DE" }
+
         it { is_expected.to_not raise_error }
       end
     end
@@ -309,6 +318,7 @@ RSpec.describe(Creditsafe::Client) do
     end
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
+
     subject(:company_report) do
       client.company_report("GB003/0/07495895", custom_data: custom_data)
     end
