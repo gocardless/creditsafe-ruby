@@ -17,7 +17,7 @@ RSpec.describe(Creditsafe::Client) do
       notifications << ActiveSupport::Notifications::Event.new(*args)
     end
   end
-  before(:each) { notifications = [] }
+  before { notifications = [] }
 
   shared_examples_for "sends notifications" do
     let(:time) { Time.local(1990) }
