@@ -68,6 +68,7 @@ module Creditsafe
       end
 
       # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/MethodLength
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
@@ -86,6 +87,7 @@ module Creditsafe
           raise ArgumentError, "Postal code is only supported for German searches"
         end
       end
+      # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/CyclomaticComplexity
 
       def only_registration_number_or_company_name_provided?(search_criteria)
