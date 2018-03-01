@@ -109,7 +109,7 @@ module Creditsafe
       AE: [CLOSEST_KEYWORDS],
       EH: [CLOSEST_KEYWORDS],
       YE: [CLOSEST_KEYWORDS],
-      GR: [MATCH_BLOCK_OR_WORDS, CLOSEST_KEYWORDS]
+      GR: [MATCH_BLOCK_OR_WORDS, CLOSEST_KEYWORDS],
     }.freeze
   end
 end

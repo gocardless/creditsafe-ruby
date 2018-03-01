@@ -66,7 +66,7 @@ module Creditsafe
     def handle_message_for_response(response)
       [
         *response.xpath("//q1:Message"),
-        *response.xpath("//xmlns:Message")
+        *response.xpath("//xmlns:Message"),
       ].each do |message|
         api_message = Creditsafe::Messages.
                       for_code(message.attributes["Code"].value)
@@ -135,7 +135,7 @@ module Creditsafe
         adapter: :excon,
         log: true,
         log_level: @log_level,
-        pretty_print_xml: true
+        pretty_print_xml: true,
       }
       Savon.client(options.merge(@savon_opts))
     end

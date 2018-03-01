@@ -14,7 +14,7 @@ module Creditsafe
     ALL = {
       "xmlns:#{Creditsafe::Namespace::OPER}" => Creditsafe::Namespace::OPER_VAL,
       "xmlns:#{Creditsafe::Namespace::DAT}" => Creditsafe::Namespace::DAT_VAL,
-      "xmlns:#{Creditsafe::Namespace::CRED}" => Creditsafe::Namespace::CRED_VAL
+      "xmlns:#{Creditsafe::Namespace::CRED}" => Creditsafe::Namespace::CRED_VAL,
     }.freeze
   end
 end

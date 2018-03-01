@@ -77,7 +77,7 @@ module Creditsafe
       UNEXPECTED_INTERNAL_ERROR,
       OTHER_ERROR,
       DATA_SERVICE_PROBLEMS,
-      DATA_SERVICE_INVALID_RESPONSE
+      DATA_SERVICE_INVALID_RESPONSE,
     ].freeze
 
     # Creditsafe documentation shows a 6 digit error code, however their API

@@ -14,14 +14,14 @@ module Creditsafe
         message = {
           "#{Creditsafe::Namespace::OPER}:companyId" => company_id.to_s,
           "#{Creditsafe::Namespace::OPER}:reportType" => "Full",
-          "#{Creditsafe::Namespace::OPER}:language" => "EN"
+          "#{Creditsafe::Namespace::OPER}:language" => "EN",
         }
 
         unless custom_data.nil?
           message["#{Creditsafe::Namespace::OPER}:customData"] = {
             "#{Creditsafe::Namespace::DAT}:Entries" => {
-              "#{Creditsafe::Namespace::DAT}:Entry" => custom_data_entries
-            }
+              "#{Creditsafe::Namespace::DAT}:Entry" => custom_data_entries,
+            },
           }
         end
 

@@ -22,7 +22,7 @@ module Creditsafe
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
           "@MatchType" => match_type,
-          :content! => company_name
+          :content! => company_name,
         } unless company_name.nil?
 
         unless registration_number.nil?
@@ -31,11 +31,11 @@ module Creditsafe
         end
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:City" => city
+          "#{Creditsafe::Namespace::DAT}:City" => city,
         } unless city.nil?
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-          "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code
+          "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code,
         } unless postal_code.nil?
 
         build_message(search_criteria)
@@ -55,9 +55,9 @@ module Creditsafe
       def build_message(search_criteria)
         {
           "#{Creditsafe::Namespace::OPER}:countries" => {
-            "#{Creditsafe::Namespace::CRED}:CountryCode" => country_code
+            "#{Creditsafe::Namespace::CRED}:CountryCode" => country_code,
           },
-          "#{Creditsafe::Namespace::OPER}:searchCriteria" => search_criteria
+          "#{Creditsafe::Namespace::OPER}:searchCriteria" => search_criteria,
         }
       end
 

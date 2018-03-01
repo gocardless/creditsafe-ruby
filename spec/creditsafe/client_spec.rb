@@ -32,7 +32,7 @@ RSpec.describe(Creditsafe::Client) do
         end: time,
         payload: {
           request: be_truthy,
-          response: be_truthy
+          response: be_truthy,
         },
       )])
     end
@@ -56,9 +56,9 @@ RSpec.describe(Creditsafe::Client) do
                 name: "creditsafe.#{soap_verb}",
                 payload: {
                   request: be_truthy,
-                  error: error
+                  error: error,
                 },
-              )
+              ),
             ],
           )
         end
@@ -81,9 +81,9 @@ RSpec.describe(Creditsafe::Client) do
                 name: "creditsafe.#{soap_verb}",
                 payload: {
                   request: be_truthy,
-                  error: error
+                  error: error,
                 },
-              )
+              ),
             ],
           )
         end
@@ -137,7 +137,7 @@ RSpec.describe(Creditsafe::Client) do
         country_code: country_code,
         registration_number: registration_number,
         city: city,
-        postal_code: postal_code
+        postal_code: postal_code,
       }.reject { |_, v| v.nil? }
     end
 
@@ -229,7 +229,7 @@ RSpec.describe(Creditsafe::Client) do
               :registration_number => "07495895",
               :address => {
                 simple_value: "338-346, GOSWELL, LONDON",
-                postal_code: "EC1V7LQ"
+                postal_code: "EC1V7LQ",
               },
               :available_report_types => { available_report_type: "Full" },
               :available_languages => { available_language: "EN" },
@@ -266,12 +266,12 @@ RSpec.describe(Creditsafe::Client) do
                   messages: {
                     message: include(
                       "There are no results matching specified criteria.",
-                    )
+                    ),
                   },
                   companies: be_nil,
                 ),
-              )
-            }
+              ),
+            },
           },
         )])
       end
