@@ -121,7 +121,6 @@ RSpec.describe(Creditsafe::Client) do
     subject { client.inspect }
     let(:client) { described_class.new(username: username, password: password) }
 
-
     it { is_expected.to_not include(password) }
   end
 
@@ -144,15 +143,12 @@ RSpec.describe(Creditsafe::Client) do
       }.reject { |_, v| v.nil? }
     end
 
-
-
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("find-companies-successful.xml"),
         status: 200,
       )
     end
-
 
     it { is_expected.to_not raise_error }
 
@@ -324,8 +320,6 @@ RSpec.describe(Creditsafe::Client) do
     end
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
-
-
 
     it "requests the company details" do
       company_report
