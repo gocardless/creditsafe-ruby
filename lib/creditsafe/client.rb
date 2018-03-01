@@ -38,9 +38,9 @@ module Creditsafe
       response = invoke_soap(:find_companies, request.message)
 
       companies = response.
-                  fetch(:find_companies_response).
-                  fetch(:find_companies_result).
-                  fetch(:companies)
+        fetch(:find_companies_response).
+        fetch(:find_companies_result).
+        fetch(:companies)
 
       companies.nil? ? nil : companies.fetch(:company)
     end
@@ -69,7 +69,7 @@ module Creditsafe
         *response.xpath("//xmlns:Message"),
       ].each do |message|
         api_message = Creditsafe::Messages.
-                      for_code(message.attributes["Code"].value)
+          for_code(message.attributes["Code"].value)
 
         api_error_message = api_message.message
         api_error_message += " (#{message.text})" unless message.text.blank?
