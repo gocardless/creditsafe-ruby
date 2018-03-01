@@ -2,14 +2,14 @@
 
 module Creditsafe
   module Namespace
-    OPER = 'oper'
-    OPER_VAL = 'http://www.creditsafe.com/globaldata/operations'
+    OPER = "oper"
+    OPER_VAL = "http://www.creditsafe.com/globaldata/operations"
 
-    DAT = 'dat'
-    DAT_VAL = 'http://www.creditsafe.com/globaldata/datatypes'
+    DAT = "dat"
+    DAT_VAL = "http://www.creditsafe.com/globaldata/datatypes"
 
-    CRED = 'cred'
-    CRED_VAL = 'http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData'
+    CRED = "cred"
+    CRED_VAL = "http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData"
 
     ALL = {
       "xmlns:#{Creditsafe::Namespace::OPER}" => Creditsafe::Namespace::OPER_VAL,

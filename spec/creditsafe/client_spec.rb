@@ -1,10 +1,10 @@
 # frozen_string_literal: true
-require 'spec_helper'
-require 'creditsafe/client'
-require 'timecop'
+require "spec_helper"
+require "creditsafe/client"
+require "timecop"
 
-URL = 'https://webservices.creditsafe.com/GlobalData/1.3/'\
-      'MainServiceBasic.svc'
+URL = "https://webservices.creditsafe.com/GlobalData/1.3/"\
+      "MainServiceBasic.svc"
 
 RSpec.describe(Creditsafe::Client) do
   notifications = []
@@ -17,9 +17,9 @@ RSpec.describe(Creditsafe::Client) do
   end
   before(:each) { notifications = [] }
 
-  shared_examples_for 'sends notifications' do
+  shared_examples_for "sends notifications" do
     let(:time) { Time.local(1990) }
-    it 'records a SOAP event' do
+    it "records a SOAP event" do
       Timecop.freeze(time) do
         method_call
       end
@@ -35,16 +35,16 @@ RSpec.describe(Creditsafe::Client) do
       )])
     end
   end
-  shared_examples_for 'handles api errors' do
-    context 'when an error occurs due to invalid credentials' do
+  shared_examples_for "handles api errors" do
+    context "when an error occurs due to invalid credentials" do
       before do
         stub_request(:post, URL).to_return(
-          body: load_fixture('error-invalid-credentials.html'),
+          body: load_fixture("error-invalid-credentials.html"),
           status: 401
         )
       end
 
-      it 'raises an AccountError' do
+      it "raises an AccountError" do
         expect { method_call }.to raise_error(
           Creditsafe::AccountError, /invalid credentials/
         ) do |error|
@@ -63,13 +63,13 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
 
-    context 'when an error occurs due to a fault' do
+    context "when an error occurs due to a fault" do
       before do
         stub_request(:post, URL).
-          to_return(body: load_fixture('error-fault.xml'))
+          to_return(body: load_fixture("error-fault.xml"))
       end
 
-      it 'raises an UnknownApiError' do
+      it "raises an UnknownApiError" do
         expect { method_call }.to raise_error(
           Creditsafe::UnknownApiError
         ) do |error|
@@ -88,12 +88,12 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
 
-    context 'when a HTTP error occurs' do
+    context "when a HTTP error occurs" do
       before do
         stub_request(:post, URL).to_timeout
       end
 
-      it 'raises an HttpError' do
+      it "raises an HttpError" do
         expect { method_call }.to(
           raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/)
         )
@@ -121,8 +121,8 @@ RSpec.describe(Creditsafe::Client) do
     it { is_expected.to_not include(password) }
   end
 
-  describe '#find_company' do
-    let(:soap_verb) { 'find_companies' }
+  describe "#find_company" do
+    let(:soap_verb) { "find_companies" }
     let(:client) { described_class.new(username: username, password: password) }
     let(:country_code) { "GB" }
     let(:registration_number) { "RN123" }
@@ -142,7 +142,7 @@ RSpec.describe(Creditsafe::Client) do
 
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture('find-companies-successful.xml'),
+        body: load_fixture("find-companies-successful.xml"),
         status: 200
       )
     end
@@ -198,43 +198,43 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
 
-    it 'requests the company deatils' do
+    it "requests the company deatils" do
       find_company
       expect(a_request(:post, URL).with do |req|
                expect(CompareXML.equivalent?(
                         Nokogiri::XML(req.body),
-                        load_xml_fixture('find-companies-request.xml'),
+                        load_xml_fixture("find-companies-request.xml"),
                         verbose: true
                )).to eq([])
              end).to have_been_made
     end
 
-    it 'returns the company details' do
+    it "returns the company details" do
       expect(find_company).
-        to eq(:name => 'GOCARDLESS LTD',
-              :type => 'Ltd',
-              :status => 'Active',
-              :registration_number => '07495895',
+        to eq(:name => "GOCARDLESS LTD",
+              :type => "Ltd",
+              :status => "Active",
+              :registration_number => "07495895",
               :address => {
-                simple_value: '338-346, GOSWELL, LONDON',
-                postal_code: 'EC1V7LQ'
+                simple_value: "338-346, GOSWELL, LONDON",
+                postal_code: "EC1V7LQ"
               },
-              :available_report_types => { available_report_type: 'Full' },
-              :available_languages => { available_language: 'EN' },
-              :@date_of_latest_accounts => '2014-01-31T00:00:00Z',
-              :@online_reports => 'true',
-              :@monitoring => 'false',
-              :@country => 'GB',
-              :@id => 'GB003/0/07495895')
+              :available_report_types => { available_report_type: "Full" },
+              :available_languages => { available_language: "EN" },
+              :@date_of_latest_accounts => "2014-01-31T00:00:00Z",
+              :@online_reports => "true",
+              :@monitoring => "false",
+              :@country => "GB",
+              :@id => "GB003/0/07495895")
     end
 
-    include_examples 'sends notifications'
-    include_examples 'handles api errors'
+    include_examples "sends notifications"
+    include_examples "handles api errors"
 
     context "when no companies are found" do
       before do
         stub_request(:post, URL).to_return(
-          body: load_fixture('find-companies-none-found.xml'),
+          body: load_fixture("find-companies-none-found.xml"),
           status: 200
         )
       end
@@ -268,80 +268,80 @@ RSpec.describe(Creditsafe::Client) do
     context "when an error occurs with further details" do
       before do
         stub_request(:post, URL).to_return(
-          body: load_fixture('find-companies-error.xml'),
+          body: load_fixture("find-companies-error.xml"),
           status: 200
         )
       end
 
-      it 'gives a useful error, with the specific error in the response' do
+      it "gives a useful error, with the specific error in the response" do
         expect { method_call }.to raise_error(
           Creditsafe::RequestError,
-          'Invalid operation parameters (Invalid countries list specified.)'
+          "Invalid operation parameters (Invalid countries list specified.)"
         )
       end
 
       context "with further details provided in the response" do
         before do
           stub_request(:post, URL).to_return(
-            body: load_fixture('find-companies-error-no-text.xml'),
+            body: load_fixture("find-companies-error-no-text.xml"),
             status: 200
           )
         end
 
-        it 'gives a useful error, with the specific error in the response' do
+        it "gives a useful error, with the specific error in the response" do
           expect { method_call }.to raise_error(
             Creditsafe::RequestError,
-            'Invalid operation parameters'
+            "Invalid operation parameters"
           )
         end
       end
     end
   end
 
-  describe '#company_report' do
-    let(:soap_verb) { 'retrieve_company_online_report' }
+  describe "#company_report" do
+    let(:soap_verb) { "retrieve_company_online_report" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture('company-report-successful.xml'),
+        body: load_fixture("company-report-successful.xml"),
         status: 200
       )
     end
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
     subject(:company_report) do
-      client.company_report('GB003/0/07495895', custom_data: custom_data)
+      client.company_report("GB003/0/07495895", custom_data: custom_data)
     end
     subject(:method_call) { company_report }
 
-    it 'requests the company details' do
+    it "requests the company details" do
       company_report
       expect(a_request(:post, URL).with do |req|
                expect(CompareXML.equivalent?(
                         Nokogiri::XML(req.body),
-                        load_xml_fixture('company-report-request.xml'),
+                        load_xml_fixture("company-report-request.xml"),
                         verbose: true
                )).to eq([])
              end).to have_been_made
     end
 
-    it 'returns the company details' do
+    it "returns the company details" do
       expect(company_report).to include(:company_summary)
     end
 
-    include_examples 'sends notifications'
-    include_examples 'handles api errors'
+    include_examples "sends notifications"
+    include_examples "handles api errors"
 
-    context 'when a report is unavailable' do
+    context "when a report is unavailable" do
       before do
         stub_request(:post, URL).
-          to_return(body: load_fixture('company-report-not-found.xml'))
+          to_return(body: load_fixture("company-report-not-found.xml"))
       end
 
-      it 'raises an error' do
+      it "raises an error" do
         expect { company_report }.to raise_error(Creditsafe::DataError)
       end
 
-      it 'gives a useful error message' do
+      it "gives a useful error message" do
         expect { company_report }.to raise_error(
           Creditsafe::DataError, /Report unavailable/
         )

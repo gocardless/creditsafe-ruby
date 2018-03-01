@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require 'spec_helper'
-require 'creditsafe/messages'
+require "spec_helper"
+require "creditsafe/messages"
 
 RSpec.describe(Creditsafe::Messages) do
   describe ".for_code" do
@@ -9,26 +9,26 @@ RSpec.describe(Creditsafe::Messages) do
     context "for a valid code" do
       let(:code) { "020101" }
       its(:code) { is_expected.to eq(code) }
-      its(:message) { is_expected.to eq('Invalid credentials') }
+      its(:message) { is_expected.to eq("Invalid credentials") }
       its(:error_class) { is_expected.to eq(Creditsafe::AccountError) }
     end
 
     context "for a code without leading zero" do
       let(:code) { "20101" }
       its(:code) { is_expected.to eq("0#{code}") }
-      its(:message) { is_expected.to eq('Invalid credentials') }
+      its(:message) { is_expected.to eq("Invalid credentials") }
       its(:error_class) { is_expected.to eq(Creditsafe::AccountError) }
     end
 
     context "for an unknown code" do
       let(:code) { "999999" }
       its(:code) { is_expected.to eq(code) }
-      its(:message) { is_expected.to eq('Unknown error') }
+      its(:message) { is_expected.to eq("Unknown error") }
       its(:error_class) { is_expected.to eq(Creditsafe::UnknownApiError) }
     end
 
     context "for an empty code" do
-      let(:code) { '' }
+      let(:code) { "" }
       it "was passed the wrong parameters" do
         expect { subject(:message) }.to raise_error(ArgumentError)
       end

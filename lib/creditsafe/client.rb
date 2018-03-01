@@ -1,16 +1,16 @@
 # frozen_string_literal: true
-require 'securerandom'
-require 'savon'
-require 'excon'
+require "securerandom"
+require "savon"
+require "excon"
 
-require 'creditsafe/errors'
-require 'creditsafe/messages'
-require 'creditsafe/namespace'
+require "creditsafe/errors"
+require "creditsafe/messages"
+require "creditsafe/namespace"
 
-require 'creditsafe/request/company_report'
-require 'creditsafe/request/find_company'
+require "creditsafe/request/company_report"
+require "creditsafe/request/find_company"
 
-require 'active_support/notifications'
+require "active_support/notifications"
 
 module Creditsafe
   class Client
@@ -64,11 +64,11 @@ module Creditsafe
 
     def handle_message_for_response(response)
       [
-        *response.xpath('//q1:Message'),
-        *response.xpath('//xmlns:Message')
+        *response.xpath("//q1:Message"),
+        *response.xpath("//xmlns:Message")
       ].each do |message|
         api_message = Creditsafe::Messages.
-                      for_code(message.attributes['Code'].value)
+                      for_code(message.attributes["Code"].value)
 
         api_error_message = api_message.message
         api_error_message += " (#{message.text})" unless message.text.blank?
@@ -105,7 +105,7 @@ module Creditsafe
         return UnknownApiError.new(error.message)
       when Savon::HTTPError
         if error.to_hash[:code] == 401
-          return AccountError.new('Unauthorized: invalid credentials')
+          return AccountError.new("Unauthorized: invalid credentials")
         end
         return UnknownApiError.new(error.message)
       when Excon::Errors::Error
@@ -119,13 +119,13 @@ module Creditsafe
     end
 
     def auth_header
-      auth_value = 'Basic ' + Base64.encode64("#{@username}:#{@password}").chomp
-      { 'Authorization' => auth_value }
+      auth_value = "Basic " + Base64.encode64("#{@username}:#{@password}").chomp
+      { "Authorization" => auth_value }
     end
 
     def build_savon_client
       options = {
-        env_namespace: 'soapenv',
+        env_namespace: "soapenv",
         namespace_identifier: Creditsafe::Namespace::OPER,
         namespaces: Creditsafe::Namespace::ALL,
         wsdl: wsdl_path,
@@ -140,8 +140,8 @@ module Creditsafe
     end
 
     def wsdl_path
-      root_dir = File.join(File.dirname(__FILE__), '..', '..')
-      File.join(root_dir, 'data', "creditsafe-#{@environment}.xml")
+      root_dir = File.join(File.dirname(__FILE__), "..", "..")
+      File.join(root_dir, "data", "creditsafe-#{@environment}.xml")
     end
   end
 end

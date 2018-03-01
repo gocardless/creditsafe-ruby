@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
-require 'creditsafe/match_type'
+require "creditsafe/match_type"
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -21,7 +21,7 @@ module Creditsafe
         search_criteria = {}
 
         search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => match_type,
+          "@MatchType" => match_type,
           :content! => company_name
         } unless company_name.nil?
 
@@ -72,11 +72,11 @@ module Creditsafe
                                "required search criteria"
         end
 
-        if search_criteria[:city] && search_criteria[:country_code] != 'DE'
+        if search_criteria[:city] && search_criteria[:country_code] != "DE"
           raise ArgumentError, "city is only supported for German searches"
         end
 
-        if search_criteria[:postal_code] && search_criteria[:country_code] != 'DE'
+        if search_criteria[:postal_code] && search_criteria[:country_code] != "DE"
           raise ArgumentError, "Postal code is only supported for German searches"
         end
       end
