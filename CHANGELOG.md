@@ -1,3 +1,7 @@
+## v0.5.2, 29 March 2018
+
+- Raise `Creditsafe::TimeoutError` when a request times out
+
 ## v0.5.1, 1 March 2018
 
 - Update allowed MatchTypes for some geos to reflect real world tests
