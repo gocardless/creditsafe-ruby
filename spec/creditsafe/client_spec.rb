@@ -96,14 +96,11 @@ RSpec.describe(Creditsafe::Client) do
       end
     end
 
-    context "when a HTTP error occurs" do
-      before do
-        stub_request(:post, URL).to_timeout
-      end
+    context "when a timeout occurs" do
+      before { stub_request(:post, URL).to_timeout }
 
-      it "raises an HttpError" do
-        expect { method_call }.
-          to raise_error(Creditsafe::HttpError, /Excon::Error(?:s)?::Timeout/)
+      it "raises a TimeoutError" do
+        expect { method_call }.to raise_error(Creditsafe::TimeoutError)
       end
     end
   end
