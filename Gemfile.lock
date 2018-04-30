@@ -22,7 +22,7 @@ GEM
     ast (2.4.0)
     builder (3.2.3)
     coderay (1.1.2)
-    compare-xml (0.65)
+    compare-xml (0.66)
       nokogiri (~> 1.8)
     concurrent-ruby (1.0.5)
     crack (0.4.3)
