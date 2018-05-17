@@ -218,7 +218,7 @@ RSpec.describe(Creditsafe::Client) do
                         Nokogiri::XML(req.body),
                         load_xml_fixture("find-companies-request.xml"),
                         verbose: true,
-               )).to eq([])
+                      )).to eq([])
              end).to have_been_made
     end
 
