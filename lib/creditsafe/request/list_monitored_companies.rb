@@ -26,8 +26,8 @@ module Creditsafe
           ],
           "#{Creditsafe::Namespace::OPER}:changedOnly" => @changed_only,
           "#{Creditsafe::Namespace::OPER}:changedSince" => @changed_since,
-          "#{Creditsafe::Namespace::OPER}:pageSize" => @page_size,
-          "#{Creditsafe::Namespace::OPER}:firstPosition" => @first_position
+          "#{Creditsafe::Namespace::OPER}:firstPosition" => @first_position,
+          "#{Creditsafe::Namespace::OPER}:pageSize" => @page_size
         }
 
         message
