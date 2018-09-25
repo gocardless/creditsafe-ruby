@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    creditsafe (0.5.2)
+    creditsafe (0.6.0)
       activesupport (>= 4.2.0)
       excon (~> 0.45)
       savon (~> 2.8)
@@ -126,4 +126,4 @@ DEPENDENCIES
   webmock (~> 3.3)
 
 BUNDLED WITH
-   1.16.1
+   1.16.5
