@@ -31,10 +31,11 @@ client = Creditsafe::Client.new(username: "foo", password: "bar", environment: :
 
 ### Company Search
 
-To perform a search for a company, you need to provide a country code and a company registration number:
+To perform a search for a company, you need to provide a valid search criteria, including
+the country code and a company registration number or company name:
 
 ```ruby
-client.find_company(country_code: "GB", registration_number: "07495895")
+client.find_company({ country_code: "GB", registration_number: "07495895" })
 => {
     name: "GOCARDLESS LTD",
     type: "Ltd",
@@ -55,11 +56,11 @@ client.find_company(country_code: "GB", registration_number: "07495895")
 ```
 
 In Germany you can also perform a name search. For this you need to provide a country code
-and a company name, and can optionally provided a postal code to filter the results
+and a company name, and can optionally provide a postal code or city to filter the results
 further:
 
 ```ruby
-client.find_company(country_code: "DE", company_name: "zalando", postal_code: "10243")
+client.find_company({ country_code: "DE", company_name: "zalando", postal_code: "10243" })
 => [
   {
     "name": "Zalando Logistics Süd SE & Co. KG",
@@ -114,6 +115,42 @@ client.find_company(country_code: "DE", company_name: "zalando", postal_code: "1
     "@country": "DE",
     "@id": "DE001/1/DE16031795",
     "@safe_number": "DE16031795"
+  },
+  ...
+]
+```
+
+In some countries you can also perform a VAT number search. For this, you need to provide
+a country code and a VAT number:
+
+```ruby
+client.find_company({ country_code: "US", vat_number: "201665019" })
+=> [
+  {
+    "name": "FACEBOOK, INCORPORATED",
+    "officeType": "HeadOffice",
+    "status": "Active",
+    "registration_number": "0883875",
+    "vat_number": "201665019",
+    "address": {
+      "simple_value": "1601 WILLOW ROAD , MENLO PARK, CA, 94025",
+      "street": "1601 WILLOW ROAD ",
+      "city": "MENLO PARK",
+      "postal_code": "94025",
+      "province": "CA"
+    },
+    "phone_number": "6505434800",
+    "available_report_types": {
+      "available_report_type": "Full"
+    },
+    "available_languages": {
+      "available_language": "EN"
+    },
+    "@online_reports": "true",
+    "@monitoring": "false",
+    "@country": "US",
+    "@id": "US023/X/US22964593",
+    "@safe_number": "US22964593"
   },
   ...
 ]

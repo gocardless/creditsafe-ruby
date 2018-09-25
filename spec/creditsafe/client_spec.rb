@@ -136,10 +136,14 @@ RSpec.describe(Creditsafe::Client) do
     let(:registration_number) { "RN123" }
     let(:city) { nil }
     let(:postal_code) { nil }
+    let(:company_name) { nil }
+    let(:vat_number) { nil }
     let(:search_criteria) do
       {
         country_code: country_code,
         registration_number: registration_number,
+        company_name: company_name,
+        vat_number: vat_number,
         city: city,
         postal_code: postal_code,
       }.reject { |_, v| v.nil? }
@@ -194,7 +198,9 @@ RSpec.describe(Creditsafe::Client) do
     end
 
     context "with a company name" do
-      let(:search_criteria) { { country_code: "FR", company_name: "Mimes Inc" } }
+      let(:country_code) { "FR" }
+      let(:registration_number) { nil }
+      let(:company_name) { "Mimes Inc" }
 
       it { is_expected.to_not raise_error }
 
@@ -208,6 +214,54 @@ RSpec.describe(Creditsafe::Client) do
         end
 
         expect(request).to have_been_made
+      end
+    end
+
+    context "with a vat_number" do
+      let(:vat_number) { "942404110" }
+      let(:registration_number) { nil }
+
+      it { is_expected.to raise_error(ArgumentError) }
+
+      context "in US" do
+        let(:country_code) { "US" }
+
+        it { is_expected.to_not raise_error }
+      end
+    end
+
+    context "with different invalid required criteria combinations used" do
+      context "with registration number and company name" do
+        let(:company_name) { "Mimes Inc" }
+
+        it { is_expected.to raise_error(ArgumentError) }
+      end
+
+      context "with registration number and vat_number" do
+        let(:vat_number) { "942404110" }
+
+        it { is_expected.to raise_error(ArgumentError) }
+      end
+
+      context "with company name and vat_number" do
+        let(:registration_number) { nil }
+        let(:company_name) { "Mimes Inc" }
+        let(:vat_number) { "942404110" }
+
+        it { is_expected.to raise_error(ArgumentError) }
+      end
+
+      context "with all three required criteria" do
+        let(:company_name) { "Mimes Inc" }
+        let(:vat_number) { "942404110" }
+
+        it { is_expected.to raise_error(ArgumentError) }
+      end
+
+      context "with no required criteria" do
+        let(:registration_number) { nil }
+
+        it { is_expected.to raise_error(ArgumentError) }
       end
     end
 

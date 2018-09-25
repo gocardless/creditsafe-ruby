@@ -2,6 +2,7 @@
 
 require "creditsafe/match_type"
 require "creditsafe/namespace"
+require "creditsafe/constants"
 
 module Creditsafe
   module Request
@@ -11,6 +12,7 @@ module Creditsafe
         @country_code = search_criteria[:country_code]
         @registration_number = search_criteria[:registration_number]
         @company_name = search_criteria[:company_name]
+        @vat_number = search_criteria[:vat_number]
         @city = search_criteria[:city]
         @postal_code = search_criteria[:postal_code]
       end
@@ -32,6 +34,11 @@ module Creditsafe
             registration_number
         end
 
+        unless vat_number.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:VatNumber"] =
+            vat_number
+        end
+
         unless city.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
             "#{Creditsafe::Namespace::DAT}:City" => city,
@@ -51,7 +58,8 @@ module Creditsafe
 
       private
 
-      attr_reader :country_code, :registration_number, :city, :company_name, :postal_code
+      attr_reader :country_code, :registration_number, :city, :company_name, :postal_code,
+                  :vat_number
 
       def match_type
         Creditsafe::MatchType::ALLOWED[country_code.upcase.to_sym]&.first ||
@@ -69,14 +77,16 @@ module Creditsafe
 
       # rubocop:disable Metrics/CyclomaticComplexity
       # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/PerceivedComplexity
+      # rubocop:disable Metrics/AbcSize
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
         end
 
-        unless only_registration_number_or_company_name_provided?(search_criteria)
-          raise ArgumentError, "registration_number or company_name (not both) are " \
-                               "required search criteria"
+        unless only_one_required_criteria?(search_criteria)
+          raise ArgumentError, "only one of registration_number, company_name or " \
+                               "vat number is required search criteria"
         end
 
         if search_criteria[:city] && search_criteria[:country_code] != "DE"
@@ -86,12 +96,24 @@ module Creditsafe
         if search_criteria[:postal_code] && search_criteria[:country_code] != "DE"
           raise ArgumentError, "Postal code is only supported for German searches"
         end
+
+        if search_criteria[:vat_number] && !Constants::Country::VAT_NUMBER_SUPPORTED.
+            include?(search_criteria[:country_code])
+          raise ArgumentError, "VAT number is not supported in this country"
+        end
       end
+      # rubocop:enable Metrics/AbcSize
+      # rubocop:enable Metrics/PerceivedComplexity
       # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/CyclomaticComplexity
 
-      def only_registration_number_or_company_name_provided?(search_criteria)
-        search_criteria[:registration_number].nil? ^ search_criteria[:company_name].nil?
+      def only_one_required_criteria?(search_criteria)
+        by_registration_number = !search_criteria[:registration_number].nil?
+        by_company_name = !search_criteria[:company_name].nil?
+        by_vat_number = !search_criteria[:vat_number].nil?
+
+        (by_registration_number ^ by_company_name ^ by_vat_number) &&
+          !(by_registration_number && by_company_name && by_vat_number)
       end
     end
   end
