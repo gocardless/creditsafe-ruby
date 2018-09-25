@@ -1,3 +1,7 @@
+## v0.6.0, 25 September 2018
+
+- Add searching by VAT number
+
 ## v0.5.2, 29 March 2018
 
 - Raise `Creditsafe::TimeoutError` when a request times out
