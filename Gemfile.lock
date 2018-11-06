@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    creditsafe (0.6.0)
+    creditsafe (0.6.1)
       activesupport (>= 4.2.0)
       excon (~> 0.45)
       savon (~> 2.8)
@@ -24,7 +24,7 @@ GEM
     coderay (1.1.2)
     compare-xml (0.66)
       nokogiri (~> 1.8)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.3)
@@ -35,10 +35,10 @@ GEM
     gyoku (1.3.1)
       builder (>= 2.1.2)
     hashdiff (0.3.7)
-    httpi (2.4.3)
+    httpi (2.4.4)
       rack
       socksify
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.1)
     method_source (0.9.1)
@@ -126,4 +126,4 @@ DEPENDENCIES
   webmock (~> 3.3)
 
 BUNDLED WITH
-   1.16.5
+   1.16.6
