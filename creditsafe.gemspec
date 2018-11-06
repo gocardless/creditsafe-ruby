@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["GoCardless Engineering"]
   spec.email         = ["engineering@gocardless.com"]
   spec.summary       = "Ruby client for the Creditsafe SOAP API"
-  spec.description   = "Ruby client for the Creditsafe SOAP API"
   spec.homepage      = "https://github.com/gocardless/creditsafe-ruby"
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
