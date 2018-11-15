@@ -115,6 +115,7 @@ module Creditsafe
         if error.to_hash[:code] == 401
           return AccountError.new("Unauthorized: invalid credentials")
         end
+
         return UnknownApiError.new(error.message)
       when Excon::Errors::Error
         return HttpError.new("Error making HTTP request: #{error.message}")
