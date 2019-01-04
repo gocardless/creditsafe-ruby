@@ -79,6 +79,7 @@ module Creditsafe
 
     # rubocop:disable Style/RescueStandardError
     # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
     def invoke_soap(message_type, message)
       started = Time.now
       notification_payload = { request: message }
@@ -86,8 +87,12 @@ module Creditsafe
       response = client.call(message_type, message: message)
       handle_message_for_response(response)
       notification_payload[:response] = response.body
-    rescue Excon::Errors::Timeout
+    rescue Excon::Errors::Timeout => raw_error
+      notification_payload[:error] = handle_error(raw_error)
       raise TimeoutError
+    rescue Excon::Errors::BadGateway => raw_error
+      notification_payload[:error] = handle_error(raw_error)
+      raise BadGatewayError
     rescue => raw_error
       processed_error = handle_error(raw_error)
       notification_payload[:error] = processed_error
@@ -96,6 +101,7 @@ module Creditsafe
       publish("creditsafe.#{message_type}", started, Time.now,
               SecureRandom.hex(10), notification_payload)
     end
+    # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Style/RescueStandardError
 
