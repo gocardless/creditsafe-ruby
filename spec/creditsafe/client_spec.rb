@@ -103,6 +103,14 @@ RSpec.describe(Creditsafe::Client) do
         expect { method_call }.to raise_error(Creditsafe::TimeoutError)
       end
     end
+
+    context "when a bad gateway error occurs" do
+      before { stub_request(:post, URL).to_raise(Excon::Errors::BadGateway) }
+
+      it "raises a BadGatewayError" do
+        expect { method_call }.to raise_error(Creditsafe::BadGatewayError)
+      end
+    end
   end
 
   describe "#new" do

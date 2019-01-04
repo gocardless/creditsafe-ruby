@@ -7,6 +7,7 @@ module Creditsafe
   class ApiError < Error; end
 
   class TimeoutError < HttpError; end
+  class BadGatewayError < HttpError; end
 
   class DataError < ApiError; end
   class AccountError < ApiError; end

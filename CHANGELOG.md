@@ -1,3 +1,7 @@
+## v0.6.2, 4 January 2019
+
+- Treat Bad Gateway (502) errors separately
+
 ## v0.6.1, 6 November 2018
 
 - Update dependencies: activesupport, nokogiri, pry, rack
