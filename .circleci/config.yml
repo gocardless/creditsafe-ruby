@@ -7,10 +7,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: gemfile-{{ checksum "Gemfile" }}
+          key: bundler-v1-{{ checksum "creditsafe.gemspec" }}-{{ checksum ".ruby-version" }}
       - run: bundle install --path vendor/bundle
       - save_cache:
-          key: gemfile-{{ checksum "Gemfile" }}
+          key: bundler-v1-{{ checksum "creditsafe.gemspec" }}-{{ checksum ".ruby-version" }}
           paths:
             - "vendor/bundle"
       - run: bundle exec rubocop
