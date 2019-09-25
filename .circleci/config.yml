@@ -3,14 +3,14 @@ jobs:
   build:
     working_directory: ~/creditsafe-ruby
     docker:
-      - image: ruby:2.5.0
+      - image: ruby:2.5
     steps:
       - checkout
       - restore_cache:
-          key: gemfile-{{ checksum "Gemfile" }}
+          key: bundler-v1-{{ checksum "creditsafe.gemspec" }}-{{ checksum ".ruby-version" }}
       - run: bundle install --path vendor/bundle
       - save_cache:
-          key: gemfile-{{ checksum "Gemfile" }}
+          key: bundler-v1-{{ checksum "creditsafe.gemspec" }}-{{ checksum ".ruby-version" }}
           paths:
             - "vendor/bundle"
       - run: bundle exec rubocop
