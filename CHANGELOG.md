@@ -1,3 +1,7 @@
+## v0.6.3, 18 December 2019
+
+- Update dependencies: excon
+
 ## v0.6.2, 4 January 2019
 
 - Treat Bad Gateway (502) errors separately
