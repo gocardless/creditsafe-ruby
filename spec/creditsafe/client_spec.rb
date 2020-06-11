@@ -824,7 +824,7 @@ RSpec.describe(Creditsafe::Client) do
       client.list_monitored_companies([14_462], 0, 1000, date_time.to_s, "true")
     end
 
-    xit "requests supported change events" do
+    it "requests supported change events" do
       list_monitored_companies
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(

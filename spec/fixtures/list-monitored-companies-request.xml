@@ -6,8 +6,8 @@
       </oper:portfolioIds>
       <oper:changedOnly>true</oper:changedOnly>
       <oper:changedSince>2017-04-15T10:27:08+02:00</oper:changedSince>
-      <oper:pageSize>1000</oper:pageSize>
       <oper:firstPosition>0</oper:firstPosition>
+      <oper:pageSize>1000</oper:pageSize>
     </oper:ListMonitoredCompanies>
   </soapenv:Body>
 </soapenv:Envelope>
