@@ -29,6 +29,7 @@ module Creditsafe
           },
         }
       end
+      # rubocop:enable MethodLength
     end
   end
 end

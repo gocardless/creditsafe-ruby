@@ -169,12 +169,14 @@ module Creditsafe
 
       { result: result, messages: messages }
     end
+    # rubocop:enable MethodLength
 
     # rubocop:disable AccessorMethodName
     def set_default_changes_check_period(days)
       request = Creditsafe::Request::SetDefaultChangesCheckPeriod.new(days)
       invoke_soap(:set_default_changes_check_period, request.message)
     end
+    # rubocop:enable AccessorMethodName
 
     def inspect
       "#<#{self.class} @username='#{@username}'>"
@@ -198,6 +200,7 @@ module Creditsafe
 
     # rubocop:disable Style/RescueStandardError
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def invoke_soap(message_type, message)
       started = Time.now
       notification_payload = { request: message }
@@ -220,8 +223,8 @@ module Creditsafe
               SecureRandom.hex(10), notification_payload)
     end
     # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/MethodLength
     # rubocop:enable Style/RescueStandardError
+    # rubocop:enable Metrics/MethodLength
 
     def publish(*args)
       ActiveSupport::Notifications.publish(*args)
@@ -229,7 +232,6 @@ module Creditsafe
 
     # There's a potential bug in the creditsafe API where they actually return
     # an HTTP 401 if you're unauthorized, hence the sad special case below
-    #
     # rubocop:disable Metrics/MethodLength
     def handle_error(error)
       case error
@@ -257,7 +259,7 @@ module Creditsafe
       { "Authorization" => auth_value }
     end
 
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable MethodLength
     def build_savon_client
       options = {
         env_namespace: "soapenv",
@@ -273,7 +275,7 @@ module Creditsafe
       }
       Savon.client(options.merge(@savon_opts))
     end
-    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable MethodLength
 
     def wsdl_path
       root_dir = File.join(File.dirname(__FILE__), "..", "..")

@@ -433,6 +433,12 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { get_portfolios }
 
     let(:soap_verb) { "get_portfolios" }
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
+    let(:get_portfolios) do
+      client.get_portfolios([14_462, 14_461])
+    end
+
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("get-portfolios-success.xml"),
@@ -440,14 +446,7 @@ RSpec.describe(Creditsafe::Client) do
       )
     end
 
-    let(:client) { described_class.new(username: username, password: password) }
-    let(:custom_data) { { foo: "bar", bar: "baz" } }
-
-    let(:get_portfolios) do
-      client.get_portfolios([14_462, 14_461])
-    end
-
-    it "requestss the portfolios" do
+    it "requests the portfolios" do
       get_portfolios
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
@@ -484,13 +483,6 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { get_portfolios_monitoring_rules }
 
     let(:soap_verb) { "get_monitoring_rules" }
-    before do
-      stub_request(:post, URL).to_return(
-        body: load_fixture("get-monitoring-rules-success.xml"),
-        status: 200,
-      )
-    end
-
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
 
@@ -498,7 +490,14 @@ RSpec.describe(Creditsafe::Client) do
       client.get_portfolio_monitoring_rules([14_462])
     end
 
-    it "requestss portfolio monitoring rules" do
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture("get-monitoring-rules-success.xml"),
+        status: 200,
+      )
+    end
+
+    it "requests portfolio monitoring rules" do
       get_portfolio_monitoring_rules
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
@@ -535,6 +534,11 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { create_portfolio }
 
     let(:soap_verb) { "create_portfolio" }
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:create_portfolio) do
+      client.create_portfolio(true, "development_test")
+    end
+
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("create-portfolio-success.xml"),
@@ -542,13 +546,7 @@ RSpec.describe(Creditsafe::Client) do
       )
     end
 
-    let(:client) { described_class.new(username: username, password: password) }
-
-    let(:create_portfolio) do
-      client.create_portfolio(true, "development_test")
-    end
-
-    it "requestss the portfolios" do
+    it "requests the portfolios" do
       create_portfolio
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
@@ -568,6 +566,12 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { remove_portfolios }
 
     let(:soap_verb) { "remove_portfolios" }
+    let(:client) { described_class.new(username: username, password: password) }
+    let(:custom_data) { { foo: "bar", bar: "baz" } }
+    let(:remove_portfolios) do
+      client.remove_portfolios([12_421])
+    end
+
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("remove-portfolios-success.xml"),
@@ -575,14 +579,7 @@ RSpec.describe(Creditsafe::Client) do
       )
     end
 
-    let(:client) { described_class.new(username: username, password: password) }
-    let(:custom_data) { { foo: "bar", bar: "baz" } }
-
-    let(:remove_portfolios) do
-      client.remove_portfolios([12_421])
-    end
-
-    it "requestss portfolio monitoring rules" do
+    it "requests portfolio monitoring rules" do
       remove_portfolios
       expect(a_request(:post, URL).with do |req|
         expect(CompareXML.equivalent?(
@@ -615,18 +612,19 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { get_supported_change_events }
 
     let(:soap_verb) { "get_supported_change_events" }
-    before do
-      stub_request(:post, URL).to_return(
-        body: load_fixture("get-supported-change-event-success.xml"),
-        status: 200,
-      )
-    end
 
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
 
     let(:get_supported_change_events) do
       client.get_supported_change_events("EN", "NL")
+    end
+
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture("get-supported-change-event-success.xml"),
+        status: 200,
+      )
     end
 
     it "requests supported change events" do
@@ -663,13 +661,6 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { set_monitoring_rules }
 
     let(:soap_verb) { "set_monitoring_rules" }
-    before do
-      stub_request(:post, URL).to_return(
-        body: load_fixture("set-portfolio-monitoring-rules-success.xml"),
-        status: 200,
-      )
-    end
-
     let(:client) { described_class.new(username: username, password: password) }
     let(:custom_data) { { foo: "bar", bar: "baz" } }
 
@@ -677,6 +668,13 @@ RSpec.describe(Creditsafe::Client) do
       client.set_portfolio_monitoring_rules(
         12_422,
         %w[CR PR NC AC DN EC FN UC IC CL HO BN],
+      )
+    end
+
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture("set-portfolio-monitoring-rules-success.xml"),
+        status: 200,
       )
     end
 
@@ -713,17 +711,17 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { set_monitoring_rules }
 
     let(:soap_verb) { "add_companies_to_portfolios" }
+    let(:client) { described_class.new(username: username, password: password) }
+
+    let(:add_companies_to_portfolios) do
+      client.add_companies_to_portfolios([12_422], ["NL007/X/629173310000"], ["test1"])
+    end
+
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("add-companies-to-portfolios-success.xml"),
         status: 200,
       )
-    end
-
-    let(:client) { described_class.new(username: username, password: password) }
-
-    let(:add_companies_to_portfolios) do
-      client.add_companies_to_portfolios([12_422], ["NL007/X/629173310000"], ["test1"])
     end
 
     it "requests supported change events" do
@@ -761,17 +759,17 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { remove_companies_from_portfolios }
 
     let(:soap_verb) { "remove_companies_from_portfolios" }
+    let(:client) { described_class.new(username: username, password: password) }
+
+    let(:remove_companies_from_portfolios) do
+      client.remove_companies_from_portfolios([12_422], ["NL007/X/629173310000"])
+    end
+
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("remove-companies-from-portfolios-success.xml"),
         status: 200,
       )
-    end
-
-    let(:client) { described_class.new(username: username, password: password) }
-
-    let(:remove_companies_from_portfolios) do
-      client.remove_companies_from_portfolios([12_422], ["NL007/X/629173310000"])
     end
 
     it "requests supported change events" do
@@ -810,18 +808,18 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { list_monitored_companies }
 
     let(:soap_verb) { "list_monitored_companies" }
-    before do
-      stub_request(:post, URL).to_return(
-        body: load_fixture("list-monitored-companies-success.xml"),
-        status: 200,
-      )
-    end
-
     let(:client) { described_class.new(username: username, password: password) }
 
     let(:list_monitored_companies) do
       date_time = DateTime.parse("2017-04-15T10:27:08+02:00")
       client.list_monitored_companies([14_462], 0, 1000, date_time.to_s, "true")
+    end
+
+    before do
+      stub_request(:post, URL).to_return(
+        body: load_fixture("list-monitored-companies-success.xml"),
+        status: 200,
+      )
     end
 
     it "requests supported change events" do
@@ -872,16 +870,21 @@ RSpec.describe(Creditsafe::Client) do
     context "multiple messages with payload" do
       before do
         stub_request(:post, URL).
-          to_return(body: load_fixture("list-monitored-companies-multiple-messages-with-payload.xml"))
+          to_return(body:
+            load_fixture("list-monitored-companies-multiple-messages-with-payload.xml"))
       end
 
       it "does not raise an error" do
         expect { list_monitored_companies }.to_not raise_error
       end
 
-      it "returns the message and result" do
+      it "returns the result" do
         expect(list_monitored_companies.size).to eq(2)
         expect(list_monitored_companies[:result].nil?).to eq(false)
+      end
+
+      it "returns the message" do
+        expect(list_monitored_companies.size).to eq(2)
         expect(list_monitored_companies[:messages].first).to eq("bla")
       end
     end
@@ -891,17 +894,17 @@ RSpec.describe(Creditsafe::Client) do
     subject(:method_call) { set_default_changes_check_period }
 
     let(:soap_verb) { "set_default_changes_check_period" }
+    let(:client) { described_class.new(username: username, password: password) }
+
+    let(:set_default_changes_check_period) do
+      client.set_default_changes_check_period(20)
+    end
+
     before do
       stub_request(:post, URL).to_return(
         body: load_fixture("set-default-changes-check-period-success.xml"),
         status: 200,
       )
-    end
-
-    let(:client) { described_class.new(username: username, password: password) }
-
-    let(:set_default_changes_check_period) do
-      client.set_default_changes_check_period(20)
     end
 
     it "requests supported change events" do

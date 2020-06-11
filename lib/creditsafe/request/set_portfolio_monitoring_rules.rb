@@ -10,6 +10,7 @@ module Creditsafe
         @rules = rules
       end
 
+      # rubocop:disable MethodLength
       def message
         empty_array = []
         @rules.each { empty_array << {} }
@@ -28,6 +29,7 @@ module Creditsafe
 
         message
       end
+      # rubocop:enable MethodLength
     end
   end
 end

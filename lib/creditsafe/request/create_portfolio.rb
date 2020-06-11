@@ -10,6 +10,7 @@ module Creditsafe
         @name = name
       end
 
+      # rubocop:disable MethodLength
       def message
         message = {
           "#{Creditsafe::Namespace::OPER}:settings" => {},
@@ -24,6 +25,7 @@ module Creditsafe
 
         message
       end
+      # rubocop:enable MethodLength
     end
   end
 end
