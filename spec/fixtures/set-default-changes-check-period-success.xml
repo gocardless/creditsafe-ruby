@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <SetDefaultChangesCheckPeriodResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <SetDefaultChangesCheckPeriodResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes"/>
+    </SetDefaultChangesCheckPeriodResponse>
+  </s:Body>
+</s:Envelope>

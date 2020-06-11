@@ -1,0 +1,47 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetMonitoringRulesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <GetMonitoringRulesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes" PortfolioId="14462">
+        <q1:Messages/>
+        <q1:Rules>
+          <q1:Rule Enabled="true" EventCode="CR" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="PR" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="NC" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="AC" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="DN" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="EC" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="FN" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="UC" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="IC" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="CL" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="HO" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+          <q1:Rule Enabled="true" EventCode="BN" MatchAllConditions="true">
+            <q1:Conditions/>
+          </q1:Rule>
+        </q1:Rules>
+      </GetMonitoringRulesResult>
+    </GetMonitoringRulesResponse>
+  </s:Body>
+</s:Envelope>

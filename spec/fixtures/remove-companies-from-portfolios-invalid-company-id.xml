@@ -1,0 +1,16 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <RemoveCompaniesFromPortfoliosResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <RemoveCompaniesFromPortfoliosResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+        <q1:Messages>
+          <q1:Message Type="Error" Code="30102">Invalid company ID: NL007/X/629173310000.</q1:Message>
+        </q1:Messages>
+        <q1:Portfolios>
+          <q1:Portfolio Id="12422" Name="development_test">
+            <q1:CompanyIds/>
+          </q1:Portfolio>
+        </q1:Portfolios>
+      </RemoveCompaniesFromPortfoliosResult>
+    </RemoveCompaniesFromPortfoliosResponse>
+  </s:Body>
+</s:Envelope>

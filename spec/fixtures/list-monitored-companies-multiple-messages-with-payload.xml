@@ -1,0 +1,52 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <ListMonitoredCompaniesResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <ListMonitoredCompaniesResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes" Results="0" FirstPosition="0" TotalResults="0" PageSize="1000">
+        <q1:Messages>
+          <q1:Message Type="Information" Code="10101">bla</q1:Message>
+          <q1:Message Type="Information" Code="10101">bla2</q1:Message>
+        </q1:Messages>
+        <q1:Portfolios>
+          <q1:Portfolio Id="14462" Name="test">
+            <q1:Companies>
+              <q1:Company HasChanged="true" LastChangeDate="2017-05-12T19:00:58Z" Country="NL" Id="NL007/X/506263020000">
+                <q1:Name>Development Booster B.V.</q1:Name>
+                <q1:Status>Active</q1:Status>
+                <q1:RegistrationNumber>506263020000</q1:RegistrationNumber>
+                <q1:Address>
+                  <q1:HouseNumber>Paul van Vlissingenstr 6</q1:HouseNumber>
+                  <q1:City>AMSTERDAM</q1:City>
+                  <q1:PostalCode>1096BK</q1:PostalCode>
+                </q1:Address>
+                <q1:Reference>test</q1:Reference>
+                <q1:Changes>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:TextValueChangeEvent" PreviousValue="6" NewValue="3115" Code="AC" Date="2017-05-12T19:00:58Z"/>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:TextValueChangeEvent" PreviousValue="AMSTERDAM" NewValue="BREDA" Code="AC" Date="2017-05-12T19:00:58Z"/>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:TextValueChangeEvent" PreviousValue="Paul van Vlissingenstr" NewValue="Postbus" Code="AC" Date="2017-05-12T19:00:58Z"/>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:TextValueChangeEvent" PreviousValue="1096BK" NewValue="4800DC" Code="AC" Date="2017-05-12T19:00:58Z"/>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:TextValueChangeEvent" PreviousValue="D" Code="AC" Date="2017-05-12T19:00:58Z"/>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:NumericValueChangeEvent" PreviousValue="32" NewValue="-997" Code="CR" Date="2017-05-05T19:00:39Z"/>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:TextValueChangeEvent" NewValue="2017-05-02 00:00:00" Code="PR" Date="2017-05-05T19:00:39Z"/>
+                </q1:Changes>
+              </q1:Company>
+              <q1:Company HasChanged="true" LastChangeDate="2017-05-06T19:00:26Z" Country="NL" Id="NL007/X/659702760000">
+                <q1:Name>InvoiceFinance B.V.</q1:Name>
+                <q1:Status>Active</q1:Status>
+                <q1:RegistrationNumber>659702760000</q1:RegistrationNumber>
+                <q1:Address>
+                  <q1:HouseNumber>Keizerstraat 12</q1:HouseNumber>
+                  <q1:City>'S-HERTOGENBOSCH</q1:City>
+                  <q1:PostalCode>5211HG</q1:PostalCode>
+                </q1:Address>
+                <q1:Reference>InvoiceFinance</q1:Reference>
+                <q1:Changes>
+                  <q1:Change xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="q1:NumericValueChangeEvent" PreviousValue="57" NewValue="60" Code="CR" Date="2017-05-06T19:00:26Z"/>
+                </q1:Changes>
+              </q1:Company>
+            </q1:Companies>
+          </q1:Portfolio>
+        </q1:Portfolios>
+      </ListMonitoredCompaniesResult>
+    </ListMonitoredCompaniesResponse>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <AddCompaniesToPortfoliosResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <AddCompaniesToPortfoliosResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes" TotalCompanies="1" SuccessfullyAddedCompanies="1" NewCompanies="1"/>
+    </AddCompaniesToPortfoliosResponse>
+  </s:Body>
+</s:Envelope>

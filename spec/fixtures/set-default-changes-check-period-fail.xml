@@ -1,0 +1,11 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <SetDefaultChangesCheckPeriodResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <SetDefaultChangesCheckPeriodResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+        <q1:Messages>
+          <q1:Message Type="Error" Code="30102">Invalid default changes check days value specified. The maximal value possible to set is 30 days.</q1:Message>
+        </q1:Messages>
+      </SetDefaultChangesCheckPeriodResult>
+    </SetDefaultChangesCheckPeriodResponse>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,47 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <GetSupportedChangeEventsResponse xmlns="http://www.creditsafe.com/globaldata/operations">
+      <GetSupportedChangeEventsResult xmlns:q1="http://www.creditsafe.com/globaldata/datatypes">
+        <q1:Messages/>
+        <q1:Events>
+          <q1:Event Category="NumericValueChangeEvent" CanBeMonitored="true" Code="CR" CarriesValues="true">
+            <q1:Description>Credit Score</q1:Description>
+          </q1:Event>
+          <q1:Event Category="TextValueChangeEvent" CanBeMonitored="true" Code="PR" CarriesValues="true">
+            <q1:Description>Negative Data</q1:Description>
+          </q1:Event>
+          <q1:Event Category="TextValueChangeEvent" CanBeMonitored="true" Code="NC" CarriesValues="true">
+            <q1:Description>Company Name</q1:Description>
+          </q1:Event>
+          <q1:Event Category="TextValueChangeEvent" CanBeMonitored="true" Code="AC" CarriesValues="true">
+            <q1:Description>Address (includes telephone number)</q1:Description>
+          </q1:Event>
+          <q1:Event Category="TextValueChangeEvent" CanBeMonitored="true" Code="DN" CarriesValues="true">
+            <q1:Description>Director Change</q1:Description>
+          </q1:Event>
+          <q1:Event Category="TextValueChangeEvent" CanBeMonitored="true" Code="EC" CarriesValues="true">
+            <q1:Description>No. of Employees</q1:Description>
+          </q1:Event>
+          <q1:Event Category="TextValueChangeEvent" CanBeMonitored="true" Code="FN" CarriesValues="true">
+            <q1:Description>New Accounts Filed</q1:Description>
+          </q1:Event>
+          <q1:Event Category="SimpleEvent" CanBeMonitored="true" Code="UC" CarriesValues="false">
+            <q1:Description>Change of Ultimate Holding Company</q1:Description>
+          </q1:Event>
+          <q1:Event Category="NumericValueChangeEvent" CanBeMonitored="true" Code="IC" CarriesValues="true">
+            <q1:Description>Change to Total Issued Capital</q1:Description>
+          </q1:Event>
+          <q1:Event Category="NumericValueChangeEvent" CanBeMonitored="true" Code="CL" CarriesValues="true">
+            <q1:Description>Credit Limit</q1:Description>
+          </q1:Event>
+          <q1:Event Category="SimpleEvent" CanBeMonitored="true" Code="HO" CarriesValues="true">
+            <q1:Description>Headoffice Activity</q1:Description>
+          </q1:Event>
+          <q1:Event Category="SimpleEvent" CanBeMonitored="true" Code="BN" CarriesValues="true">
+            <q1:Description>Branch/Establishment Activity</q1:Description>
+          </q1:Event>
+        </q1:Events>
+      </GetSupportedChangeEventsResult>
+    </GetSupportedChangeEventsResponse>
+  </s:Body>
+</s:Envelope>
