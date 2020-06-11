@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -11,7 +11,7 @@ module Creditsafe
 
       def message
         message = {
-          "#{Creditsafe::Namespace::OPER}:portfolioId" => @portfolio_id
+          "#{Creditsafe::Namespace::OPER}:portfolioId" => @portfolio_id,
         }
 
         message

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -17,9 +17,9 @@ module Creditsafe
             "#{Creditsafe::Namespace::OPER}:settings" =>
             {
               Enabled: @information_processing_enabled.to_s,
-              Name: @name
-            }
-          }
+              Name: @name,
+            },
+          },
         }
 
         message

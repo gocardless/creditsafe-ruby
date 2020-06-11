@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -20,10 +20,10 @@ module Creditsafe
             "#{Creditsafe::Namespace::DAT}:Rule" => empty_array,
             :attributes! => {
               "#{Creditsafe::Namespace::DAT}:Rule" => {
-                Enabled:  "true", EventCode: @rules, MatchAllConditions: "true"
-              }
-            }
-          }
+                Enabled: "true", EventCode: @rules, MatchAllConditions: "true"
+              },
+            },
+          },
         }
 
         message

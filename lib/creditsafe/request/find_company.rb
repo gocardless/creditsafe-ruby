@@ -15,7 +15,7 @@ module Creditsafe
         @vat_number = search_criteria[:vat_number]
         @city = search_criteria[:city]
         @postal_code = search_criteria[:postal_code]
-        @match_type = search_criteria[:match_type] || 'MatchBeginning'
+        @match_type = search_criteria[:match_type] || "MatchBeginning"
       end
 
       # rubocop:disable Metrics/MethodLength
@@ -23,10 +23,12 @@ module Creditsafe
       def message
         search_criteria = {}
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
-          '@MatchType' => @match_type,
-          :content! => company_name
-        } unless company_name.nil?
+        unless company_name.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Name"] = {
+            "@MatchType" => @match_type,
+            :content! => company_name,
+          }
+        end
 
         unless registration_number.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:RegistrationNumber"] =
@@ -88,9 +90,9 @@ module Creditsafe
                                "vat number is required search criteria"
         end
 
-        #if search_criteria[:country_code] != 'DE' && !search_criteria[:company_name].nil?
-          #raise ArgumentError, "company name search is only possible for German searches"
-        #end
+        # if search_criteria[:country_code] != 'DE' && !search_criteria[:company_name].nil?
+        # raise ArgumentError, "company name search is only possible for German searches"
+        # end
 
         if search_criteria[:city] && search_criteria[:country_code] != "DE"
           raise ArgumentError, "city is only supported for German searches"

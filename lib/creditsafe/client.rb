@@ -7,17 +7,17 @@ require "excon"
 require "creditsafe/errors"
 require "creditsafe/messages"
 require "creditsafe/namespace"
-require 'creditsafe/request/company_report'
-require 'creditsafe/request/find_company'
-require 'creditsafe/request/get_portfolios'
-require 'creditsafe/request/create_portfolio'
-require 'creditsafe/request/get_portfolio_monitoring_rules'
-require 'creditsafe/request/get_supported_change_events'
-require 'creditsafe/request/set_portfolio_monitoring_rules'
-require 'creditsafe/request/add_companies_to_portfolios'
-require 'creditsafe/request/remove_companies_from_portfolios'
-require 'creditsafe/request/list_monitored_companies'
-require 'creditsafe/request/set_default_changes_check_period'
+require "creditsafe/request/company_report"
+require "creditsafe/request/find_company"
+require "creditsafe/request/get_portfolios"
+require "creditsafe/request/create_portfolio"
+require "creditsafe/request/get_portfolio_monitoring_rules"
+require "creditsafe/request/get_supported_change_events"
+require "creditsafe/request/set_portfolio_monitoring_rules"
+require "creditsafe/request/add_companies_to_portfolios"
+require "creditsafe/request/remove_companies_from_portfolios"
+require "creditsafe/request/list_monitored_companies"
+require "creditsafe/request/set_default_changes_check_period"
 
 require "creditsafe/request/company_report"
 require "creditsafe/request/find_company"
@@ -72,9 +72,9 @@ module Creditsafe
       response = invoke_soap(:get_portfolios, request.message)
 
       portfolios = response.
-                   fetch(:get_portfolios_response).
-                   fetch(:get_portfolios_result).
-                   fetch(:portfolios)
+        fetch(:get_portfolios_response).
+        fetch(:get_portfolios_result).
+        fetch(:portfolios)
 
       portfolios.nil? ? nil : portfolios.fetch(:portfolio)
     end
@@ -84,8 +84,8 @@ module Creditsafe
       response = invoke_soap(:get_monitoring_rules, request.message)
 
       result = response.
-               fetch(:get_monitoring_rules_response).
-               fetch(:get_monitoring_rules_result)
+        fetch(:get_monitoring_rules_response).
+        fetch(:get_monitoring_rules_result)
 
       messages = result.fetch(:messages).nil? ? [] : result.fetch(:message)
       rules = result.fetch(:rules).nil? ? [] : result.fetch(:rules).fetch(:rule)
@@ -96,7 +96,6 @@ module Creditsafe
     def remove_portfolios(portfolio_ids)
       request = Creditsafe::Request::GetPortfolios.new(portfolio_ids)
       invoke_soap(:remove_portfolios, request.message)
-
     rescue ProcessingError => e
       throw e if (e.message =~ /successfully/i).nil?
     end
@@ -104,13 +103,13 @@ module Creditsafe
     def create_portfolio(information_processing_enabled, name)
       request = Creditsafe::Request::CreatePortfolio.new(
         information_processing_enabled,
-        name
+        name,
       )
       response = invoke_soap(:create_portfolio, request.message)
 
       result = response.
-               fetch(:create_portfolio_response).
-               fetch(:create_portfolio_result)
+        fetch(:create_portfolio_response).
+        fetch(:create_portfolio_result)
 
       result
     end
@@ -129,7 +128,7 @@ module Creditsafe
       request = Creditsafe::Request::AddCompaniesToPortfolios.new(
         portfolio_ids,
         company_ids,
-        company_descriptions
+        company_descriptions,
       )
       invoke_soap(:add_companies_to_portfolios, request.message)
     end
@@ -137,7 +136,7 @@ module Creditsafe
     def remove_companies_from_portfolios(portfolio_ids, company_ids)
       request = Creditsafe::Request::RemoveCompaniesFromPortfolios.new(
         portfolio_ids,
-        company_ids
+        company_ids,
       )
       invoke_soap(:remove_companies_from_portfolios, request.message)
     end
@@ -155,13 +154,13 @@ module Creditsafe
         first_position,
         page_size,
         changed_since,
-        changed_only
+        changed_only,
       )
       response = invoke_soap(:list_monitored_companies, request.message)
 
       result = response.
-               fetch(:list_monitored_companies_response).
-               fetch(:list_monitored_companies_result)
+        fetch(:list_monitored_companies_response).
+        fetch(:list_monitored_companies_result)
 
       messages = result[:messages].nil? ? [] : result.fetch(:messages).fetch(:message)
       messages = [messages].flatten
@@ -188,7 +187,7 @@ module Creditsafe
         *response.xpath("//q1:Message"),
         *response.xpath("//xmlns:Message"),
       ].each do |message|
-        api_message = Creditsafe::Messages.for_code(message.attributes['Code'].value)
+        api_message = Creditsafe::Messages.for_code(message.attributes["Code"].value)
 
         api_error_message = api_message.message
         api_error_message += " (#{message.text})" unless message.text.blank?
@@ -198,7 +197,6 @@ module Creditsafe
     end
 
     # rubocop:disable Style/RescueStandardError
-    # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     def invoke_soap(message_type, message)
       started = Time.now

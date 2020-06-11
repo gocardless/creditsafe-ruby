@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -15,18 +15,18 @@ module Creditsafe
       def message
         {
           "#{Creditsafe::Namespace::OPER}:portfolioIds" => [
-            "#{Creditsafe::Namespace::ARR}:unsignedInt" => @portfolio_ids
+            "#{Creditsafe::Namespace::ARR}:unsignedInt" => @portfolio_ids,
           ],
           "#{Creditsafe::Namespace::OPER}:companies" => {
             "#{Creditsafe::Namespace::DAT}:Companies" => {
               "#{Creditsafe::Namespace::DAT}:Company" => @company_descriptions,
               :attributes! => {
                 "#{Creditsafe::Namespace::DAT}:Company" => {
-                  key: @company_ids
-                }
-              }
-            }
-          }
+                  key: @company_ids,
+                },
+              },
+            },
+          },
         }
       end
     end

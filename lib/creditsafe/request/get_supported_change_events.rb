@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -13,7 +13,7 @@ module Creditsafe
       def message
         message = {
           "#{Creditsafe::Namespace::OPER}:language" => @language,
-          "#{Creditsafe::Namespace::OPER}:country" => @country
+          "#{Creditsafe::Namespace::OPER}:country" => @country,
         }
 
         message

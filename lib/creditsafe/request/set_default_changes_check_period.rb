@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'creditsafe/namespace'
+require "creditsafe/namespace"
 
 module Creditsafe
   module Request
@@ -11,7 +11,7 @@ module Creditsafe
 
       def message
         message = {
-          "#{Creditsafe::Namespace::OPER}:days" => @days
+          "#{Creditsafe::Namespace::OPER}:days" => @days,
         }
 
         message

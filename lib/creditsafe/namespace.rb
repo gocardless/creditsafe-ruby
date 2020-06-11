@@ -11,14 +11,14 @@ module Creditsafe
     CRED = "cred"
     CRED_VAL = "http://schemas.datacontract.org/2004/07/Creditsafe.GlobalData"
 
-    ARR = 'arr'
-    ARR_VAL = 'http://schemas.microsoft.com/2003/10/Serialization/Arrays'
+    ARR = "arr"
+    ARR_VAL = "http://schemas.microsoft.com/2003/10/Serialization/Arrays"
 
     ALL = {
       "xmlns:#{Creditsafe::Namespace::OPER}" => Creditsafe::Namespace::OPER_VAL,
       "xmlns:#{Creditsafe::Namespace::DAT}" => Creditsafe::Namespace::DAT_VAL,
       "xmlns:#{Creditsafe::Namespace::CRED}" => Creditsafe::Namespace::CRED_VAL,
-      "xmlns:#{Creditsafe::Namespace::ARR}" => Creditsafe::Namespace::ARR_VAL
+      "xmlns:#{Creditsafe::Namespace::ARR}" => Creditsafe::Namespace::ARR_VAL,
     }.freeze
   end
 end
