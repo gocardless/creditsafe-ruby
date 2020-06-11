@@ -435,7 +435,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "get_portfolios" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("get-portfolios-succes.xml"),
+        body: load_fixture("get-portfolios-success.xml"),
         status: 200,
       )
     end
@@ -486,7 +486,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "get_monitoring_rules" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("get-monitoring-rules-succes.xml"),
+        body: load_fixture("get-monitoring-rules-success.xml"),
         status: 200,
       )
     end
@@ -537,7 +537,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "create_portfolio" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("create-portfolio-succes.xml"),
+        body: load_fixture("create-portfolio-success.xml"),
         status: 200,
       )
     end
@@ -570,7 +570,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "remove_portfolios" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("remove-portfolios-succes.xml"),
+        body: load_fixture("remove-portfolios-success.xml"),
         status: 200,
       )
     end
@@ -617,7 +617,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "get_supported_change_events" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("get-supported-change-event-succes.xml"),
+        body: load_fixture("get-supported-change-event-success.xml"),
         status: 200,
       )
     end
@@ -665,7 +665,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "set_monitoring_rules" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("set-portfolio-monitoring-rules-succes.xml"),
+        body: load_fixture("set-portfolio-monitoring-rules-success.xml"),
         status: 200,
       )
     end
@@ -715,7 +715,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "add_companies_to_portfolios" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("add-companies-to-portfolios-succes.xml"),
+        body: load_fixture("add-companies-to-portfolios-success.xml"),
         status: 200,
       )
     end
@@ -763,7 +763,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "remove_companies_from_portfolios" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("remove-companies-from-portfolios-succes.xml"),
+        body: load_fixture("remove-companies-from-portfolios-success.xml"),
         status: 200,
       )
     end
@@ -812,7 +812,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "list_monitored_companies" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("list-monitored-companies-succes.xml"),
+        body: load_fixture("list-monitored-companies-success.xml"),
         status: 200,
       )
     end
@@ -893,7 +893,7 @@ RSpec.describe(Creditsafe::Client) do
     let(:soap_verb) { "set_default_changes_check_period" }
     before do
       stub_request(:post, URL).to_return(
-        body: load_fixture("set-default-changes-check-period-succes.xml"),
+        body: load_fixture("set-default-changes-check-period-success.xml"),
         status: 200,
       )
     end
