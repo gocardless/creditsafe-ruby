@@ -154,7 +154,7 @@ RSpec.describe(Creditsafe::Client) do
         vat_number: vat_number,
         city: city,
         postal_code: postal_code,
-      }.reject { |_, v| v.nil? }
+      }.compact
     end
 
     let(:find_company) { client.find_company(search_criteria) }

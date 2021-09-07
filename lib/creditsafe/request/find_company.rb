@@ -77,7 +77,6 @@ module Creditsafe
 
       # rubocop:disable Metrics/CyclomaticComplexity
       # rubocop:disable Metrics/MethodLength
-      # rubocop:disable Metrics/PerceivedComplexity
       # rubocop:disable Metrics/AbcSize
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
@@ -103,7 +102,6 @@ module Creditsafe
         end
       end
       # rubocop:enable Metrics/AbcSize
-      # rubocop:enable Metrics/PerceivedComplexity
       # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/CyclomaticComplexity
 

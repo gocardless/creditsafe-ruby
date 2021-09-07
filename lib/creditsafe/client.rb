@@ -87,14 +87,14 @@ module Creditsafe
       response = client.call(message_type, message: message)
       handle_message_for_response(response)
       notification_payload[:response] = response.body
-    rescue Excon::Errors::Timeout => raw_error
-      notification_payload[:error] = handle_error(raw_error)
+    rescue Excon::Errors::Timeout => e
+      notification_payload[:error] = handle_error(e)
       raise TimeoutError
-    rescue Excon::Errors::BadGateway => raw_error
-      notification_payload[:error] = handle_error(raw_error)
+    rescue Excon::Errors::BadGateway => e
+      notification_payload[:error] = handle_error(e)
       raise BadGatewayError
-    rescue => raw_error
-      processed_error = handle_error(raw_error)
+    rescue => e
+      processed_error = handle_error(e)
       notification_payload[:error] = processed_error
       raise processed_error
     ensure

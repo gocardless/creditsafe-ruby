@@ -10,5 +10,9 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Max: 2
 
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+
 RSpec/ImplicitBlockExpectation:
   Enabled: false
