@@ -31,7 +31,7 @@ module Creditsafe
       end
     end
 
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     NO_RESULTS                    = Message.new(code: "010101", message: "No results")
     TOO_MANY_RESULTS              = Message.new(code: "010102", message: "Too many results")
     REPORT_UNAVAILABLE            = Message.new(code: "010103", message: "Report unavailable", error: true)
@@ -54,7 +54,7 @@ module Creditsafe
     OTHER_ERROR                   = Message.new(code: "040102", message: "Other", error: true)
     DATA_SERVICE_PROBLEMS         = Message.new(code: "040103", message: "Data service access problems", error: true)
     DATA_SERVICE_INVALID_RESPONSE = Message.new(code: "040104", message: "Data service invalid response", error: true)
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
 
     ALL = [
       NO_RESULTS,
