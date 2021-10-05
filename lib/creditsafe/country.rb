@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Constants
+module Creditsafe
   module Country
     AUSTRALIA                 = "AU"
     AUSTRIA                   = "AT"
