@@ -1,3 +1,7 @@
+## v0.7.0, 5 October 2021
+
+- Rename Constants::Country to Creditsafe::Country, to avoid polluting other namespaces
+
 ## v0.6.3, 18 December 2019
 
 - Update dependencies: excon

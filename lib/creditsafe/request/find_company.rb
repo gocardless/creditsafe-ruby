@@ -2,7 +2,7 @@
 
 require "creditsafe/match_type"
 require "creditsafe/namespace"
-require "creditsafe/constants"
+require "creditsafe/country"
 
 module Creditsafe
   module Request
@@ -96,7 +96,7 @@ module Creditsafe
           raise ArgumentError, "Postal code is only supported for German searches"
         end
 
-        if search_criteria[:vat_number] && !Constants::Country::VAT_NUMBER_SUPPORTED.
+        if search_criteria[:vat_number] && !Creditsafe::Country::VAT_NUMBER_SUPPORTED.
             include?(search_criteria[:country_code])
           raise ArgumentError, "VAT number is not supported in this country"
         end
