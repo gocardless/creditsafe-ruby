@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "savon", "~> 2.11"
 
   spec.add_development_dependency "compare-xml", "~> 0.66"
-  spec.add_development_dependency "gc_ruboconfig", "~> 2.28"
+  spec.add_development_dependency "gc_ruboconfig", "~> 3.5"
   spec.add_development_dependency "pry", "~> 0.14"
   spec.add_development_dependency "rspec", "~> 3.8"
   spec.add_development_dependency "rspec-its", "~> 1.3"
