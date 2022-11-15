@@ -1,0 +1,51 @@
+name: gocardless/creditsafe-ruby/tests
+on:
+  push:
+    branches:
+    - master
+jobs:
+  test_and_lint:
+    defaults:
+      run:
+        working-directory: "/mnt/ramdisk"
+    runs-on: ubuntu-latest
+    container:
+#       # There was an internal error transforming this item
+#       # Message: Failed to transform item
+#       docker:
+#         docker:
+#           image: cimg/ruby:${{ matrix.ruby_version }}
+#           environment:
+#             CIRCLE_TEST_REPORTS: "/tmp/circle_artifacts/"
+#         parameters:
+    strategy:
+      matrix:
+        ruby_version:
+        - '2.7'
+        - '3.0'
+    steps:
+    - uses: actions/checkout@v2
+    - name: restore_cache
+      uses: actions/cache@v2
+      with:
+        key: bundle-${{ matrix.ruby_version }}-{{ checksum "creditsafe.gemspec" }}-{{ checksum "Gemfile" }}
+        path: vendor/bundle
+    - name: Bundle
+      run: |-
+        gem install bundler --no-document && \
+        bundle config set no-cache 'true' && \
+        bundle config set jobs '4' && \
+        bundle config set retry '3' && \
+        bundle install
+    - name: Run specs
+      run: |-
+        circleci tests glob "spec/**/*_spec.rb"
+        bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings) --profile --format progress --format RspecJunitFormatter -o /tmp/circle_artifacts/rspec.xml
+    - name: Rubocop
+      run: bundle exec rubocop --extra-details --display-style-guide --parallel --force-exclusion
+    - uses: actions/upload-artifact@v2
+      with:
+        path: "/tmp/circle_artifacts/"
+    - uses: actions/upload-artifact@v2
+      with:
+        path: "/tmp/circle_artifacts/"
