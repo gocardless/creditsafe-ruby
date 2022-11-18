@@ -33,8 +33,8 @@ RSpec.describe(Creditsafe::Client) do
           have_attributes(
             name: "creditsafe.#{soap_verb}",
             transaction_id: match(/\A.{20}\Z/),
-            time: time,
-            end: time,
+            time: time.to_f * 1000,
+            end: time.to_f * 1000,
             payload: {
               request: be_truthy,
               response: be_truthy,
