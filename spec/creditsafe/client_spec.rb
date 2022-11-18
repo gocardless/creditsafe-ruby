@@ -4,7 +4,7 @@ require "spec_helper"
 require "creditsafe/client"
 require "timecop"
 
-URL = "https://webservices.creditsafe.com/GlobalData/1.3/"\
+URL = "https://webservices.creditsafe.com/GlobalData/1.3/" \
       "MainServiceBasic.svc"
 
 RSpec.describe(Creditsafe::Client) do

@@ -15,7 +15,6 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.7.0"
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "activesupport"
@@ -24,14 +23,13 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "compare-xml", "~> 0.66"
   spec.add_development_dependency "debug"
-  spec.add_development_dependency "gc_ruboconfig", "~> 2.28"
+  spec.add_development_dependency "gc_ruboconfig", "~> 3.6.0"
   spec.add_development_dependency "pry", "~> 0.14"
   spec.add_development_dependency "rspec", "~> 3.8"
   spec.add_development_dependency "rspec-github", "~> 2.4.0"
   spec.add_development_dependency "rspec-its", "~> 1.3"
   spec.add_development_dependency "rspec_junit_formatter", "~> 0.4"
-  spec.add_development_dependency "rubocop", "~> 1.20"
-  spec.add_development_dependency "rubocop-rspec", "~> 2.4"
   spec.add_development_dependency "timecop", "~> 0.9"
   spec.add_development_dependency "webmock", "~> 3.14"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
