@@ -5,7 +5,6 @@ jobs:
   test_and_lint:
     runs-on: ubuntu-latest
     env:
-      BUNDLE_NO-CACHE: 'true'
       BUNDLE_JOBS: '4'
       BUNDLE_RETRY: '3'
     steps:
