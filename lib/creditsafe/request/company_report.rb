@@ -10,7 +10,6 @@ module Creditsafe
         @custom_data = custom_data
       end
 
-      # rubocop:disable Metrics/MethodLength
       def message
         message = {
           "#{Creditsafe::Namespace::OPER}:companyId" => company_id.to_s,

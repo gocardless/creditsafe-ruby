@@ -17,8 +17,6 @@ module Creditsafe
         @postal_code = search_criteria[:postal_code]
       end
 
-      # rubocop:disable Metrics/MethodLength
-      # rubocop:disable Metrics/AbcSize
       def message
         search_criteria = {}
 
@@ -53,7 +51,6 @@ module Creditsafe
 
         build_message(search_criteria)
       end
-      # rubocop:enable Metrics/AbcSize
       # rubocop:enable Metrics/MethodLength
 
       private
@@ -75,9 +72,6 @@ module Creditsafe
         }
       end
 
-      # rubocop:disable Metrics/CyclomaticComplexity
-      # rubocop:disable Metrics/MethodLength
-      # rubocop:disable Metrics/AbcSize
       def check_search_criteria(search_criteria)
         if search_criteria[:country_code].nil?
           raise ArgumentError, "country_code is a required search criteria"
@@ -101,9 +95,6 @@ module Creditsafe
           raise ArgumentError, "VAT number is not supported in this country"
         end
       end
-      # rubocop:enable Metrics/AbcSize
-      # rubocop:enable Metrics/MethodLength
-      # rubocop:enable Metrics/CyclomaticComplexity
 
       def only_one_required_criteria?(search_criteria)
         by_registration_number = !search_criteria[:registration_number].nil?
