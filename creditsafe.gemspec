@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "compare-xml", "~> 0.66"
   spec.add_development_dependency "debug"
-  spec.add_development_dependency "gc_ruboconfig", "~> 3.6.0"
+  spec.add_development_dependency "gc_ruboconfig", "~> 4.1.0"
   spec.add_development_dependency "pry", "~> 0.14"
   spec.add_development_dependency "rspec", "~> 3.8"
   spec.add_development_dependency "rspec-github", "~> 2.4.0"
